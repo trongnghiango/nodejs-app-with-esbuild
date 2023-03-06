@@ -46,12 +46,11 @@ const userDB = newConnection(db['dburi']);
 
 // If the Node process ends, close the Mongoose connection
 process.on("SIGINT", () => {
-  userDB.close(() => {
-    logger.info(
-      "Mongoose 'default' connection disconnected through app termination", { label: 'DATABASE' }
-    );
-    process.exit(0);
-  });
+  userDB.close(true);
+  logger.info(
+    "Mongoose 'default' connection disconnected through app termination", { label: 'DATABASE' }
+  );
+  process.exit(0);
 });
 
 module.exports = {

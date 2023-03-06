@@ -19,3 +19,9 @@ Content-Type: application/json
     "email": "quan",
     "password": "123abc"
 }
+
+###
+# refresh Token
+###
+GET http://localhost:9000/api/v1/auth/refreshtoken
+Content-Type: application/json

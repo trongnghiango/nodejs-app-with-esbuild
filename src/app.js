@@ -58,10 +58,10 @@ app.use((error, req, res, next) => {
   res.status(error.code || 500);
 
   res.json(
-    errorHandler({
-      message: error.message || 'An unknown error occurred',
-    })
+    errorHandler(
+      error.message || 'An unknown error occurred',
+    )
   );
 });
 
-module.exports = app
+module.exports = app;

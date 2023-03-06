@@ -1,29 +1,32 @@
 const express = require("express");
+const { successHandler } = require("../core/ApiResponse");
+const logger = require("../../../utils/logger")
+
 const {
   refreshToken,
   signIn,
   signUp
 } = require("../controllers/auth.controller");
-const { successHandler } = require("../core/ApiResponse");
-const logger = require("../../../utils/logger")
+
 const {
   signAccessToken,
   signRefreshToken,
   verifyToken,
 } = require("../middleware/jwt");
 
-
+// main router v1;
 const router = express.Router();
 
 /**
- * router: test
+ * GET method
+ * @path("/checkhealth")
  */
 router.get("/checkhealth", async (req, res) => {
   const payload = {
     id: 2,
     email: "ksdjf",
   };
-  logger.info('checkhealth')
+
   res.json(successHandler({
     results: {
       tokens: {
@@ -39,6 +42,7 @@ router.get("/checkhealth", async (req, res) => {
  */
 router.post("/auth/signup", signUp);
 router.post("/auth/signin", signIn);
+
 router.get("/auth/refreshtoken", refreshToken);
 
 /**

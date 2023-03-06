@@ -1,5 +1,7 @@
 const JWT = require("jsonwebtoken");
+
 const { readPrivateKey, readPublicKey } = require("../../../utils/file.utils");
+const logger = require("../../../utils/logger");
 
 
 module.exports = {
@@ -8,7 +10,7 @@ module.exports = {
    * @param {*} payload 
    * @returns 
    */
-  signAccessToken: async function(payload) {
+  signAccessToken: async function (payload) {
     /*
     // create payload
     const payload = {
@@ -16,8 +18,10 @@ module.exports = {
       name: "Nghia",
     };
     */
-  
+
+    logger.info(`start`);
     const cert = await readPrivateKey();
+    logger.info('end.')
     //create Token
     return await JWT.sign(payload, cert, { expiresIn: "1m", algorithm: "RS256" });
   },
@@ -27,7 +31,7 @@ module.exports = {
    * @param {*} payload 
    * @returns 
    */
-  signRefreshToken: async function(payload) {
+  signRefreshToken: async function (payload) {
     // get payload
     const cert = await readPrivateKey();
     //create Token
@@ -41,7 +45,7 @@ module.exports = {
    * @param {*} next 
    * @returns 
    */
-  verifyToken: async function(req, res, next) {
+  verifyToken: async function (req, res, next) {
     try {
       if (req.headers["x-token"]) {
         const token = req.headers["x-token"];

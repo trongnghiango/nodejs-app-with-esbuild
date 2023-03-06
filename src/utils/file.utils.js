@@ -7,9 +7,9 @@ module.exports = {
    * readPublicKey
    * @returns 
    */
-  readPublicKey: async function () {
+  readPublicKey: function () {
     return promisify(readFile)(
-      path.join(__dirname, "../config/keys/public.pem"),
+      path.join(__dirname, "../../config/keys/public.pem"),
       "utf8"
     );
   },
@@ -18,9 +18,9 @@ module.exports = {
    * readPrivateKey
    * @returns 
    */
-  readPrivateKey: async function () {
+  readPrivateKey: function () {
     return promisify(readFile)(
-      path.join(__dirname, "../config/keys/private.pem"),
+      path.join(__dirname, "../../config/keys/private.pem"),
       "utf8"
     );
   }

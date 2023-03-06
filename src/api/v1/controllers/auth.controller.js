@@ -6,6 +6,7 @@ const {
 } = require("../middleware/jwt");
 
 module.exports = {
+
   /**
    * signUp
    * @param {*} req 
@@ -24,13 +25,14 @@ module.exports = {
 
     //return new user info come back client
     const result = successHandler({
-      results: {
+      results: 
         user,
-      }
+      
     })
     // const e = errorHandler('masao ban kjajds');
     res.json(result);
   },
+
 
   /**
    * signIn
@@ -46,25 +48,28 @@ module.exports = {
       }));
   },
 
+
   /**
    * refreshToken
    * @param {*} req 
    * @param {*} res 
    */
   refreshToken: async function (req, res) {
-    const { user } = req;
-    console.log({ user });
+    // const { user } = req;
+    // console.log({ user });
     const payload = {
       userId: 4,
       email: "hsfhkl",
     };
-    res.status(200).json({
-      code: 200,
-      msg: "OK",
-      tokens: {
-        accessToken: await signAccessToken(payload),
-        refreshToken: await signRefreshToken(payload),
-      },
-    });
+
+   
+    const accessToken = await signAccessToken(payload);
+    const refreshToken = await signRefreshToken(payload);
+    
+    
+
+    res.json(
+      successHandler({results: {accessToken, refreshToken}})
+    );
   }
 };
