@@ -1,0 +1,21 @@
+###
+GET http://localhost:9000/api/v1/checkhealth
+
+
+###
+POST http://localhost:9000/api/v1/auth/signup
+Content-Type: application/json
+
+{
+    "email": "quan@hello.org",
+    "password": "123abc"
+}
+
+###
+POST http://localhost:9000/api/v1/auth/signin
+Content-Type: application/json
+
+{
+    "email": "quan",
+    "password": "123abc"
+}
