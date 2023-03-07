@@ -1,6 +1,7 @@
 const { promisify } = require("util");
 const path = require("path");
 const { readFile } = require("fs");
+const logger = require("./logger");
 
 module.exports = {
   /**
@@ -9,7 +10,7 @@ module.exports = {
    */
   readPublicKey: function () {
     return promisify(readFile)(
-      path.join(__dirname, "../../config/keys/public.pem"),
+      path.join(__dirname, "keys/public.pem"),
       "utf8"
     );
   },
@@ -19,8 +20,9 @@ module.exports = {
    * @returns 
    */
   readPrivateKey: function () {
+    logger.info(path.join(__dirname, "keys/private.pem"))
     return promisify(readFile)(
-      path.join(__dirname, "../../config/keys/private.pem"),
+      path.join(__dirname, "keys/private.pem"),
       "utf8"
     );
   }

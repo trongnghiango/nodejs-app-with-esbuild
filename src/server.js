@@ -1,8 +1,8 @@
 const { createServer } = require('http');
 const { Server } = require('socket.io');
-const app = require('./src/app');
-const logger = require('./src/utils/logger');
-const { socketHandlers } = require('./src/utils/socket');
+const app = require('./app');
+const logger = require('./utils/logger');
+const { socketHandlers } = require('./utils/socket');
 
 require('dotenv').config();
 // init mongo db
