@@ -1,35 +1,33 @@
 let users = [];
 
-const addUser = async (userId, socketId) => {
-  //is user already there?
-  const user = users.find((user) => user.id === userId);
-  if (user && user.socketId === socketId) {
-    return users;
-  } else {
-    if (user && user.socketId !== socketId) {
-      await removeUser(user.socketId);
-    }
-    const newUser = { userId, socketId };
-    users.push(newUser);
-    return users;
-  }
-};
-
 const removeUser = (socketId) => {
   users = users.filter((user) => user.socketId !== socketId);
 };
 
-const findConnectedUser = (userId) => {
-  return users.find((user) => user.userId === userId);
+const addUser = async (userId, socketId) => {
+  // is user already there?
+  const user = users.find((user) => user.id === userId);
+  if (user && user.socketId === socketId) {
+    return users;
+  }
+  if (user && user.socketId !== socketId) {
+    await removeUser(user.socketId);
+  }
+  const newUser = { userId, socketId };
+  users.push(newUser);
+  return users;
 };
 
-const socketHandlers = (io) => {
-  return io.on('connection', (socket) => {
+const findConnectedUser = (userId) =>
+  users.find((user) => user.userId === userId);
+
+const socketHandlers = (io) =>
+  io.on('connection', (socket) => {
     socket.on('join', async ({ userId }) => {
       const users = await addUser(userId, socket.id);
 
       setInterval(() => {
-        //sending back users other than logged in users
+        // sending back users other than logged in users
         socket.emit('connectedUsers', {
           users: users.filter((user) => user.id !== userId),
         });
@@ -84,6 +82,5 @@ const socketHandlers = (io) => {
       removeUser(socket.id);
     });
   });
-};
 
 exports.socketHandlers = socketHandlers;

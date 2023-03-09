@@ -1,9 +1,16 @@
 {
   "compilerOptions": {
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "strict": false,
+    "checkJs": true,
     "baseUrl": ".",
     "paths": {
-      "utils/*":[
-        ".src/utils/*"
+      "*": [
+        "node_modules/*"
+      ],
+      "utils/*": [
+        "src/utils/*"
       ],
       "keys/*": [
         "keys/*"
@@ -12,5 +19,9 @@
         "logs/*"
       ]
     }
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*"
+  ]
 }

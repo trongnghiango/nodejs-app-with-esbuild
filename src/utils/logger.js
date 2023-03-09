@@ -1,23 +1,24 @@
-const { createLogger, transports, format } = require("winston");
-const fs = require("fs");
-const path = require("path");
-const  DailyRotateFile = require("winston-daily-rotate-file");
+const { createLogger, transports, format } = require('winston');
+const fs = require('fs');
+const path = require('path');
+const DailyRotateFile = require('winston-daily-rotate-file');
 require('dotenv').config();
-// import { environment, logDirectory } from "../config";
-const { combine, timestamp, label, printf } = format;
+const { winston } = require('../../config/env.config');
 
-const myFormat = printf(({ level, message, label = "SERVER", timestamp }) => {
-  return `[${timestamp}] [${label}] [${level}]: ${message}`;
-});
+const { combine, printf } = format;
 
-const timezoned = () => {
-  return new Date().toLocaleString("en-US", {
-    timeZone: "Asia/Ho_Chi_Minh",
+const myFormat = printf(
+  ({ level, message, timestamp, label = 'SERVER' }) =>
+    `[${timestamp}] [${label}] [${level}]: ${message}`
+);
+
+const timezoned = () =>
+  new Date().toLocaleString('en-US', {
+    timeZone: 'Asia/Ho_Chi_Minh',
   });
-};
 
-let dir = "./logs";
-if (!dir) dir = path.resolve("logs");
+let dir = './logs';
+if (!dir) dir = path.resolve('logs');
 
 // create directory if it is not present
 if (!fs.existsSync(dir)) {
@@ -25,23 +26,24 @@ if (!fs.existsSync(dir)) {
   fs.mkdirSync(dir);
 }
 
-const logLevel = process.env.NODE_ENV === "development" ? "debug" : "debug";
+// const logLevel = process.env.NODE_ENV === "development" ? "debug" : "debug";
+const logLevel = winston.level;
 
 const options = {
   file: {
     level: logLevel,
-    filename: dir + "/%DATE%.log",
-    datePattern: "YYYY-MM-DD",
+    filename: `${dir}/%DATE%.log`,
+    datePattern: 'YYYY-MM-DD',
     zippedArchive: true,
     timestamp: true,
     handleExceptions: true,
     humanReadableUnhandledException: true,
     prettyPrint: true,
     json: true,
-    maxSize: "20m",
+    maxSize: '20m',
     colorize: true,
-    maxFiles: "14d",
-    format: format.combine(
+    maxFiles: '14d',
+    format: combine(
       format.errors({ stack: true }),
       format.prettyPrint(),
       format.timestamp({ format: timezoned }),
@@ -54,14 +56,14 @@ module.exports = createLogger({
   transports: [
     new transports.Console({
       level: logLevel,
-      format: format.combine(
+      format: combine(
         format.errors({ stack: true }),
         format.prettyPrint(),
         format.timestamp({ format: timezoned }),
         myFormat
       ),
     }),
-    new DailyRotateFile(options.file)
+    // new DailyRotateFile(options.file)
   ],
   exceptionHandlers: [new DailyRotateFile(options.file)],
   exitOnError: false, // do not exit on handled exceptions

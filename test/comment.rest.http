@@ -1,0 +1,24 @@
+@urlDev=http://localhost:9000
+
+
+GET {{urlDev}}/api/v1/checkhealth
+
+### put
+POST {{urlDev}}/api/v1/comment
+Content-Type: application/json
+x-token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwOTg1Mktha2EiLCJuYW1lIjoiUGhvbmciLCJlbWFpbCI6ImhjYWlsZm9AY2lxdWFuLm9yZyIsInJvbGVzIjpbIkdVRVNUIl0sImlhdCI6MTY3ODM1MTg3MCwiZXhwIjoxNjc4MzUyMDUwfQ.kGx5S1lyOVyqDUoXjv-PpdDT9DS2rZQX-fOhNxnIVaThtZ2B3e-5ro2Ju8yuoQEC0Cjxo1ENWgBumA_jTkodeIvisulglXZinMA19H3zvthmN1qLDyVW4WB3FUTQCLAsA2vBF-VuFAcClCTWIaBfIpGA9QI-cuTJuhDy2elBAGo
+
+{
+  "slug": "34033750",
+  "discuss_id": 1,
+  "isDEL": "NO",
+  "text": "I really like .... 34033750",
+  "author": { 
+    "name": "drodgers", 
+    "avt": ""
+  }
+}
+
+###
+
+GET {{urlDev}}/api/v1/checkhealth

@@ -1,3 +1,0 @@
-[3/7/2023, 7:38:06 AM] [SERVER] [info]: Starting server with port:: 9000
-[3/7/2023, 7:38:07 AM] [DATABASE] [info]: MongoDb:: [booking] is connected!
-[3/7/2023, 7:38:11 AM] [DATABASE] [info]: Mongoose 'default' connection disconnected through app termination

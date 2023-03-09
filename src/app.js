@@ -1,20 +1,18 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const { errorHandler } = require("./api/v1/core/ApiResponse");
-// const passport = require('passport');
 const cookieSession = require('cookie-session');
-const apiV1 = require('./api/v1/routes')
+const { errorHandler } = require('./api/v1/core/ApiResponse');
+// const passport = require('passport');
+const apiV1 = require('./api/v1/routes');
+const logger = require('./utils/logger');
+const { ApiError } = require('./api/v1/core/http-error');
 
 require('dotenv').config();
 // require("./api/v1/databases/init.mongodb");
-require("./api/v1/databases/init.multi.mongodb");
+require('./api/v1/databases/init.multi.mongodb');
 
-const {
-  COOKIE_KEY,
-  NODE_ENV,
-  CLIENT_URL,
-} = process.env;
+const { COOKIE_KEY, NODE_ENV, CLIENT_URL } = process.env;
 
 // MY APP INITIAL IN HERE
 const app = express();
@@ -25,7 +23,7 @@ app.use(
     name: 'session',
     keys: [COOKIE_KEY],
     maxAge: 24 * 60 * 60 * 1000, // session will expire after 24 hours
-    secure: NODE_ENV === 'development' ? false : true,
+    secure: NODE_ENV !== 'development',
     sameSite: NODE_ENV === 'development' ? false : 'none',
   })
 );
@@ -50,17 +48,20 @@ app.get('/', (req, res) => {
 });
 
 app.use((error, req, res, next) => {
+  if (error instanceof ApiError) {
+    logger.info(`ERROR:: ${JSON.stringify(error.message)}`);
+    return ApiError.handle(error, res);
+  }
+
   if (res.headerSent) {
-    //res already sent ? => don't send res, just forward the error
+    // res already sent ? => don't send res, just forward the error
     return next(error);
   }
-  //else, send a res
+  // else, send a res
   res.status(error.code || 500);
 
-  res.json(
-    errorHandler(
-      error.message || 'An unknown error occurred',
-    )
+  return res.json(
+    errorHandler(error.message || 'An unknown error occurred', error.code)
   );
 });
 

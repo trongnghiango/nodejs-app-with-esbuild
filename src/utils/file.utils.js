@@ -1,29 +1,43 @@
-const { promisify } = require("util");
-const path = require("path");
-const { readFile } = require("fs");
-const logger = require("./logger");
+const { promisify } = require('util');
+const path = require('path');
+const { readFile } = require('fs');
+const { dirname } = require('path');
+const logger = require('./logger');
+// const publicFile = require("../../keys/public.pem")
+const appDir = dirname(require.main.path);
 
 module.exports = {
   /**
    * readPublicKey
-   * @returns 
+   * @returns
    */
-  readPublicKey: function () {
-    return promisify(readFile)(
-      path.join(__dirname, "keys/public.pem"),
-      "utf8"
-    );
+  async readPublicKey() {
+    try {
+      return await promisify(readFile)(
+        path.join(appDir, 'keys/public.pem'),
+        'utf8'
+      );
+    } catch (error) {
+      logger.error(error.message);
+      return null;
+    }
   },
 
   /**
    * readPrivateKey
-   * @returns 
+   * @returns
    */
-  readPrivateKey: function () {
-    logger.info(path.join(__dirname, "keys/private.pem"))
-    return promisify(readFile)(
-      path.join(__dirname, "keys/private.pem"),
-      "utf8"
-    );
-  }
-}
+  async readPrivateKey() {
+    // logger.info(path.join(appDir, "keys/private.pem"))
+
+    try {
+      return await promisify(readFile)(
+        path.join(appDir, 'keys/private.pem'),
+        'utf8'
+      );
+    } catch (error) {
+      logger.error(error.message);
+      return null;
+    }
+  },
+};

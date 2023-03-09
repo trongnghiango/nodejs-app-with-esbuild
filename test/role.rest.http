@@ -1,0 +1,30 @@
+@devUrl=http://localhost:9000
+
+POST {{devUrl}}/api/v1/roles/create
+Content-Type: application/json
+x-token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJrc2RqZiIsImlhdCI6MTY3ODM5MzE3NCwiZXhwIjoxNjc4Mzk2Nzc0fQ.abhVDI7k-0A1xFu-COrBDwDvOYB2SUCP-bYtjRGsi-W1X-4AItwt6CTZIRqxWzN5nqfHL22ao4mJ8hdqL_p9fKt_gWVz4hwbOt8HfhsLWXmEDKp_4YjzRgnR-ySvm1Xp_yDZwq0Nt7QhEcG7oMfHTNbLGvDMPmalKmH1ghfS0Do 
+
+{
+  "code":  "ADMIN_LV_26",
+  "key": "ADMIN_LV_26",
+  "description": "",
+  "notes": ""
+}
+
+###
+
+POST {{devUrl}}/api/v1/admin/putrole
+Content-Type: application/json
+
+{
+  "isDEL": "NO",
+  "roleId": "parner",
+  "code":  "vkl_007",
+  "key": "vkl_007",
+  "description": "update vkl khi ko co lan 1",
+  "notes": "update lan 1"
+}
+
+###
+DELETE {{devUrl}}/api/v1/admin/role/delete/lf1e965n
+Content-Type: application/json

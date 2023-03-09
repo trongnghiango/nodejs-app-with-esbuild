@@ -1,18 +1,22 @@
-const express = require("express");
-const { successHandler } = require("../core/ApiResponse");
-const logger = require("../../../utils/logger")
+const express = require('express');
+const { successHandler } = require('../core/ApiResponse');
 
 const {
   refreshToken,
   signIn,
-  signUp
-} = require("../controllers/auth.controller");
+  signUp,
+} = require('../controllers/auth.controller');
 
+const { signAccessToken, signRefreshToken } = require('../middleware/jwt');
+const { putComment } = require('../controllers/comment.controller');
+const { validateCommentInput } = require('../validators/comment.validator');
+const { validateRegisterInput } = require('../validators/auth.validator');
+const Auth = require('../middleware/Auth');
 const {
-  signAccessToken,
-  signRefreshToken,
-  verifyToken,
-} = require("../middleware/jwt");
+  addRoleHanddler,
+  deleteRoleHandler,
+} = require('../controllers/admin.controller');
+const { validateCreateRoleInput } = require('../validators/roles.validator');
 
 // main router v1;
 const router = express.Router();
@@ -21,39 +25,55 @@ const router = express.Router();
  * GET method
  * @path("/checkhealth")
  */
-router.get("/checkhealth", async (req, res) => {
+router.get('/checkhealth', async (req, res) => {
   const payload = {
     id: 2,
-    email: "ksdjf",
+    email: 'ksdjf',
   };
-
-  res.json(successHandler({
-    results: {
-      tokens: {
-        accessToken: await signAccessToken(payload),
-        refreshToken: await signRefreshToken(payload),
+  res.json(
+    successHandler({
+      results: {
+        payload,
+        tokens: {
+          accessToken: await signAccessToken(payload),
+          refreshToken: await signRefreshToken(payload),
+        },
       },
-    },
-  }));
+    })
+  );
 });
 
 /**
  *  Router: auth
  */
-router.post("/auth/signup", signUp);
-router.post("/auth/signin", signIn);
+router.post('/auth/signup', validateRegisterInput, signUp);
+router.post('/auth/signin', signIn);
 
-router.get("/auth/refreshtoken", refreshToken);
+router.get('/auth/refreshtoken', refreshToken);
 
 /**
  * Router: user
  */
-router.get("/me", verifyToken, (req, res) => {
+router.get('/me', (req, res) => {
   res.json({
-    status: "success",
-    msg: "OK",
-    data: req.user,
+    status: 'success',
+    msg: 'OK',
+    data: {},
   });
 });
+
+/**
+ * Router: comment
+ */
+router.post('/comment', validateCommentInput, putComment);
+
+/**
+ * Router: for Admin
+ */
+router.post('/admin/putrole', validateCreateRoleInput, addRoleHanddler);
+
+router.delete('/admin/role/delete/:role_id', deleteRoleHandler);
+
+router.use('/roles', require('./role.route'));
 
 module.exports = router;

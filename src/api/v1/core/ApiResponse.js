@@ -10,14 +10,12 @@ module.exports = {
    *
    * @param   {object} data
    */
-  successHandler: ({ message = "OK", results, statusCode = 10000 }) => {
-    return {
-      message,
-      error: false,
-      code: statusCode,
-      results
-    };
-  },
+  successHandler: ({ message = 'OK', results, statusCode = 10000 }) => ({
+    message,
+    error: false,
+    code: statusCode,
+    results,
+  }),
 
   /**
    * @desc    Send any error response
@@ -25,8 +23,7 @@ module.exports = {
    * @param {string} message
    * @param   {number | undefined} error
    */
-  errorHandler: (message = "Error", statusCode) => {
-
+  errorHandler: (message = 'Error', statusCode = 500) => {
     /**
      * List of common HTTP request code
      * @note  You can add more http request code in here
@@ -34,15 +31,14 @@ module.exports = {
     const codes = [200, 201, 400, 401, 404, 403, 422, 500];
 
     // Get matched code
-    const findCode = codes.find((code) => code == statusCode);
+    let findCode = codes.find((code) => code === statusCode);
 
-    if (!findCode) statusCode = 500;
-    else statusCode = findCode;
+    if (!findCode) findCode = 500;
 
     return {
       message,
-      code: statusCode,
-      error: true
+      code: findCode,
+      error: true,
     };
   },
 
@@ -51,13 +47,10 @@ module.exports = {
    *
    * @param   {object | array} errors
    */
-  validation: (errors) => {
-    return {
-      message: "Validation errors",
-      error: true,
-      code: 422,
-      errors
-    };
-  }
-}
-
+  validation: (errors) => ({
+    message: 'Validation errors',
+    error: true,
+    code: 422,
+    errors,
+  }),
+};
