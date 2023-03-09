@@ -1,7 +1,9 @@
+const logger = require('../../../utils/logger');
+
 module.exports._requireRole =
   (...roleCodes) =>
   (req, res, next) => {
-    console.log(roleCodes);
+    logger.log(`${roleCodes}`);
     req.currentRoleCodes = roleCodes;
     next();
   };
