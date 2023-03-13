@@ -44,7 +44,7 @@ module.exports = {
    * @param {*} res
    */
   assignRoles: async (req, res) => {
-    console.log('test');
+    logger.info('test');
 
     return res.json(successHandler({ results: 'OK' }));
   },

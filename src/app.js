@@ -12,7 +12,8 @@ require('dotenv').config();
 // require("./api/v1/databases/init.mongodb");
 require('./api/v1/databases/init.multi.mongodb');
 
-const { COOKIE_KEY, NODE_ENV, CLIENT_URL } = process.env;
+const { cookieKey, node_env, clientUrl } = require('../config/env.config');
+// const { COOKIE_KEY, NODE_ENV, CLIENT_URL } = process.env;
 
 // MY APP INITIAL IN HERE
 const app = express();
@@ -21,10 +22,10 @@ app.set('trust proxy', 1);
 app.use(
   cookieSession({
     name: 'session',
-    keys: [COOKIE_KEY],
+    keys: [cookieKey],
     maxAge: 24 * 60 * 60 * 1000, // session will expire after 24 hours
-    secure: NODE_ENV !== 'development',
-    sameSite: NODE_ENV === 'development' ? false : 'none',
+    secure: node_env !== 'development',
+    sameSite: node_env === 'development' ? false : 'none',
   })
 );
 app.use(bodyParser.json());
@@ -35,7 +36,7 @@ app.use(bodyParser.json());
 
 app.use(
   cors({
-    origin: CLIENT_URL, // allow to server to accept request from different origin (client)
+    origin: clientUrl, // allow to server to accept request from different origin (client)
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // allow session cookie from browser to pass through
   })
@@ -47,6 +48,7 @@ app.get('/', (req, res) => {
   res.send('DEV.to is running');
 });
 
+// @ts-ignore
 app.use((error, req, res, next) => {
   if (error instanceof ApiError) {
     logger.info(`ERROR:: ${JSON.stringify(error.message)}`);

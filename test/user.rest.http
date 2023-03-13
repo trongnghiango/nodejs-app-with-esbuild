@@ -1,16 +1,17 @@
 
 @urlDev=http://localhost:9000
+@urlPro=https://kon-service.onrender.com
 
 
 GET {{urlDev}}/api/v1/checkhealth
 
 ###
-POST {{urlDev}}/api/v1/auth/signup
+POST {{urlPro}}/api/v1/auth/signup
 Content-Type: application/json
 
 {
-  "userId": "khabodo",
-  "name": "Phong",
-  "email": "hcaio@ckhan.vn",
-  "password": "123abc"
+  "userId": "khabodoconbocu",
+  "name": "Kha bo do",
+  "email": "hcaio@ckhansu.vn",
+  "password": "123abcxxx"
 }

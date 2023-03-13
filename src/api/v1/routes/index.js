@@ -10,8 +10,11 @@ const {
 const { signAccessToken, signRefreshToken } = require('../middleware/jwt');
 const { putComment } = require('../controllers/comment.controller');
 const { validateCommentInput } = require('../validators/comment.validator');
-const { validateRegisterInput } = require('../validators/auth.validator');
-const Auth = require('../middleware/Auth');
+const {
+  validateRegisterInput,
+  validateSignIn,
+} = require('../validators/auth.validator');
+
 const {
   addRoleHanddler,
   deleteRoleHandler,
@@ -47,7 +50,7 @@ router.get('/checkhealth', async (req, res) => {
  *  Router: auth
  */
 router.post('/auth/signup', validateRegisterInput, signUp);
-router.post('/auth/signin', signIn);
+router.post('/auth/signin', validateSignIn, signIn);
 
 router.get('/auth/refreshtoken', refreshToken);
 

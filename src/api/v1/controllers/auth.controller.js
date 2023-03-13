@@ -1,5 +1,6 @@
 const logger = require('../../../utils/logger');
 const { successHandler, errorHandler } = require('../core/ApiResponse');
+const { BadRequestError } = require('../core/http-error');
 
 const { signAccessToken, signRefreshToken } = require('../middleware/jwt');
 
@@ -59,9 +60,20 @@ module.exports = {
    * signIn
    * @param {*} req
    * @param {*} res
+   * @param {*} next
+   * @returns
    */
-  async signIn(req, res) {
-    res.status(200).json(
+  async signIn(req, res, next) {
+    const { username, password } = req.body;
+
+    const user = await userService.findUserByUsername(username);
+
+    if (!user) {
+      logger.error(`Not found user by username: ${username}`);
+      return next(new BadRequestError('username chua duoc dang ky...'));
+    }
+
+    return res.status(200).json(
       successHandler({
         results: ['Khabd', 'teo teo teo'],
       })

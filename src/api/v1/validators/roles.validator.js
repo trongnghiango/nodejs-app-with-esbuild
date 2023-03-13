@@ -19,6 +19,13 @@ const createRoleSchema = Joi.object({
 });
 
 module.exports = {
+  /**
+   * validateCreateRoleInput
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   * @returns
+   */
   validateCreateRoleInput: (req, res, next) => {
     // validation req input
     logger.info(req.body);
@@ -30,6 +37,14 @@ module.exports = {
 
     return next();
   },
+
+  /**
+   * validateCreatedRole
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   * @returns
+   */
   validateCreatedRole: (req, res, next) => {
     const { value, error } = createRoleSchema.validate(req.body);
     logger.info(`validateCreatedRole:: ${JSON.stringify({ error, value })}`);

@@ -8,6 +8,8 @@ module.exports = {
   name: pjson.name,
   version: pjson.version,
   description: pjson.description,
+  node_env: process.env.NODE_ENV || 'development',
+  clientUrl: process.env.CLIENT_URL || '*',
   port: PORT || 3000,
   basicAuth: {
     users: { mcom: 'mcom@123' },
@@ -60,4 +62,5 @@ module.exports = {
     maxPoolSize: parseInt(process.env.DB_MAX_POOL_SIZE || '10', 10),
     dburi: process.env.DB_URI || '',
   },
+  cookieKey: process.env.COOKIE_KEY || '',
 };

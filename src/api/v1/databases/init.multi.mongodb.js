@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const logger = require('../../../utils/logger');
 require('dotenv').config();
 
-const { db } = require('../../../../config/env.config');
+const { db, node_env } = require('../../../../config/env.config');
 
 // config
 const options = {
@@ -12,9 +12,12 @@ const options = {
   connectTimeoutMS: 10000, // Give up initial connection after 10 seconds
   socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
 };
-// mongoose.set('strictQuery', false)
+mongoose.set('strictQuery', false);
 
-// connect instance
+/**
+ * connect instance func.
+ * @param {string} uri
+ */
 function newConnection(uri) {
   const conn = mongoose.createConnection(uri, options);
 
@@ -22,6 +25,7 @@ function newConnection(uri) {
     // mongoose.set('debug', function (col, method, query, doc) {
     //   logger.debug(`Mongo Debug:: ${this.conn.name}:: ${col}, ${method}, ${JSON.stringify(query)}, ${JSON.stringify(doc)}`, { label: 'DATABASE' });
     // })
+    // @ts-ignore
     logger.info(`MongoDb:: [${this.name}] is connected!`, {
       label: 'DATABASE',
     });
@@ -29,6 +33,7 @@ function newConnection(uri) {
 
   // If the connection throws an error
   conn.on('error', (err) => {
+    logger.info(uri);
     logger.info(`Mongoose 'default' connection error: ${err}`, {
       label: 'DATABASE',
     });
@@ -44,7 +49,14 @@ function newConnection(uri) {
   return conn;
 }
 
-const conn1 = newConnection(db.dburi);
+const host = node_env === 'development' ? 'localhost' : db.host;
+
+// Build the connection string
+const dbURI = `mongodb://${db.user}:${encodeURIComponent(
+  db.password
+)}@${host}:${db.port}/${db.name}`;
+
+const conn1 = newConnection(dbURI);
 
 const conn2 = newConnection(
   `mongodb+srv://kaka:c8eM3KrT6X5pKW7@cluster0.gr4nd.mongodb.net/konking?retryWrites=true&w=majority`

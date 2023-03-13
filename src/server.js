@@ -20,10 +20,10 @@ const io = new Server(httpServer, {
 });
 socketHandlers(io);
 
-httpServer.setTimeout(10000, () => {
-  console.log('timeout');
-  io.destroy();
-});
+// httpServer.setTimeout(10000, () => {
+//   console.log('timeout');
+//   io.destroy();
+// });
 
 httpServer.listen(PORT || 5000, () => {
   logger.info(`Starting server with port:: ${PORT}`);

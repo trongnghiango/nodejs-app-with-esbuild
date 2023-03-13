@@ -15,12 +15,19 @@ const schema = Joi.object({
 });
 
 module.exports = {
+  /**
+   * validateCommentInput
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   * @returns
+   */
   validateCommentInput: (req, res, next) => {
     // validation req input
     const { value, error } = schema.validate(req.body);
     logger.info('VALIDATIE RESULT::', { value });
     if (error) {
-      return next(new BadRequestError(error));
+      return next(new BadRequestError(error.message));
     }
     return next();
   },

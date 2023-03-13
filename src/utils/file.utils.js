@@ -4,6 +4,7 @@ const { readFile } = require('fs');
 const { dirname } = require('path');
 const logger = require('./logger');
 // const publicFile = require("../../keys/public.pem")
+// @ts-ignore
 const appDir = dirname(require.main.path);
 
 module.exports = {
@@ -18,6 +19,7 @@ module.exports = {
         'utf8'
       );
     } catch (error) {
+      // @ts-ignore
       logger.error(error.message);
       return null;
     }
@@ -36,6 +38,7 @@ module.exports = {
         'utf8'
       );
     } catch (error) {
+      // @ts-ignore
       logger.error(error.message);
       return null;
     }

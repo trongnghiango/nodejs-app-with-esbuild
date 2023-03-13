@@ -1,0 +1,35 @@
+@urlPro=https://kon-service.onrender.com
+# @urlPro=http://localhost:9000
+
+###
+# LOGIN:
+#
+POST {{urlPro}}/api/v1/auth/signin
+Content-Type: application/json
+
+{
+  "username": "nghiadt",
+  "password": "Changeit"
+}
+
+###
+# LoGIN with email
+#
+POST {{urlPro}}/api/v1/auth/signinwithemail
+Content-Type: application/json 
+
+{
+  "email": "nghiadt@gmail.com",
+  "password": "Changeit"
+}
+
+###
+# LOGIN with phone
+#
+POST {{urlPro}}/api/v1/auth/signinwithphone
+Content-Type: application/json
+
+{
+  "phone": "0999999999",
+  "password": "Changeit"
+}

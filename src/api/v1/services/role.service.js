@@ -20,6 +20,7 @@ class RoleService {
       console.log('listComment');
       return [];
     } catch (error) {
+      // @ts-ignore
       console.log('Error [listcomment]::', error.message);
       return null;
     }
@@ -45,6 +46,7 @@ class RoleService {
       });
       return createdRole;
     } catch (error) {
+      // @ts-ignore
       logger.info(`ERROR [putComment]::, ${error.message}`);
       return null;
     }
@@ -89,17 +91,24 @@ class RoleService {
       });
       return putRole;
     } catch (error) {
+      // @ts-ignore
       logger.info(`ERROR [putComment]::, ${error.message}`);
       return null;
     }
   }
 
+  /**
+   * Delete role with roleId
+   * @param {*} roleId
+   * @returns
+   */
   static async deleteRole(roleId) {
     try {
       const deletedRoles = await _ROLE.findOneAndDelete({ roleId });
       logger.error(`ERROR [deleteRole]:: ${deletedRoles}`);
       return deletedRoles;
     } catch (error) {
+      // @ts-ignore
       logger.error(`ERROR [deleteRole]:: ${error.message}`);
       return null;
     }

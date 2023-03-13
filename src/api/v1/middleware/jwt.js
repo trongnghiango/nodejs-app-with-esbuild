@@ -24,11 +24,13 @@ module.exports = {
     const cert = await readPrivateKey();
     // create Token
     try {
+      // @ts-ignore
       return await JWT.sign(payload, cert, {
         expiresIn: '60m',
         algorithm: 'RS256',
       });
     } catch (error) {
+      // @ts-ignore
       logger.error(error.message);
       return null;
     }
@@ -44,11 +46,13 @@ module.exports = {
     const cert = await readPrivateKey();
     // create Token
     try {
+      // @ts-ignore
       return await JWT.sign(payload, cert, {
         expiresIn: '1d',
         algorithm: 'RS256',
       });
     } catch (error) {
+      // @ts-ignore
       logger.error(error.message);
       return null;
     }
@@ -66,6 +70,7 @@ module.exports = {
       if (req.headers['x-token']) {
         const token = req.headers['x-token'];
         const cert = await readPublicKey();
+        // @ts-ignore
         const payload = await JWT.verify(token, cert);
         req.user = payload;
         return next();
@@ -74,15 +79,23 @@ module.exports = {
         new BadTokenError('Người dùng chưa được định danh Hoặc Notfound TOKEN')
       );
     } catch (error) {
+      // @ts-ignore
       logger.info(`[VerifyToken]:: ${error.message}`);
+      // @ts-ignore
       return next(new BadTokenError(error.message));
     }
   },
 
+  /**
+   * verifyToken
+   * @param {*} token
+   * @returns
+   */
   async verifyToken(token) {
     try {
       if (token) {
         const cert = await readPublicKey();
+        // @ts-ignore
         const payload = await JWT.verify(token, cert);
 
         return payload;
@@ -90,6 +103,7 @@ module.exports = {
 
       return null;
     } catch (error) {
+      // @ts-ignore
       logger.error(`[VERIFY_TOKEN]:: ${error.message}`);
       return null;
     }

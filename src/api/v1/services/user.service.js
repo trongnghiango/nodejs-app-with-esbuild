@@ -2,6 +2,11 @@ const { randomUUID } = require('node:crypto');
 const logger = require('../../../utils/logger');
 const { _User } = require('../models/user.model');
 
+/**
+ * isExistedUser
+ * @param {*} userId string
+ * @returns object | null
+ */
 async function isExistedUser(userId) {
   try {
     return await _User.findOne({ userId });
@@ -10,15 +15,26 @@ async function isExistedUser(userId) {
   }
 }
 
+/**
+ * isExistedEmail
+ * @param {*} email
+ * @returns
+ */
 async function isExistedEmail(email) {
   try {
     return await _User.findOne({ email });
   } catch (error) {
+    // @ts-ignore
     logger.error(error.message);
     return null;
   }
 }
 
+/**
+ * createNewUser
+ * @param {*} data
+ * @returns
+ */
 async function createNewUser(data) {
   if (!data) return null;
 
@@ -30,7 +46,23 @@ async function createNewUser(data) {
 
     return await _User.create(newUser);
   } catch (error) {
+    // @ts-ignore
     logger.error(error.message);
+    return null;
+  }
+}
+
+/**
+ * findUserByUsername
+ * @param {*} username
+ * @returns
+ */
+async function findUserByUsername(username) {
+  try {
+    return await _User.findOne({ username });
+  } catch (error) {
+    // @ts-ignore
+    logger.error(`ERROR>>findUserByUsername:: ${error.message}`);
     return null;
   }
 }
@@ -39,4 +71,5 @@ module.exports = {
   isExistedUser,
   isExistedEmail,
   createNewUser,
+  findUserByUsername,
 };
