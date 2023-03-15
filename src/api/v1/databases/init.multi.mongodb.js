@@ -62,15 +62,6 @@ const conn2 = newConnection(
   `mongodb+srv://kaka:c8eM3KrT6X5pKW7@cluster0.gr4nd.mongodb.net/konking?retryWrites=true&w=majority`
 );
 
-// If the Node process ends, close the Mongoose connection
-// process.on("SIGINT", () => {
-//   conn1.close(true);
-//   logger.info(
-//     "Mongoose 'default' connection disconnected through app termination", { label: 'DATABASE' }
-//   );
-//   process.exit(1);
-// });
-
 module.exports = {
   conn1,
   conn2,

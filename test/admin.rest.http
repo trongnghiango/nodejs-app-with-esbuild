@@ -1,0 +1,14 @@
+@urlDev=localhost:9000
+
+POST /api/v1/admin/apikey/create
+Host: {{urlDev}}
+Content-Type: application/json
+x-api-key: CCMUD90YvklWvyUNt9n3QtsNoSHzK7Uj
+x-token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIiLCJhdWQiOiIiLCJzdWIiOiJ7XCJ1c2VySWRcIjpcIjVjMDBlYjcyLTA3NjEtNDI5ZC04MTgyLTI5YjJkNDU2NzIyZlwiLFwidXNlcm5hbWVcIjpcImtoYWtodW5nXCIsXCJyb2xlc1wiOltcIkFETUlOXCIsXCJHVUVTVFwiXX0iLCJwcm0iOiI1N2QzMjE5ODhmNGM2NWRmZGMzZWI1ZTk0Njg0N2QzYWViN2Y2M2MxMzc1NDJjNWIxZTVmOTdjMDgyYmE2ZDNkMjlmMDEyNTQxMzcyNjExYWM5NjVkZTc3YjVmODE0MTc0MWUxOGVhNjA4ZWFmMmMzZmYyYTZmNTYxYzk4NGM4MCIsImlhdCI6MTY3ODg2MjAwMSwiZXhwIjoxNjc4ODYyMDAxfQ.NP-YviDmcDr_loGd-PQBsHkMNTk6dENkXOmXsWC1RoRg1qNJxTI7iW_v0B_CY422b9div0LK8diWcngdLdbk_gpQVz3nusvuS-fC431dwGIyuBA40nQhF_6xWoY73_FHwgM-m8WQwdu6exuzKXIF2abZ0rLDoeurRe7Co80-IEQ
+
+{
+  "key": "CCMUD90YvklWvyUNt9n3QtsNoSHzK7Uj",
+  "permissions": ["GENERAL","QUAN"],
+  "comments": ["To be used by the xyz vendor"],
+  "version": 1
+}

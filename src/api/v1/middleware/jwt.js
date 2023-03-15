@@ -1,8 +1,9 @@
-const JWT = require('jsonwebtoken');
+const { sign, verify } = require('jsonwebtoken');
+const { promisify } = require('util');
 
 const { readPrivateKey, readPublicKey } = require('../../../utils/file.utils');
 const logger = require('../../../utils/logger');
-const { BadTokenError } = require('../core/http-error');
+const { BadTokenError, InternalError } = require('../core/http-error');
 
 module.exports = {
   /**
@@ -25,7 +26,7 @@ module.exports = {
     // create Token
     try {
       // @ts-ignore
-      return await JWT.sign(payload, cert, {
+      return await sign(payload, cert, {
         expiresIn: '60m',
         algorithm: 'RS256',
       });
@@ -47,7 +48,7 @@ module.exports = {
     // create Token
     try {
       // @ts-ignore
-      return await JWT.sign(payload, cert, {
+      return await sign(payload, cert, {
         expiresIn: '1d',
         algorithm: 'RS256',
       });
@@ -71,7 +72,7 @@ module.exports = {
         const token = req.headers['x-token'];
         const cert = await readPublicKey();
         // @ts-ignore
-        const payload = await JWT.verify(token, cert);
+        const payload = await verify(token, cert);
         req.user = payload;
         return next();
       }
@@ -96,8 +97,7 @@ module.exports = {
       if (token) {
         const cert = await readPublicKey();
         // @ts-ignore
-        const payload = await JWT.verify(token, cert);
-
+        const payload = verify(token, cert);
         return payload;
       }
 
@@ -106,6 +106,44 @@ module.exports = {
       // @ts-ignore
       logger.error(`[VERIFY_TOKEN]:: ${error.message}`);
       return null;
+    }
+  },
+
+  /**
+   * @param {{
+        aud: string,
+        sub: string,
+        iss: string,
+        iat: number,
+        exp: number,
+        prm: string,
+      }} payload
+   */
+  async encode(payload) {
+    logger.info(`[encode]:: payload -- ${JSON.stringify(payload, null, 2)}`);
+    const cert = await readPrivateKey();
+    if (!cert) throw new InternalError('Token generation failure');
+    // eslint-disable-next-line node/no-unsupported-features/es-syntax
+    const token = sign({ ...payload }, cert, { algorithm: 'RS256' });
+    if (!token) throw new InternalError('Token generation failure');
+
+    return token;
+  },
+  /**
+   * @param {string} token
+   * @returns {Promise<{ iss: string, aud: string, sub: any, prm: string, iat: number, exp: number}>} payload
+   */
+  async decode(token) {
+    const cert = await readPublicKey();
+    try {
+      // @ts-ignore
+      // eslint-disable-next-line no-undef
+      return await promisify(verify)(token, cert, {
+        ignoreExpiration: true,
+      });
+    } catch (error) {
+      // @ts-ignore
+      throw new BadTokenError(error.message);
     }
   },
 };

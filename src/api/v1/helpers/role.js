@@ -1,9 +1,10 @@
 const logger = require('../../../utils/logger');
 
 module.exports._requireRole =
-  (...roleCodes) =>
+  (/** @type {any} */ ...roleCodes) =>
+  // @ts-ignore
   (req, res, next) => {
-    logger.log(`${roleCodes}`);
+    // logger.info(`[currentRoleCodes]::${roleCodes}`);
     req.currentRoleCodes = roleCodes;
     next();
   };

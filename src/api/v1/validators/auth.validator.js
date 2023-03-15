@@ -3,17 +3,13 @@ const logger = require('../../../utils/logger');
 const { BadRequestError } = require('../core/http-error');
 
 const registerSchema = Joi.object({
+  userId: Joi.string().alphanum().min(3).max(16).required(),
   username: Joi.string().alphanum().min(3).max(30).required(),
-
+  phone: Joi.string().min(9).max(15),
+  email: Joi.string().email().required(),
   password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
-
+  displayName: Joi.string().min(1).max(30),
   repeat_password: Joi.ref('password'),
-
-  access_token: [Joi.string(), Joi.number()],
-
-  birth_year: Joi.number().integer().min(1900).max(2013),
-
-  email: Joi.string().email(),
 });
 
 const loginSchema = Joi.object({
@@ -32,8 +28,15 @@ module.exports.validateRegisterInput = (req, res, next) => {
   // sync interface data from body.
   logger.info(req.body);
   // const data = {...}
-  // const {error, value} = registerSchema.validate();
-  next();
+  const { error, value } = registerSchema.validate(req.body);
+  if (error) {
+    logger.error(`Error [validation]:: ${error}`);
+    throw new BadRequestError(`[Validator error] :: ${error.message}`);
+  }
+
+  req.dataFilter = value;
+
+  return next();
 };
 
 /**

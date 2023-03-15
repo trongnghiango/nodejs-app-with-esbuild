@@ -2,14 +2,19 @@
 
 POST {{devUrl}}/api/v1/roles/create
 Content-Type: application/json
-x-token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJrc2RqZiIsImlhdCI6MTY3ODM5MzE3NCwiZXhwIjoxNjc4Mzk2Nzc0fQ.abhVDI7k-0A1xFu-COrBDwDvOYB2SUCP-bYtjRGsi-W1X-4AItwt6CTZIRqxWzN5nqfHL22ao4mJ8hdqL_p9fKt_gWVz4hwbOt8HfhsLWXmEDKp_4YjzRgnR-ySvm1Xp_yDZwq0Nt7QhEcG7oMfHTNbLGvDMPmalKmH1ghfS0Do 
+x-token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJrc2RqZiIsImlhdCI6MTY3ODczNjQzNCwiZXhwIjoxNjc4NzQwMDM0fQ.MOkbbjPLAy01A8ONNmQmQi-YDfS88EE0ojIEFasi92ur0v4X2qtWdaSk2bXsL4zSAn0gfs4naQUFOAmowMjYX3WaQrWEA3LUN89_sC3DRvdv2gcDndyigIJHy1kfWrn9JmkWyFKOUrhyJkBxMOogzwvAe41NUwvTdBOO4bA4SLo
 
 {
-  "code":  "ADMIN_LV_26",
-  "key": "ADMIN_LV_26",
-  "description": "",
-  "notes": ""
+  "code":  "GUEST",
+  "key": "GUEST",
+  "description": "GUEST",
+  "notes": "GUEST"
 }
+
+###
+GET {{devUrl}}/api/v1/roles/640f7ed23032450a09236493
+Content-Type: application/json
+x-token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjZTAxZjAzYS1iODE2LTRlZDQtYWU4Ni1iNTg5NmVhZWFmMzIiLCJ1c2VybmFtZSI6ImtoYWJvZG8iLCJyb2xlcyI6WyJMRUFSTkVSIiwiQURNSU4iLCJHVUVTVCJdLCJpYXQiOjE2Nzg3NjQ1ODEsImV4cCI6MTY3ODc2ODE4MX0.jdoSWErlz1rwEeke87DOyiTHuYjEFmgb6q56nPY5btvbhQ6tjTi2aey5ZlzZCTgR937qQ8BLH6bEp1DTnp9bH4Kq_-_dfQe5EldiwpEk2A5Z5ocia2naSSIPNkzqTVBEA6GLSQ1eoQKL4LYZfD58pfgho2FqJjvAl2rHLoIpEhA
 
 ###
 

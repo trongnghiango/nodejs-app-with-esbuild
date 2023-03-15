@@ -3,11 +3,15 @@ const { conn1 } = require('../databases/init.multi.mongodb');
 
 const userSchema = new Schema(
   {
-    userId: { type: String, required: true, unique: true },
-    name: { type: Schema.Types.String, required: true },
-    email: { type: String, required: true, unique: true }, // 'unique' adds index => fastens the querying prcoess
+    userId: { type: Schema.Types.String, required: true, unique: true },
+    username: { type: Schema.Types.String, required: true, unique: true },
+    email: { type: Schema.Types.String, required: true, unique: true }, // 'unique' adds index => fastens the querying prcoess
     password: { type: Schema.Types.String, required: true, minLength: 6 },
-    role: [
+    // option below
+    phone: { type: Schema.Types.String, unique: true },
+    name: { type: Schema.Types.String, default: '' },
+    displayName: { type: Schema.Types.String, default: '' },
+    roles: [
       {
         type: Schema.Types.ObjectId,
         ref: 'Role',
@@ -27,7 +31,10 @@ const userSchema = new Schema(
   }
 );
 
-userSchema.index({ userId: 1, email: 1 }, { unique: true });
+userSchema.index(
+  { userId: 1, email: 1, username: 1, phone: 1 },
+  { unique: true }
+);
 
 module.exports = {
   _User: conn1.model('User', userSchema, 'users'), // returns a constructor function

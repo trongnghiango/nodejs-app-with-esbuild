@@ -1,5 +1,6 @@
 const { genRoleIdWithPre } = require('../../../utils/gen.util');
 const logger = require('../../../utils/logger');
+const { ApiError, BadRequestError } = require('../core/http-error');
 const { _ROLE } = require('../models/role.model');
 
 class RoleService {
@@ -23,6 +24,47 @@ class RoleService {
       // @ts-ignore
       console.log('Error [listcomment]::', error.message);
       return null;
+    }
+  }
+
+  /**
+   * @param {import('mongoose').Types.ObjectId []} ids
+   */
+  static async getRoles(ids) {
+    try {
+      // eslint-disable-next-line array-callback-return
+      const filter = ids.map((_id) => ({ _id }));
+      const roles = await _ROLE.find({ $or: filter });
+      return roles;
+    } catch (error) {
+      // @ts-ignore
+      throw new BadRequestError('[TTT]error.message');
+    }
+  }
+
+  /**
+   * @param {any} code
+   */
+  static async getByCode(code) {
+    try {
+      const role = await _ROLE.findOne({ code });
+      return role;
+    } catch (error) {
+      // @ts-ignore
+      throw new BadRequestError(error.message);
+    }
+  }
+
+  /**
+   * @param {any} id
+   */
+  static async getById(id) {
+    try {
+      const role = await _ROLE.findById({ _id: id });
+      return role;
+    } catch (error) {
+      // @ts-ignore
+      throw new BadRequestError(error.message);
     }
   }
 

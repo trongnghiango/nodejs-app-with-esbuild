@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const logger = require('../../../utils/logger');
 const { errorHandler } = require('./ApiResponse');
 
@@ -23,12 +24,19 @@ const ErrorType = {
 };
 
 class ApiError extends Error {
+  /**
+   * @param {string | undefined} type
+   */
   constructor(type, message = 'error') {
     super(type);
     this.type = type;
     this.message = message;
   }
 
+  /**
+   * @param {ApiError} err
+   * @param {{ json: (arg0: { message: string; code: number; error: boolean; }) => void; }} res
+   */
   static handle(err, res) {
     logger.info(`err -> ${err}`);
     switch (err.type) {
@@ -39,6 +47,7 @@ class ApiError extends Error {
         res.json(errorHandler(err.message, ResponseStatus.UNAUTHORIZED));
         break;
       case ErrorType.BAD_REQUEST:
+        logger.info('BadRequestError');
         res.json(errorHandler(err.message, ResponseStatus.BAD_REQUEST));
         break;
       case ErrorType.FORBIDDEN:
@@ -47,6 +56,12 @@ class ApiError extends Error {
       default:
         res.json(errorHandler('LOI KHONG RO NGUYEN NHAN....'));
     }
+  }
+}
+
+class AuthFailureError extends ApiError {
+  constructor(message = 'Invalid Credentials') {
+    super(ErrorType.UNAUTHORIZED, message);
   }
 }
 
@@ -104,24 +119,27 @@ class AccessTokenError extends ApiError {
   }
 }
 
-class HttpError extends Error {
-  constructor(message, errorCode) {
-    super(message);
-    this.code = errorCode;
-  }
-}
-function MyError(message) {
-  this.name = 'MyError';
-  this.message = message;
-  this.stack = new Error().stack;
-}
-MyError.prototype = new Error();
+// class HttpError extends Error {
+//   constructor(message, errorCode) {
+//     super(message);
+//     this.code = errorCode;
+//   }
+// }
+// function MyError(message) {
+//   this.name = 'MyError';
+//   this.message = message;
+//   this.stack = new Error().stack;
+// }
+// MyError.prototype = new Error();
 
 module.exports = {
-  HttpError,
-  MyError,
+  // HttpError,
+  // MyError,
   AccessTokenError,
   BadRequestError,
   BadTokenError,
+  InternalError,
+  AuthFailureError,
+  ForbiddenError,
   ApiError,
 };

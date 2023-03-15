@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
+// const { ExpressErrorHandler } = require('@acruzjr/express-http-errors');
 const { errorHandler } = require('./api/v1/core/ApiResponse');
 // const passport = require('passport');
 const apiV1 = require('./api/v1/routes');
@@ -50,8 +51,8 @@ app.get('/', (req, res) => {
 
 // @ts-ignore
 app.use((error, req, res, next) => {
+  logger.error(`[App] ERROR:: ${JSON.stringify(error.message)}`);
   if (error instanceof ApiError) {
-    logger.info(`ERROR:: ${JSON.stringify(error.message)}`);
     return ApiError.handle(error, res);
   }
 

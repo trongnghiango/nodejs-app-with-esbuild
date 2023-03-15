@@ -63,7 +63,7 @@ module.exports = createLogger({
         myFormat
       ),
     }),
-    // new DailyRotateFile(options.file)
+    new DailyRotateFile(options.file),
   ],
   exceptionHandlers: [new DailyRotateFile(options.file)],
   exitOnError: false, // do not exit on handled exceptions

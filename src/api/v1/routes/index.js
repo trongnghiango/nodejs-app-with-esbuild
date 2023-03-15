@@ -1,4 +1,5 @@
 const express = require('express');
+
 const { successHandler } = require('../core/ApiResponse');
 
 const {
@@ -50,7 +51,7 @@ router.get('/checkhealth', async (req, res) => {
  *  Router: auth
  */
 router.post('/auth/signup', validateRegisterInput, signUp);
-router.post('/auth/signin', validateSignIn, signIn);
+router.post('/auth/signinwithusername', validateSignIn, signIn);
 
 router.get('/auth/refreshtoken', refreshToken);
 
@@ -73,10 +74,11 @@ router.post('/comment', validateCommentInput, putComment);
 /**
  * Router: for Admin
  */
-router.post('/admin/putrole', validateCreateRoleInput, addRoleHanddler);
+// router.post('/admin/putrole', validateCreateRoleInput, addRoleHanddler);
 
-router.delete('/admin/role/delete/:role_id', deleteRoleHandler);
+// router.delete('/admin/role/delete/:role_id', deleteRoleHandler);
 
 router.use('/roles', require('./role.route'));
+router.use('/admin', require('./admin.route'));
 
 module.exports = router;

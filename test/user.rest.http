@@ -6,12 +6,24 @@
 GET {{urlDev}}/api/v1/checkhealth
 
 ###
-POST {{urlPro}}/api/v1/auth/signup
+POST {{urlDev}}/api/v1/auth/signinwithusername
 Content-Type: application/json
 
 {
-  "userId": "khabodoconbocu",
-  "name": "Kha bo do",
-  "email": "hcaio@ckhansu.vn",
+  "username": "khakhung",
   "password": "123abcxxx"
+}
+
+###
+POST {{urlDev}}/api/v1/auth/signup
+Content-Type: application/json
+
+{
+  "userId": "khakhung",
+  "username": "khakhung",
+  "phone": "0004380984",
+  "displayName": "Kha Bo Do",
+  "email": "khabd@xyz.com",
+  "password": "123abcxxx",
+  "repeat_password": "123abcxxx"
 }

@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const userValidate = (data) => {
+const userValidate = (/** @type {any} */ data) => {
   const userShema = Joi.object({
     userId: Joi.string().min(3).max(16).required(),
     name: Joi.string().min(1).max(32).required(),
