@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const DailyRotateFile = require('winston-daily-rotate-file');
 require('dotenv').config();
-const { winston } = require('../../config/env.config');
+const { winston } = require('../config/base.config');
 
 const { combine, printf } = format;
 

@@ -1,8 +1,9 @@
-const pjson = require('../package.json');
+const pjson = require('../../package.json');
 require('dotenv').config();
 
 const { NODE_ENV, PORT, MONGO_LOG, SECRET, FIREBASE, FIREBASE_VIEW } =
   process.env;
+  
 
 module.exports = {
   name: pjson.name,

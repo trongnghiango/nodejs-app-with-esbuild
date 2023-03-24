@@ -1,4 +1,5 @@
 const express = require('express');
+const Database = require('../../../../demo/dbs/init.mongo');
 
 const { successHandler } = require('../core/ApiResponse');
 
@@ -30,6 +31,7 @@ const router = express.Router();
  * @path("/checkhealth")
  */
 router.get('/checkhealth', async (req, res) => {
+  Database.getInstance()
   const payload = {
     id: 2,
     email: 'ksdjf',
@@ -37,7 +39,7 @@ router.get('/checkhealth', async (req, res) => {
   res.json(
     successHandler({
       results: {
-        payload,
+        info: JSON.stringify(payload).repeat(50000),
         tokens: {
           accessToken: await signAccessToken(payload),
           refreshToken: await signRefreshToken(payload),

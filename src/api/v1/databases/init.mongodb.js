@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const logger = require('../../../utils/logger');
-const { db } = require('../../../../config/env.config');
+const { db } = require('../../../config/base.config');
 
 logger.info(JSON.stringify(db));
 // Build the connection string

@@ -1,7 +1,7 @@
 const { Types } = require('mongoose');
 const JWT = require('../middleware/jwt');
 const logger = require('../../../utils/logger');
-const { tokenInfo } = require('../../../../config/env.config');
+const { tokenInfo } = require('../../../config/base.config');
 const { InternalError, AuthFailureError } = require('../core/http-error');
 
 const getAccessToken = (/** @type {string} */ authorization) => {

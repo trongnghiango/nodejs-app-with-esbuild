@@ -10,9 +10,9 @@ module.exports = {
   //   "SharedArrayBuffer": "readonly"
   // },
   parserOptions: {
-    ecmaVersion: 2018,
+    ecmaVersion: 2020,
   },
-  plugins: ['prettier'],
+  plugins: ['prettier', 'transform-object-rest-spread'],
   rules: {
     'prettier/prettier': 'error',
     'no-unused-vars': 'warn',

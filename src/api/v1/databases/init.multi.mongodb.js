@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const logger = require('../../../utils/logger');
 require('dotenv').config();
 
-const { db, node_env } = require('../../../../config/env.config');
+const { db, env } = require('../../../config');
 
 // config
 const options = {
@@ -49,7 +49,7 @@ function newConnection(uri) {
   return conn;
 }
 
-const host = node_env === 'development' ? 'localhost' : db.host;
+const host = env === 'development' ? 'localhost' : db.host;
 
 // Build the connection string
 const dbURI = `mongodb://${db.user}:${encodeURIComponent(

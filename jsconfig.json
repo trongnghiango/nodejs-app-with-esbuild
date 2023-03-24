@@ -3,6 +3,8 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "strict": true,
+    // enable this rule:
+    // "noImplicitAny": false,
     "checkJs": true,
     "baseUrl": ".",
     "paths": {
