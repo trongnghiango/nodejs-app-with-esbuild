@@ -10,6 +10,15 @@ POST {{urlDev}}/api/v1/auth/signinwithusername
 Content-Type: application/json
 
 {
+  "username": "admin",
+  "password": "Changeit"
+}
+
+###
+POST {{urlDev}}/api/v1/auth/signinwithusername
+Content-Type: application/json
+
+{
   "username": "khakhung",
   "password": "123abcxxx"
 }

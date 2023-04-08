@@ -1,5 +1,5 @@
 const express = require('express');
-const Database = require('../../../../demo/dbs/init.mongo');
+// const Database = require('../../../../demo/dbs/init.mongo');
 
 const { successHandler } = require('../core/ApiResponse');
 
@@ -31,7 +31,7 @@ const router = express.Router();
  * @path("/checkhealth")
  */
 router.get('/checkhealth', async (req, res) => {
-  Database.getInstance()
+  // Database.getInstance()
   const payload = {
     id: 2,
     email: 'ksdjf',
@@ -54,6 +54,7 @@ router.get('/checkhealth', async (req, res) => {
  */
 router.post('/auth/signup', validateRegisterInput, signUp);
 router.post('/auth/signinwithusername', validateSignIn, signIn);
+router.post('/auth/signin', validateSignIn, signIn);
 
 router.get('/auth/refreshtoken', refreshToken);
 
@@ -82,5 +83,6 @@ router.post('/comment', validateCommentInput, putComment);
 
 router.use('/roles', require('./role.route'));
 router.use('/admin', require('./admin.route'));
+// router.use('/user', require('./user.route'));
 
 module.exports = router;

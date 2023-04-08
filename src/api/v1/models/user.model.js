@@ -1,5 +1,5 @@
 const { Schema } = require('mongoose');
-const { conn1 } = require('../databases/init.multi.mongodb');
+const { auth_conn } = require('../databases/init.multi.mongodb');
 
 const userSchema = new Schema(
   {
@@ -37,5 +37,5 @@ userSchema.index(
 );
 
 module.exports = {
-  _User: conn1.model('User', userSchema, 'users'), // returns a constructor function
+  _User: auth_conn.model('User', userSchema, 'users'), // returns a constructor function
 };

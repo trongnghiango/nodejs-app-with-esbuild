@@ -1,5 +1,5 @@
 const { Schema } = require('mongoose');
-const { conn2 } = require('../databases/init.multi.mongodb');
+const { auth_conn } = require('../databases/init.multi.mongodb');
 
 const keystoreSchema = new Schema(
   {
@@ -19,6 +19,6 @@ const keystoreSchema = new Schema(
     timestamps: true,
   }
 );
-keystoreSchema.index({ _id: 1 }, { unique: true });
+// keystoreSchema.index({ _id: 1 }, { unique: true });
 
-module.exports.KEYSTORE = conn2.model('Keystore', keystoreSchema, 'keystores');
+module.exports.KEYSTORE = auth_conn.model('Keystore', keystoreSchema, 'keystores');

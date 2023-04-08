@@ -62,6 +62,7 @@ module.exports = {
     minPoolSize: parseInt(process.env.DB_MIN_POOL_SIZE || '5', 5),
     maxPoolSize: parseInt(process.env.DB_MAX_POOL_SIZE || '10', 10),
     dburi: process.env.DB_URI || '',
+    authdburi: process.env.AUTH_DB_URI || '',
   },
   cookieKey: process.env.COOKIE_KEY || '',
 };

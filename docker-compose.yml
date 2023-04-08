@@ -1,18 +1,18 @@
 version: "3.1"
 
 services:
-  node-app:
-    image: ntnghiatn/node-app
-    build: 
-      context: .
-    container_name: node-app
-    restart: unless-stopped
-    volumes: 
-      - ./logs:/home/node/app/logs
-    ports:
-      - "9000:9000"
-    networks: 
-      - proxy_network
+  # node-app:
+  #   image: ntnghiatn/node-app
+  #   build: 
+  #     context: .
+  #   container_name: node-app
+  #   restart: unless-stopped
+  #   volumes: 
+  #     - ./logs:/home/node/app/logs
+  #   ports:
+  #     - "9000:9000"
+  #   networks: 
+  #     - proxy_network
 
   mongo:
     # To create this service, Compose will pull the mongo

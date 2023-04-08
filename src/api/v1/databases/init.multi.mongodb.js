@@ -56,13 +56,14 @@ const dbURI = `mongodb://${db.user}:${encodeURIComponent(
   db.password
 )}@${host}:${db.port}/${db.name}`;
 
-const conn1 = newConnection(dbURI);
+// const conn1 = newConnection(dbURI);
+const auth_conn = newConnection(db.authdburi);
 
-const conn2 = newConnection(
-  `mongodb+srv://kaka:c8eM3KrT6X5pKW7@cluster0.gr4nd.mongodb.net/konking?retryWrites=true&w=majority`
+const conn2 = newConnection( dbURI
+  // `mongodb+srv://admin:Kiquanneban@cluster0.suieilb.mongodb.net/khabobo?retryWrites=true&w=majority`
 );
 
 module.exports = {
-  conn1,
+  auth_conn,
   conn2,
 };

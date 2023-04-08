@@ -1,5 +1,5 @@
 const { Schema } = require('mongoose');
-const { conn1 } = require('../databases/init.multi.mongodb');
+const { auth_conn } = require('../databases/init.multi.mongodb');
 
 const roleSchema = new Schema(
   {
@@ -21,4 +21,4 @@ const roleSchema = new Schema(
 );
 roleSchema.index({ roleId: 1, code: 1, key: 1 }, { unique: true });
 
-module.exports._ROLE = conn1.model('Role', roleSchema, 'roles');
+module.exports._ROLE = auth_conn.model('Role', roleSchema, 'roles');

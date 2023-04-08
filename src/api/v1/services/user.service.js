@@ -62,10 +62,9 @@ async function createNewUser(data) {
  */
 async function findUserByUsername(username) {
   try {
-    return await _User
-      .findOne({ username })
-      .select('displayName username roles')
-      .exec();
+    return await _User.findOne({ username }).lean();
+      // .select('displayName username roles')
+      // .exec();
   } catch (error) {
     // @ts-ignore
     throw new BadRequestError(error.message);

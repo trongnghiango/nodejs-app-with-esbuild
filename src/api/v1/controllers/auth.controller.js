@@ -99,7 +99,7 @@ module.exports = {
     // 1. Tim xem co user trong database ko?
     const user = await userService.findUserByUsername(username);
     if (!user) {
-      logger.error(`Not found user by username: ${username}`);
+      logger.error(`Not found user by username: "${username}"`);
       throw new BadRequestError('username chua duoc dang ky...');
     }
 

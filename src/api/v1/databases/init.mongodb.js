@@ -4,8 +4,8 @@ const { db } = require('../../../config/base.config');
 
 logger.info(JSON.stringify(db));
 // Build the connection string
-const dbURI =
-  'mongodb+srv://kaka:c8eM3KrT6X5pKW7@cluster0.gr4nd.mongodb.net/booking?retryWrites=true&w=majority';
+const dbURI = db.authdburi
+  // 'mongodb+srv://kaka:c8eM3KrT6X5pKW7@cluster0.gr4nd.mongodb.net/booking?retryWrites=true&w=majority';
 // const dbURI = `mongodb://${db.user}:${encodeURIComponent(db.password)}@${db.host}:${db.port}/${db.name}`;
 
 const options = {
@@ -45,13 +45,13 @@ mongoose.connection.on('disconnected', () => {
 });
 
 // If the Node process ends, close the Mongoose connection
-process.on('SIGINT', () => {
-  mongoose.connection.close(() => {
-    logger.info(
-      'Mongoose default connection disconnected through app termination'
-    );
-    process.exit(0);
-  });
-});
+// process.on('SIGINT', () => {
+//   mongoose.connection.close(() => {
+//     logger.info(
+//       'Mongoose default connection disconnected through app termination'
+//     );
+//     process.exit(0);
+//   });
+// });
 
 module.exports = mongoose;
