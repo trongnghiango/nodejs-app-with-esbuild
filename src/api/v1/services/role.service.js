@@ -1,6 +1,6 @@
 const { genRoleIdWithPre } = require("../../../utils/gen.util");
 const logger = require("../../../utils/logger");
-const { ApiError, BadRequestError } = require("../core/http-error");
+const { ApiError, BadRequestError } = require("../core/ApiError");
 const { _ROLE } = require("../models/role.model");
 
 class RoleService {

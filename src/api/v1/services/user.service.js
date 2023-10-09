@@ -1,6 +1,6 @@
 const { randomUUID } = require("node:crypto");
 const logger = require("../../../utils/logger");
-const { BadRequestError } = require("../core/http-error");
+const { BadRequestError } = require("../core/ApiError");
 const { _User } = require("../models/user.model");
 
 /**

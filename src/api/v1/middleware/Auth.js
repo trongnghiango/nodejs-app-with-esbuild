@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const logger = require("../../../utils/logger");
-const { AccessTokenError, BadTokenError } = require("../core/http-error");
+const { AccessTokenError, BadTokenError } = require("../core/ApiError");
 const { verifyToken, decode } = require("./jwt");
 
 module.exports = {

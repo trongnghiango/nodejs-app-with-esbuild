@@ -1,6 +1,6 @@
 const Joi = require("joi");
 const logger = require("../../../utils/logger");
-const { BadRequestError } = require("../core/http-error");
+const { BadRequestError } = require("../core/ApiError");
 
 const schema = Joi.object({
   slug: Joi.string().min(3).max(16).required(),

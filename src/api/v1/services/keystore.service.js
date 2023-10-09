@@ -1,5 +1,5 @@
 const logger = require("../../../utils/logger");
-const { BadRequestError } = require("../core/http-error");
+const { BadRequestError } = require("../core/ApiError");
 const { KEYSTORE } = require("../models/keystore.model");
 
 class KeystoreService {

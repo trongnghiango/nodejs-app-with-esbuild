@@ -3,7 +3,7 @@ const { promisify } = require("util");
 
 const { readPrivateKey, readPublicKey } = require("../../../utils/file.utils");
 const logger = require("../../../utils/logger");
-const { BadTokenError, InternalError } = require("../core/http-error");
+const { BadTokenError, InternalError } = require("../core/ApiError");
 
 module.exports = {
   /**

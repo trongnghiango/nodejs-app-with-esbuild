@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const asyncHandler = require("express-async-handler");
+const asyncHandler = require("../helpers/asyncHandler");
 const {
   createRoleHandler,
   getRoleByIdHandler,

@@ -1,5 +1,5 @@
 const logger = require("../../../utils/logger");
-const { BadRequestError } = require("../core/http-error");
+const { BadRequestError } = require("../core/ApiError");
 const { APIKEY } = require("../models/apikey.model");
 
 class ApiKeyService {

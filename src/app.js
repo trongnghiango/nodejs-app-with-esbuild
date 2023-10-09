@@ -1,7 +1,3 @@
-/* eslint strict: ["error", "global"] */
-
-"use strict";
-
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -10,11 +6,16 @@ const { default: helmet } = require("helmet");
 const morgan = require("morgan");
 const compression = require("compression");
 // const { ExpressErrorHandler } = require('@acruzjr/express-http-errors');
-const { errorHandler } = require("./api/v1/core/ApiResponse");
+const { InternalErrorResponse } = require("./api/v1/core/ApiResponse");
 // const passport = require('passport');
 const apiV1 = require("./api/v1/routes");
 const logger = require("./utils/logger");
-const { ApiError, NotFoundError } = require("./api/v1/core/http-error");
+const {
+  ApiError,
+  NotFoundError,
+  InternalError,
+  ErrorType,
+} = require("./api/v1/core/ApiError");
 
 require("dotenv").config();
 // require("./api/v1/databases/init.mongodb");
@@ -69,35 +70,31 @@ app.get("/", (req, res) => {
   res.send("DEV.to is running");
 });
 
+// catch 404 and forward to error handler
 app.use((req, res, next) => {
-  const err = new NotFoundError("Not Found");
-  err.status = 404;
-  next(err);
+  logger.error(new NotFoundError() instanceof ApiError);
+  next(new NotFoundError("Not Found router"));
 });
 
-app.use(
-  (
-    /** @type {any} */ error,
-    /** @type {any} */ req,
-    /** @type {{ headerSent?: any; status?: any; json: any; }} */ res,
-    /** @type {(arg0: any) => any} */ next
-  ) => {
-    logger.error(`[App] ERROR:: ${JSON.stringify(error.message)}`);
-    if (error instanceof ApiError) {
-      return ApiError.handle(error, res);
-    }
-
-    if (res.headerSent) {
-      // res already sent ? => don't send res, just forward the error
-      return next(error);
-    }
-    // else, send a res
-    res.status(error.code || 500);
-
-    return res.json(
-      errorHandler(error.message || "An unknown error occurred", error.code)
+// eslint-disable-next-line consistent-return
+app.use((err, req, res, next) => {
+  if (err instanceof ApiError) {
+    logger.error(err);
+    ApiError.handle(err, res);
+    if (err.type === ErrorType.INTERNAL)
+      logger.error(
+        `500 - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`
+      );
+  } else {
+    logger.error(
+      `500 - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`
     );
+
+    if (env === "development") {
+      return res.status(500).send(err);
+    }
+    ApiError.handle(new InternalError(), res);
   }
-);
+});
 
 module.exports = app;

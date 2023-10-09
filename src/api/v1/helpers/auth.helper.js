@@ -1,8 +1,7 @@
-const { Types } = require("mongoose");
 const JWT = require("../middleware/jwt");
 const logger = require("../../../utils/logger");
 const { tokenInfo } = require("../../../config/base.config");
-const { InternalError, AuthFailureError } = require("../core/http-error");
+const { InternalError, AuthFailureError } = require("../core/ApiError");
 
 const getAccessToken = (/** @type {string} */ authorization) => {
   if (!authorization) throw new AuthFailureError("Invalid Authorization");

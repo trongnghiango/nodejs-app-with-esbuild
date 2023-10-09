@@ -3,8 +3,8 @@ const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 const crypto = require("crypto");
 const logger = require("../../../utils/logger");
-const { successHandler } = require("../core/ApiResponse");
-const { BadRequestError } = require("../core/http-error");
+const { SuccessResponse } = require("../core/ApiResponse");
+const { BadRequestError } = require("../core/ApiError");
 const { createTokens } = require("../helpers/auth.helper");
 
 const { signAccessToken, signRefreshToken } = require("../middleware/jwt");
@@ -76,14 +76,12 @@ module.exports = {
     };
 
     // return new user info come back client
-    res.json(
-      successHandler({
-        results: {
-          user,
-          tokens,
-        },
-      })
-    );
+    new SuccessResponse("success", {
+      results: {
+        user,
+        tokens,
+      },
+    }).send(res);
   }),
 
   /**
@@ -151,14 +149,7 @@ module.exports = {
     //   refreshToken: await signRefreshToken(payload),
     // };
 
-    res.status(200).json(
-      successHandler({
-        results: {
-          user,
-          tokens,
-        },
-      })
-    );
+    new SuccessResponse("Success", { user, tokens }).send(res);
   }),
 
   /**
@@ -177,6 +168,8 @@ module.exports = {
     const accessToken = await signAccessToken(payload);
     const refreshToken = await signRefreshToken(payload);
 
-    res.json(successHandler({ results: { accessToken, refreshToken } }));
+    new SuccessResponse("success", {
+      results: { accessToken, refreshToken },
+    }).send(res);
   },
 };

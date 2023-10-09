@@ -36,6 +36,6 @@ process.on("SIGINT", () => {
   io.disconnectSockets(true);
   conn1.close(true);
   conn2.close(true);
-  // io.close((error) => logger.error(`SOCKET.IO::${error}`))
+  io.close((error) => logger.error(`SOCKET.IO::${error}`));
   process.exit(0);
 });

@@ -11,19 +11,19 @@ const options = {
   entryPoints: ['./src/server.js'],
   target: ['node20.8.0'],
   outfile: 'dist/server.js',
-  // sourcemap: true,
+  sourcemap: true,
   // splitting: true, //only works with the "esm" format
   minify: true,
   bundle: true,
   // watch: true,
   platform: 'node',
-  format: 'cjs',
+  // format: 'js',
   define: { 'process.env.NODE_ENV': '"production"' },
-  // external: [
-  //   "./node_modules/*",
-  //   "./keys/*",
-  //   "./logs/*",
-  // ],
+  external: [
+    "./node_modules/*",
+    "./keys/*",
+    "./logs/*",
+  ],
   // packages: 'external',
   loader: {
     // ".pem": "file",

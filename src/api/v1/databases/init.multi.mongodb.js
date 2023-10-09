@@ -14,21 +14,16 @@ const options = {
 };
 mongoose.set("strictQuery", false);
 
-/**
- * connect instance func.
- * @param {string} uri
- */
 function newConnection(uri) {
   const conn = mongoose.createConnection(uri, options);
-  logger.info(`MongoDb:: [${this.name}] ${uri}`, {
+  logger.info(`MongoDb:: ${uri}`, {
     label: "DATABASE",
   });
-  conn.on("connected", function () {
+  conn.on("connected", () => {
     // mongoose.set('debug', function (col, method, query, doc) {
     //   logger.debug(`Mongo Debug:: ${this.conn.name}:: ${col}, ${method}, ${JSON.stringify(query)}, ${JSON.stringify(doc)}`, { label: 'DATABASE' });
     // })
-    // @ts-ignore
-    logger.info(`MongoDb:: [${this.name}] is connected!`, {
+    logger.info(`MongoDb:: is connected!`, {
       label: "DATABASE",
     });
   });
@@ -50,12 +45,6 @@ function newConnection(uri) {
 
   return conn;
 }
-
-// const host = env === "development" ? "localhost" : db.host;
-// Build the connection string
-// const dbURI = `mongodb://${db.user}:${encodeURIComponent(
-//   db.password
-// )}@${host}:${db.port}/${db.name}`;
 
 const auth_conn = newConnection(db.authdburi);
 const conn1 = newConnection(db.dburi);

@@ -1,9 +1,8 @@
 
 @urlDev=http://localhost:9000
-@urlPro=https://kon-service.onrender.com
 
 
-GET {{urlDev}}/api/v1/checkhealth
+GET {{urlDev}}/api/v1/checkhealth/hh
 
 ###
 POST {{urlDev}}/api/v1/auth/signinwithusername

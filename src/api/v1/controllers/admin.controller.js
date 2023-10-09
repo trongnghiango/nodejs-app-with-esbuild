@@ -1,7 +1,7 @@
-const asyncHandler = require("express-async-handler");
+const asyncHandler = require("../helpers/asyncHandler");
 const logger = require("../../../utils/logger");
-const { successHandler } = require("../core/ApiResponse");
-const { BadRequestError } = require("../core/http-error");
+const { SuccessResponse } = require("../core/ApiResponse");
+const { BadRequestError } = require("../core/ApiError");
 const ApiKeyService = require("../services/apikey.service");
 const RoleService = require("../services/role.service");
 const { findUserByUsername } = require("../services/user.service");
@@ -15,7 +15,7 @@ module.exports = {
     if (!role)
       throw new BadRequestError(`Khong tim thay role voi id: ${req.params.id}`);
 
-    res.json(successHandler({ results: role }));
+    new SuccessResponse("success", { results: role }).send(res);
   }),
   //
   createRoleHandler: asyncHandler(async (req, res) => {
@@ -26,7 +26,7 @@ module.exports = {
       throw new BadRequestError("test badrequest");
     }
 
-    res.json(successHandler({ results: role }));
+    new SuccessResponse("success", { results: role }).send(res);
   }),
   //
   addRoleHanddler: async (req, res, next) => {
@@ -37,7 +37,7 @@ module.exports = {
       throw new BadRequestError("role...");
     }
 
-    return res.json(successHandler({ results: role }));
+    new SuccessResponse("success", { results: role }).send(res);
   },
 
   /**
@@ -49,7 +49,7 @@ module.exports = {
   assignRoles: async (req, res) => {
     logger.info("test");
 
-    return res.json(successHandler({ results: "OK" }));
+    new SuccessResponse("success", { results: "OK" }).send(res);
   },
 
   /**
@@ -67,19 +67,18 @@ module.exports = {
       return next(new BadRequestError("Cannot delete this role."));
     }
 
-    return res.json(successHandler({ results: del_role }));
+    return new SuccessResponse("success", { results: del_role }).send(res);
   },
 
   createApiKeyHandler: asyncHandler(async (req, res, next) => {
     const data = req.body;
     // const {}
     logger.info(`currentuser:: ${Array.isArray(data.permissions)}`);
-    // @ts-ignore
     const user = await findUserByUsername(req.user.username);
     data.client = user;
     const newApiKey = await ApiKeyService.create(data);
     if (!newApiKey) throw new BadRequestError("Cannot create api key");
 
-    res.json(successHandler({ results: newApiKey }));
+    new SuccessResponse("Success", { results: newApiKey }).send(res);
   }),
 };

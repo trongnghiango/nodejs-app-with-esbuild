@@ -1,7 +1,7 @@
 const express = require("express");
 // const Database = require('../../../../demo/dbs/init.mongo');
 
-const { successHandler } = require("../core/ApiResponse");
+const { SuccessResponse } = require("../core/ApiResponse");
 
 const {
   refreshToken,
@@ -35,11 +35,7 @@ router.get("/checkhealth", async (req, res) => {
   const results = {
     status: "Ok",
   };
-  res.json(
-    successHandler({
-      results,
-    })
-  );
+  new SuccessResponse("success", { results }).send(res);
 });
 
 /**

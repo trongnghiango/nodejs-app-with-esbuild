@@ -1,6 +1,6 @@
-const asyncHandler = require("express-async-handler");
+const asyncHandler = require("../helpers/asyncHandler");
 const logger = require("../../../utils/logger");
-const { ForbiddenError } = require("../core/http-error");
+const { ForbiddenError } = require("../core/ApiError");
 const Header = require("../helpers/constants");
 const ApiKeyService = require("../services/apikey.service");
 
@@ -12,10 +12,9 @@ module.exports.checkApiKey = asyncHandler(async (req, res, next) => {
   }
 
   const apiKey = await ApiKeyService.findByKey(key.toString());
-  if (!apiKey) throw new ForbiddenError(`[Notfound] Permission denied`);
+  if (!apiKey) throw new ForbiddenError(`[Notfound apikey] Permission denied`);
   logger.info(apiKey);
 
-  // @ts-ignore
   req.apiKey = apiKey;
   next();
 });

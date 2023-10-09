@@ -1,6 +1,13 @@
-/* eslint-disable no-unused-vars */
 const logger = require("../../../utils/logger");
-const { errorHandler } = require("./ApiResponse");
+const { env } = require("../../../config");
+const {
+  AuthFailureResponse,
+  AccessTokenErrorResponse,
+  InternalErrorResponse,
+  NotFoundResponse,
+  BadRequestResponse,
+  ForbiddenResponse,
+} = require("./ApiResponse");
 
 const ResponseStatus = {
   SUCCESS: 200,
@@ -24,37 +31,38 @@ const ErrorType = {
 };
 
 class ApiError extends Error {
-  /**
-   * @param {string | undefined} type
-   */
-  constructor(type, message = "error") {
-    super(type);
-    this.type = type;
-    this.message = message;
-  }
+  // eslint-disable-next-line no-useless-constructor
+  // constructor(type, message) {
+  //   super(type, message);
+  // }
 
-  /**
-   * @param {ApiError} err
-   * @param {{ json: (arg0: { message: string; code: number; error: boolean; }) => void; }} res
-   */
   static handle(err, res) {
-    logger.info(`err -> ${err}`);
+    logger.info(
+      `---------------------------- ${err.name} ----------------------------`
+    );
     switch (err.type) {
       case ErrorType.BAD_TOKEN:
       case ErrorType.TOKEN_EXPIRED:
       case ErrorType.UNAUTHORIZED:
+        return new AuthFailureResponse(err.message).send(res);
       case ErrorType.ACCESS_TOKEN:
-        res.json(errorHandler(err.message, ResponseStatus.UNAUTHORIZED));
-        break;
+        return new AccessTokenErrorResponse(err.message).send(res);
+      case ErrorType.INTERNAL:
+        return new InternalErrorResponse(`${err.message} !!`).send(res);
+      case ErrorType.NOT_FOUND:
+      case ErrorType.NO_ENTRY:
+      case ErrorType.NO_DATA:
+        return new NotFoundResponse(`${err.message}`).send(res);
       case ErrorType.BAD_REQUEST:
-        logger.info("BadRequestError");
-        res.json(errorHandler(err.message, ResponseStatus.BAD_REQUEST));
-        break;
+        return new BadRequestResponse(err.message).send(res);
       case ErrorType.FORBIDDEN:
-        res.json(errorHandler(err.message, ResponseStatus.FORBIDDEN));
-        break;
-      default:
-        res.json(errorHandler("LOI KHONG RO NGUYEN NHAN...."));
+        return new ForbiddenResponse(`${err.message}`).send(res);
+      default: {
+        let { message } = err;
+        // Do not send failure message in production as it may send sensitive data
+        if (env === "production") message = "Something wrong happened.";
+        return new InternalErrorResponse(message).send(res);
+      }
     }
   }
 }
@@ -79,31 +87,36 @@ class BadRequestError extends ApiError {
 
 class NotFoundError extends ApiError {
   constructor(message = "Not Found") {
-    super(ErrorType.NOT_FOUND, message);
+    super(message);
+    this.type = ErrorType.NOT_FOUND;
   }
 }
 
 class ForbiddenError extends ApiError {
   constructor(message = "Permission denied") {
-    super(ErrorType.FORBIDDEN, message);
+    super(message);
+    this.type = ErrorType.FORBIDDEN;
   }
 }
 
 class NoEntryError extends ApiError {
   constructor(message = "Entry don't exists") {
-    super(ErrorType.NO_ENTRY, message);
+    super(message);
+    this.type = ErrorType.NO_ENTRY;
   }
 }
 
 class BadTokenError extends ApiError {
   constructor(message = "Token is not valid") {
-    super(ErrorType.BAD_TOKEN, message);
+    super(message);
+    this.type = ErrorType.BAD_TOKEN;
   }
 }
 
 class TokenExpiredError extends ApiError {
   constructor(message = "Token is expired") {
-    super(ErrorType.TOKEN_EXPIRED, message);
+    super(message);
+    this.type = ErrorType.TOKEN_EXPIRED;
   }
 }
 
@@ -115,26 +128,14 @@ class NoDataError extends ApiError {
 
 class AccessTokenError extends ApiError {
   constructor(message = "Invalid access token") {
-    super(ErrorType.ACCESS_TOKEN, message);
+    super(message);
+    this.type = ErrorType.ACCESS_TOKEN;
   }
 }
 
-// class HttpError extends Error {
-//   constructor(message, errorCode) {
-//     super(message);
-//     this.code = errorCode;
-//   }
-// }
-// function MyError(message) {
-//   this.name = 'MyError';
-//   this.message = message;
-//   this.stack = new Error().stack;
-// }
-// MyError.prototype = new Error();
-
 module.exports = {
-  // HttpError,
-  // MyError,
+  TokenExpiredError,
+  NoDataError,
   AccessTokenError,
   BadRequestError,
   BadTokenError,
@@ -142,5 +143,7 @@ module.exports = {
   AuthFailureError,
   ForbiddenError,
   NotFoundError,
+  NoEntryError,
   ApiError,
+  ErrorType,
 };

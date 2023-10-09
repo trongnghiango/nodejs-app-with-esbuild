@@ -1,11 +1,8 @@
-// @ts-nocheck
-/* eslint-disable no-restricted-syntax */
-
 const logger = require("../../../utils/logger");
 
-// eslint-disable-next-line node/no-unsupported-features/es-syntax
 async function asyncLoop(prmises) {
   const results = [];
+  // eslint-disable-next-line no-restricted-syntax
   for (const item of prmises) {
     // eslint-disable-next-line no-await-in-loop
     const temp = await item();
