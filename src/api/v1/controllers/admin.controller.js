@@ -17,15 +17,9 @@ module.exports = {
 
     res.json(successHandler({ results: role }));
   }),
-  /**
-   * createRoleHandler
-   * @param {*} req
-   * @param {*} res
-   */
+  //
   createRoleHandler: asyncHandler(async (req, res) => {
-    // @ts-ignore
     logger.info(`currentRoleCodes:: ${req.currentRoleCodes}`);
-    // @ts-ignore
     const role = await RoleService.createRole(req.dataFilter);
     if (!role) {
       // return next(new BadRequestError());
@@ -34,13 +28,7 @@ module.exports = {
 
     res.json(successHandler({ results: role }));
   }),
-  /**
-   *
-   * @param {*} req
-   * @param {*} res
-   * @param {*} next
-   * @returns
-   */
+  //
   addRoleHanddler: async (req, res, next) => {
     logger.info(JSON.stringify(req.dataFilter));
     const role = await RoleService.putRole(req.dataFilter);
@@ -65,7 +53,8 @@ module.exports = {
   },
 
   /**
-   *
+   * deleteRoleHandler
+   * desc: yeu cau quyen admin toi cao
    * @param {*} req
    * @param {*} res
    * @param {*} next

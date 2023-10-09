@@ -20,7 +20,9 @@ mongoose.set('strictQuery', false);
  */
 function newConnection(uri) {
   const conn = mongoose.createConnection(uri, options);
-
+  logger.info(`MongoDb:: [${this.name}] ${uri}`, {
+    label: "DATABASE",
+  });
   conn.on('connected', function () {
     // mongoose.set('debug', function (col, method, query, doc) {
     //   logger.debug(`Mongo Debug:: ${this.conn.name}:: ${col}, ${method}, ${JSON.stringify(query)}, ${JSON.stringify(doc)}`, { label: 'DATABASE' });
@@ -52,18 +54,19 @@ function newConnection(uri) {
 const host = env === 'development' ? 'localhost' : db.host;
 
 // Build the connection string
-const dbURI = `mongodb://${db.user}:${encodeURIComponent(
-  db.password
-)}@${host}:${db.port}/${db.name}`;
+// const dbURI = `mongodb://${db.user}:${encodeURIComponent(
+//   db.password
+// )}@${host}:${db.port}/${db.name}`;
 
-// const conn1 = newConnection(dbURI);
 const auth_conn = newConnection(db.authdburi);
-
-const conn2 = newConnection( dbURI
-  // `mongodb+srv://admin:Kiquanneban@cluster0.suieilb.mongodb.net/khabobo?retryWrites=true&w=majority`
-);
+const conn1 = newConnection(db.dburi);
+const conn2 = newConnection(db.dburi);
+logger.info(`${db.dburi}`, {
+  label: "DATABASE",
+});
 
 module.exports = {
   auth_conn,
   conn2,
+  conn1,
 };

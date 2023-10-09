@@ -16,8 +16,8 @@ const router = Router();
 router.post(
   '/create',
   validateCreatedRole,
-  _requireRole('GUEST'),
-  asyncHandler(async (req, res, next) => Auth.checkRole(req, res, next)),
+  // _requireRole('GUEST'),
+  // asyncHandler(async (req, res, next) => Auth.checkRole(req, res, next)),
   createRoleHandler
 );
 
