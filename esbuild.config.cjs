@@ -9,7 +9,7 @@ const { build } = require('esbuild');
 
 const options = {
   entryPoints: ['./src/server.js'],
-  target: ['node18.16.0'],
+  target: ['node20.8.0'],
   outfile: 'dist/server.js',
   // sourcemap: true,
   // splitting: true, //only works with the "esm" format

@@ -1,5 +1,14 @@
-@urlPro=https://kon-service.onrender.com
+@urlPro=https://ka-api-service.onrender.com
 # @urlPro=http://localhost:9000
+
+POST {{urlPro}}/api/v1/auth/signinwithusername
+Content-Type: application/json
+
+{
+  "username": "khakhung",
+  "password": "123abcxxx"
+}
+
 
 ###
 # LOGIN:

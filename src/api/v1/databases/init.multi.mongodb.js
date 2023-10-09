@@ -9,7 +9,7 @@ const options = {
   useNewUrlParser: true,
   autoIndex: true,
   useUnifiedTopology: true,
-  connectTimeoutMS: 10000, // Give up initial connection after 10 seconds
+  connectTimeoutMS: 30000, // Give up initial connection after 10 seconds
   socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
 };
 mongoose.set("strictQuery", false);
