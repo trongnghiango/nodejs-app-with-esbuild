@@ -1,5 +1,4 @@
-@urlPro=https://ka-api-service.onrender.com
-# @urlPro=http://localhost:9000
+@urlPro=https://kon-service.onrender.com
 
 POST {{urlPro}}/api/v1/auth/signinwithusername
 Content-Type: application/json
@@ -29,7 +28,7 @@ Content-Type: application/json
 
 {
   "email": "nghiadt@gmail.com",
-  "password": "Changeit"
+  "password": "123abcXYZ"
 }
 
 ###
