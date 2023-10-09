@@ -19,7 +19,6 @@ module.exports = {
         "utf8"
       );
     } catch (error) {
-      // @ts-ignore
       logger.error(error.message);
       return null;
     }
@@ -38,7 +37,6 @@ module.exports = {
         "utf8"
       );
     } catch (error) {
-      // @ts-ignore
       logger.error(error.message);
       return null;
     }

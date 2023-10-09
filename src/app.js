@@ -1,3 +1,7 @@
+/* eslint strict: ["error", "global"] */
+
+"use strict";
+
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -10,7 +14,7 @@ const { errorHandler } = require("./api/v1/core/ApiResponse");
 // const passport = require('passport');
 const apiV1 = require("./api/v1/routes");
 const logger = require("./utils/logger");
-const { ApiError } = require("./api/v1/core/http-error");
+const { ApiError, NotFoundError } = require("./api/v1/core/http-error");
 
 require("dotenv").config();
 // require("./api/v1/databases/init.mongodb");
@@ -27,15 +31,15 @@ logger.info(`Env:: ${db.authdburi}`);
 
 // Middle init
 app.set("trust proxy", 1);
-app.use(
-  cookieSession({
-    name: "session",
-    keys: [cookieKey],
-    maxAge: 24 * 60 * 60 * 1000, // session will expire after 24 hours
-    secure: env !== "development",
-    sameSite: env === "development" ? false : "none",
-  })
-);
+// app.use(
+//   cookieSession({
+//     name: "session",
+//     keys: [cookieKey],
+//     maxAge: 24 * 60 * 60 * 1000, // session will expire after 24 hours
+//     secure: env !== "development",
+//     sameSite: env === "development" ? false : "none",
+//   })
+// );
 app.use(bodyParser.json());
 
 // morgan setup
@@ -63,6 +67,12 @@ app.use("/api/v1", apiV1);
 
 app.get("/", (req, res) => {
   res.send("DEV.to is running");
+});
+
+app.use((req, res, next) => {
+  const err = new NotFoundError("Not Found");
+  err.status = 404;
+  next(err);
 });
 
 app.use(

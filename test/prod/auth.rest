@@ -1,4 +1,4 @@
-@urlPro=https://kon-service.onrender.com
+@urlPro=https://kon-service-q2bs.onrender.com
 
 POST {{urlPro}}/api/v1/auth/signinwithusername
 Content-Type: application/json

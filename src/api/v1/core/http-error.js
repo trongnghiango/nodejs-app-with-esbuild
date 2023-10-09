@@ -141,5 +141,6 @@ module.exports = {
   InternalError,
   AuthFailureError,
   ForbiddenError,
+  NotFoundError,
   ApiError,
 };
