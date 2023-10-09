@@ -32,19 +32,12 @@ const router = express.Router();
  */
 router.get("/checkhealth", async (req, res) => {
   // Database.getInstance()
-  const payload = {
-    id: 2,
-    email: "ksdjf",
+  const results = {
+    status: "Ok",
   };
   res.json(
     successHandler({
-      results: {
-        info: JSON.stringify(payload).repeat(50000),
-        tokens: {
-          accessToken: await signAccessToken(payload),
-          refreshToken: await signRefreshToken(payload),
-        },
-      },
+      results,
     })
   );
 });
