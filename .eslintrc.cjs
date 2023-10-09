@@ -12,7 +12,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2020,
   },
-  plugins: ['prettier', 'transform-object-rest-spread'],
+  plugins: ['prettier'],
   rules: {
     'prettier/prettier': 'error',
     'no-unused-vars': 'warn',

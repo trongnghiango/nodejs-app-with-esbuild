@@ -1,5 +1,5 @@
-const { Schema } = require('mongoose');
-const { auth_conn } = require('../databases/init.multi.mongodb');
+const { Schema } = require("mongoose");
+const { auth_conn } = require("../databases/init.multi.mongodb");
 
 const keystoreSchema = new Schema(
   {
@@ -10,7 +10,7 @@ const keystoreSchema = new Schema(
       // client user
       type: Schema.Types.ObjectId,
       required: true,
-      ref: 'User',
+      ref: "User",
     },
     description: String,
   },
@@ -21,4 +21,8 @@ const keystoreSchema = new Schema(
 );
 // keystoreSchema.index({ _id: 1 }, { unique: true });
 
-module.exports.KEYSTORE = auth_conn.model('Keystore', keystoreSchema, 'keystores');
+module.exports.KEYSTORE = auth_conn.model(
+  "Keystore",
+  keystoreSchema,
+  "keystores"
+);

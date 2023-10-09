@@ -1,6 +1,6 @@
-const logger = require('../../../utils/logger');
-const { BadRequestError } = require('../core/http-error');
-const { KEYSTORE } = require('../models/keystore.model');
+const logger = require("../../../utils/logger");
+const { BadRequestError } = require("../core/http-error");
+const { KEYSTORE } = require("../models/keystore.model");
 
 class KeystoreService {
   /**
@@ -9,18 +9,18 @@ class KeystoreService {
    * @returns
    */
   static async listTemp({
-    parentSlug = '',
-    slug = '',
+    parentSlug = "",
+    slug = "",
     limit = 10,
     skip = 0,
     page = 1,
   }) {
     try {
-      logger.info('call sevice');
+      logger.info("call sevice");
       return [];
     } catch (error) {
       // @ts-ignore
-      throw new BadRequestError('>>', error.message);
+      throw new BadRequestError(">>", error.message);
     }
   }
 
@@ -29,9 +29,9 @@ class KeystoreService {
    * @param {string} primaryKey
    * @param {string} secondaryKey
    */
-  static async create(client, primaryKey, secondaryKey, description = '') {
+  static async create(client, primaryKey, secondaryKey, description = "") {
     try {
-      logger.info('[Service] create::');
+      logger.info("[Service] create::");
       const createdKeystore = await KEYSTORE.create({
         client,
         primaryKey,
@@ -53,7 +53,7 @@ class KeystoreService {
    */
   static async findByKey(key) {
     try {
-      logger.info('[ApiKeyService] find::');
+      logger.info("[ApiKeyService] find::");
       const apiKey = await KEYSTORE.findOne({ key });
       return apiKey;
     } catch (error) {
@@ -68,15 +68,15 @@ class KeystoreService {
    * @returns
    */
   static async putTemp({
-    roleId = '',
-    code = '',
-    key = '',
-    description = '',
-    notes = '',
+    roleId = "",
+    code = "",
+    key = "",
+    description = "",
+    notes = "",
   }) {
     //
     try {
-      logger.info('[RoleService] putRole');
+      logger.info("[RoleService] putRole");
 
       // const encode =
 
@@ -94,7 +94,7 @@ class KeystoreService {
       //   description,
       //   notes,
       // });
-      return 'putData';
+      return "putData";
     } catch (error) {
       // @ts-ignore
       logger.info(`ERROR [putComment]::, ${error.message}`);
@@ -113,7 +113,7 @@ class KeystoreService {
     try {
       // const deletedData = await MODEL.findOneAndDelete({ Id });
       logger.info(`call service del`);
-      return 'deletedData';
+      return "deletedData";
     } catch (error) {
       // @ts-ignore
       logger.error(`ERROR [deleteRole]:: ${error.message}`);

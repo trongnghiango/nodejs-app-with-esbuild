@@ -1,21 +1,21 @@
-const Joi = require('joi');
-const logger = require('../../../utils/logger');
-const { BadRequestError } = require('../core/http-error');
+const Joi = require("joi");
+const logger = require("../../../utils/logger");
+const { BadRequestError } = require("../core/http-error");
 
 const schema = Joi.object({
-  isDEL: Joi.string().valid('NO', 'YES'),
+  isDEL: Joi.string().valid("NO", "YES"),
   roleId: Joi.string().min(3).required(),
   code: Joi.string().min(3).required(),
   key: Joi.string().min(3).required(),
-  description: Joi.string().allow(null).allow('').optional(),
-  notes: Joi.string().allow(null).allow('').optional(),
+  description: Joi.string().allow(null).allow("").optional(),
+  notes: Joi.string().allow(null).allow("").optional(),
 });
 
 const createRoleSchema = Joi.object({
   code: Joi.string().min(3).required(),
   key: Joi.string().min(3).required(),
-  description: Joi.string().allow(null).allow('').optional(),
-  notes: Joi.string().allow(null).allow('').optional(),
+  description: Joi.string().allow(null).allow("").optional(),
+  notes: Joi.string().allow(null).allow("").optional(),
 });
 
 const roleIdSchema = Joi.string().min(3).required();

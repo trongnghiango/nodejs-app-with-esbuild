@@ -1,5 +1,5 @@
-const { Schema } = require('mongoose');
-const { auth_conn } = require('../databases/init.multi.mongodb');
+const { Schema } = require("mongoose");
+const { auth_conn } = require("../databases/init.multi.mongodb");
 
 const userSchema = new Schema(
   {
@@ -9,12 +9,12 @@ const userSchema = new Schema(
     password: { type: Schema.Types.String, required: true, minLength: 6 },
     // option below
     phone: { type: Schema.Types.String, unique: true },
-    name: { type: Schema.Types.String, default: '' },
-    displayName: { type: Schema.Types.String, default: '' },
+    name: { type: Schema.Types.String, default: "" },
+    displayName: { type: Schema.Types.String, default: "" },
     roles: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Role',
+        ref: "Role",
       },
     ],
     avatar: { type: Schema.Types.String },
@@ -37,5 +37,5 @@ userSchema.index(
 );
 
 module.exports = {
-  _User: auth_conn.model('User', userSchema, 'users'), // returns a constructor function
+  _User: auth_conn.model("User", userSchema, "users"), // returns a constructor function
 };

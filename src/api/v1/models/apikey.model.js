@@ -1,5 +1,5 @@
-const { Schema } = require('mongoose');
-const { auth_conn } = require('../databases/init.multi.mongodb');
+const { Schema } = require("mongoose");
+const { auth_conn } = require("../databases/init.multi.mongodb");
 
 const apikeySchema = new Schema(
   {
@@ -12,7 +12,7 @@ const apikeySchema = new Schema(
       // client user
       type: Schema.Types.ObjectId,
       required: true,
-      ref: 'User',
+      ref: "User",
       select: false,
     },
     description: String,
@@ -24,4 +24,4 @@ const apikeySchema = new Schema(
 );
 apikeySchema.index({ _id: 1, key: 1 }, { unique: true });
 
-module.exports.APIKEY = auth_conn.model('ApiKey', apikeySchema, 'api_keys');
+module.exports.APIKEY = auth_conn.model("ApiKey", apikeySchema, "api_keys");

@@ -1,14 +1,14 @@
-const { Types } = require('mongoose');
-const JWT = require('../middleware/jwt');
-const logger = require('../../../utils/logger');
-const { tokenInfo } = require('../../../config/base.config');
-const { InternalError, AuthFailureError } = require('../core/http-error');
+const { Types } = require("mongoose");
+const JWT = require("../middleware/jwt");
+const logger = require("../../../utils/logger");
+const { tokenInfo } = require("../../../config/base.config");
+const { InternalError, AuthFailureError } = require("../core/http-error");
 
 const getAccessToken = (/** @type {string} */ authorization) => {
-  if (!authorization) throw new AuthFailureError('Invalid Authorization');
-  if (!authorization.startsWith('Bearer '))
-    throw new AuthFailureError('Invalid Authorization');
-  return authorization.split(' ')[1];
+  if (!authorization) throw new AuthFailureError("Invalid Authorization");
+  if (!authorization.startsWith("Bearer "))
+    throw new AuthFailureError("Invalid Authorization");
+  return authorization.split(" ")[1];
 };
 
 const validateTokenData = (
@@ -24,7 +24,7 @@ const validateTokenData = (
     payload.aud !== tokenInfo.audience ||
     !payload.sub
   )
-    throw new AuthFailureError('Invalid Access Token');
+    throw new AuthFailureError("Invalid Access Token");
   return true;
 };
 
@@ -33,7 +33,7 @@ const createTokens = async (
   /** @type {any} */ accessTokenKey,
   /** @type {any} */ refreshTokenKey
 ) => {
-  logger.debug('Start created');
+  logger.debug("Start created");
   const accessToken = await JWT.encode({
     iss: tokenInfo.issuer,
     aud: tokenInfo.audience,
@@ -52,7 +52,7 @@ const createTokens = async (
 
   logger.info(`[Input to createTokens]${{ tokenInfo, user }}`);
 
-  if (!accessToken) throw new InternalError('[ERR] createTokens fail!');
+  if (!accessToken) throw new InternalError("[ERR] createTokens fail!");
 
   const refreshToken = await JWT.encode({
     iss: tokenInfo.issuer,

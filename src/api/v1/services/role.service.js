@@ -1,7 +1,7 @@
-const { genRoleIdWithPre } = require('../../../utils/gen.util');
-const logger = require('../../../utils/logger');
-const { ApiError, BadRequestError } = require('../core/http-error');
-const { _ROLE } = require('../models/role.model');
+const { genRoleIdWithPre } = require("../../../utils/gen.util");
+const logger = require("../../../utils/logger");
+const { ApiError, BadRequestError } = require("../core/http-error");
+const { _ROLE } = require("../models/role.model");
 
 class RoleService {
   /**
@@ -10,19 +10,19 @@ class RoleService {
    * @returns
    */
   static async listRole({
-    parentSlug = '',
-    slug = '',
+    parentSlug = "",
+    slug = "",
     discuss = 0,
     replies,
     limit = 10,
     skip = 0,
   }) {
     try {
-      console.log('listComment');
+      console.log("listComment");
       return [];
     } catch (error) {
       // @ts-ignore
-      console.log('Error [listcomment]::', error.message);
+      console.log("Error [listcomment]::", error.message);
       return null;
     }
   }
@@ -38,7 +38,7 @@ class RoleService {
       return roles;
     } catch (error) {
       // @ts-ignore
-      throw new BadRequestError('[TTT]error.message');
+      throw new BadRequestError("[TTT]error.message");
     }
   }
 
@@ -69,15 +69,15 @@ class RoleService {
   }
 
   static async createRole({
-    author = '',
-    code = '',
-    key = '',
-    description = '',
-    notes = '',
+    author = "",
+    code = "",
+    key = "",
+    description = "",
+    notes = "",
   }) {
     try {
-      logger.info('[RoleService] createRole::');
-      const roleId = genRoleIdWithPre('ka');
+      logger.info("[RoleService] createRole::");
+      const roleId = genRoleIdWithPre("ka");
       const createdRole = await _ROLE.create({
         author,
         roleId,
@@ -100,19 +100,19 @@ class RoleService {
    * @returns
    */
   static async putRole({
-    isDEL = 'NO',
-    roleId = '',
-    code = '',
-    key = '',
-    description = '',
-    notes = '',
+    isDEL = "NO",
+    roleId = "",
+    code = "",
+    key = "",
+    description = "",
+    notes = "",
   }) {
     //
     try {
-      logger.info('[RoleService] putRole');
+      logger.info("[RoleService] putRole");
 
       // const encode =
-      if (isDEL === 'YES') {
+      if (isDEL === "YES") {
         const deletedRoles = await _ROLE.findOneAndDelete({ roleId });
         return deletedRoles;
       }

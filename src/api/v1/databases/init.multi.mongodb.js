@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
-const logger = require('../../../utils/logger');
-require('dotenv').config();
+const mongoose = require("mongoose");
+const logger = require("../../../utils/logger");
+require("dotenv").config();
 
-const { db, env } = require('../../../config');
+const { db, env } = require("../../../config");
 
 // config
 const options = {
@@ -12,7 +12,7 @@ const options = {
   connectTimeoutMS: 10000, // Give up initial connection after 10 seconds
   socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
 };
-mongoose.set('strictQuery', false);
+mongoose.set("strictQuery", false);
 
 /**
  * connect instance func.
@@ -23,35 +23,35 @@ function newConnection(uri) {
   logger.info(`MongoDb:: [${this.name}] ${uri}`, {
     label: "DATABASE",
   });
-  conn.on('connected', function () {
+  conn.on("connected", function () {
     // mongoose.set('debug', function (col, method, query, doc) {
     //   logger.debug(`Mongo Debug:: ${this.conn.name}:: ${col}, ${method}, ${JSON.stringify(query)}, ${JSON.stringify(doc)}`, { label: 'DATABASE' });
     // })
     // @ts-ignore
     logger.info(`MongoDb:: [${this.name}] is connected!`, {
-      label: 'DATABASE',
+      label: "DATABASE",
     });
   });
 
   // If the connection throws an error
-  conn.on('error', (err) => {
+  conn.on("error", (err) => {
     logger.info(uri);
     logger.info(`Mongoose 'default' connection error: ${err}`, {
-      label: 'DATABASE',
+      label: "DATABASE",
     });
   });
 
   // When the connection is disconnected
-  conn.on('disconnected', () => {
+  conn.on("disconnected", () => {
     logger.info(`Mongoose 'default' connection disconnected`, {
-      label: 'DATABASE',
+      label: "DATABASE",
     });
   });
 
   return conn;
 }
 
-const host = env === 'development' ? 'localhost' : db.host;
+const host = env === "development" ? "localhost" : db.host;
 
 // Build the connection string
 // const dbURI = `mongodb://${db.user}:${encodeURIComponent(

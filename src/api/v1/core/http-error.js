@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-const logger = require('../../../utils/logger');
-const { errorHandler } = require('./ApiResponse');
+const logger = require("../../../utils/logger");
+const { errorHandler } = require("./ApiResponse");
 
 const ResponseStatus = {
   SUCCESS: 200,
@@ -11,23 +11,23 @@ const ResponseStatus = {
   INTERNAL_ERROR: 500,
 };
 const ErrorType = {
-  BAD_TOKEN: 'BadTokenError',
-  TOKEN_EXPIRED: 'TokenExpiredError',
-  UNAUTHORIZED: 'AuthFailureError',
-  ACCESS_TOKEN: 'AccessTokenError',
-  INTERNAL: 'InternalError',
-  NOT_FOUND: 'NotFoundError',
-  NO_ENTRY: 'NoEntryError',
-  NO_DATA: 'NoDataError',
-  BAD_REQUEST: 'BadRequestError',
-  FORBIDDEN: 'ForbiddenError',
+  BAD_TOKEN: "BadTokenError",
+  TOKEN_EXPIRED: "TokenExpiredError",
+  UNAUTHORIZED: "AuthFailureError",
+  ACCESS_TOKEN: "AccessTokenError",
+  INTERNAL: "InternalError",
+  NOT_FOUND: "NotFoundError",
+  NO_ENTRY: "NoEntryError",
+  NO_DATA: "NoDataError",
+  BAD_REQUEST: "BadRequestError",
+  FORBIDDEN: "ForbiddenError",
 };
 
 class ApiError extends Error {
   /**
    * @param {string | undefined} type
    */
-  constructor(type, message = 'error') {
+  constructor(type, message = "error") {
     super(type);
     this.type = type;
     this.message = message;
@@ -47,44 +47,44 @@ class ApiError extends Error {
         res.json(errorHandler(err.message, ResponseStatus.UNAUTHORIZED));
         break;
       case ErrorType.BAD_REQUEST:
-        logger.info('BadRequestError');
+        logger.info("BadRequestError");
         res.json(errorHandler(err.message, ResponseStatus.BAD_REQUEST));
         break;
       case ErrorType.FORBIDDEN:
         res.json(errorHandler(err.message, ResponseStatus.FORBIDDEN));
         break;
       default:
-        res.json(errorHandler('LOI KHONG RO NGUYEN NHAN....'));
+        res.json(errorHandler("LOI KHONG RO NGUYEN NHAN...."));
     }
   }
 }
 
 class AuthFailureError extends ApiError {
-  constructor(message = 'Invalid Credentials') {
+  constructor(message = "Invalid Credentials") {
     super(ErrorType.UNAUTHORIZED, message);
   }
 }
 
 class InternalError extends ApiError {
-  constructor(message = 'Internal error') {
+  constructor(message = "Internal error") {
     super(ErrorType.INTERNAL, message);
   }
 }
 
 class BadRequestError extends ApiError {
-  constructor(message = 'Bad Request') {
+  constructor(message = "Bad Request") {
     super(ErrorType.BAD_REQUEST, message);
   }
 }
 
 class NotFoundError extends ApiError {
-  constructor(message = 'Not Found') {
+  constructor(message = "Not Found") {
     super(ErrorType.NOT_FOUND, message);
   }
 }
 
 class ForbiddenError extends ApiError {
-  constructor(message = 'Permission denied') {
+  constructor(message = "Permission denied") {
     super(ErrorType.FORBIDDEN, message);
   }
 }
@@ -96,25 +96,25 @@ class NoEntryError extends ApiError {
 }
 
 class BadTokenError extends ApiError {
-  constructor(message = 'Token is not valid') {
+  constructor(message = "Token is not valid") {
     super(ErrorType.BAD_TOKEN, message);
   }
 }
 
 class TokenExpiredError extends ApiError {
-  constructor(message = 'Token is expired') {
+  constructor(message = "Token is expired") {
     super(ErrorType.TOKEN_EXPIRED, message);
   }
 }
 
 class NoDataError extends ApiError {
-  constructor(message = 'No data available') {
+  constructor(message = "No data available") {
     super(ErrorType.NO_DATA, message);
   }
 }
 
 class AccessTokenError extends ApiError {
-  constructor(message = 'Invalid access token') {
+  constructor(message = "Invalid access token") {
     super(ErrorType.ACCESS_TOKEN, message);
   }
 }

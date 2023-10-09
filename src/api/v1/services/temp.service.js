@@ -1,5 +1,5 @@
-const logger = require('../../../utils/logger');
-const { BadRequestError } = require('../core/http-error');
+const logger = require("../../../utils/logger");
+const { BadRequestError } = require("../core/http-error");
 
 class Service {
   /**
@@ -8,18 +8,18 @@ class Service {
    * @returns
    */
   static async list({
-    parentSlug = '',
-    slug = '',
+    parentSlug = "",
+    slug = "",
     limit = 10,
     skip = 0,
     page = 0,
   }) {
     try {
-      logger.info('[Service] list sevice');
+      logger.info("[Service] list sevice");
       return [];
     } catch (error) {
       // @ts-ignore
-      throw new BadRequestError('>>', error.message);
+      throw new BadRequestError(">>", error.message);
     }
   }
 
@@ -29,21 +29,21 @@ class Service {
    * @returns
    */
   static async create({
-    author = '',
-    code = '',
-    key = '',
-    description = '',
-    notes = '',
+    author = "",
+    code = "",
+    key = "",
+    description = "",
+    notes = "",
   }) {
     try {
-      logger.info('[Service] create::');
-      return 'createdTemp Object';
+      logger.info("[Service] create::");
+      return "createdTemp Object";
     } catch (error) {
       // @ts-ignore
       logger.info(`ERROR [putComment]::, ${error.message}`);
       // return null;
       // @ts-ignore
-      throw new BadRequestError('###', error.message);
+      throw new BadRequestError("###", error.message);
     }
   }
 
@@ -53,15 +53,15 @@ class Service {
    * @returns
    */
   static async update({
-    roleId = '',
-    code = '',
-    key = '',
-    description = '',
-    notes = '',
+    roleId = "",
+    code = "",
+    key = "",
+    description = "",
+    notes = "",
   }) {
     //
     try {
-      logger.info('[Service] updata::');
+      logger.info("[Service] updata::");
 
       // const encode =
 
@@ -79,13 +79,13 @@ class Service {
       //   description,
       //   notes,
       // });
-      return 'updateData';
+      return "updateData";
     } catch (error) {
       // @ts-ignore
       logger.info(`ERROR [Service]:: updateData, ${error.message}`);
       // return null;
       // @ts-ignore
-      throw new BadRequestError('###', error.message);
+      throw new BadRequestError("###", error.message);
     }
   }
 
@@ -98,7 +98,7 @@ class Service {
     try {
       // const deletedData = await MODEL.findOneAndDelete({ Id });
       logger.info(`call service del`);
-      return 'deletedData';
+      return "deletedData";
     } catch (error) {
       // @ts-ignore
       logger.error(`ERROR [deleteRole]:: ${error.message}`);

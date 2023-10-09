@@ -9,9 +9,9 @@ const { build } = require('esbuild');
 
 const options = {
   entryPoints: ['./src/server.js'],
-  target: ['node18.12.1'],
+  target: ['node18.16.0'],
   outfile: 'dist/server.js',
-  sourcemap: true,
+  // sourcemap: true,
   // splitting: true, //only works with the "esm" format
   minify: true,
   bundle: true,
@@ -46,7 +46,6 @@ const options = {
 // run build with esbuild
 // build(options).catch(() => process.exit(1));
 (async () => {
-  // @ts-ignore
   const res = await build(options);
   if (!res) {
     process.exit(1);

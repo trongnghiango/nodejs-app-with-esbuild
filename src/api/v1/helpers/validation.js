@@ -1,4 +1,4 @@
-const Joi = require('joi');
+const Joi = require("joi");
 
 const userValidate = (/** @type {any} */ data) => {
   const userShema = Joi.object({

@@ -1,7 +1,7 @@
-const { randomUUID } = require('node:crypto');
-const logger = require('../../../utils/logger');
-const { BadRequestError } = require('../core/http-error');
-const { _User } = require('../models/user.model');
+const { randomUUID } = require("node:crypto");
+const logger = require("../../../utils/logger");
+const { BadRequestError } = require("../core/http-error");
+const { _User } = require("../models/user.model");
 
 /**
  * isExistedUser
@@ -63,8 +63,8 @@ async function createNewUser(data) {
 async function findUserByUsername(username) {
   try {
     return await _User.findOne({ username }).lean();
-      // .select('displayName username roles')
-      // .exec();
+    // .select('displayName username roles')
+    // .exec();
   } catch (error) {
     // @ts-ignore
     throw new BadRequestError(error.message);

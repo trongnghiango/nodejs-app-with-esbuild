@@ -1,11 +1,11 @@
-const { createServer } = require('http');
-const { Server } = require('socket.io');
-const { conn1, conn2 } = require('./api/v1/databases/init.multi.mongodb');
-const app = require('./app');
-const logger = require('./utils/logger');
-const { socketHandlers } = require('./utils/socket');
+const { createServer } = require("http");
+const { Server } = require("socket.io");
+const { conn1, conn2 } = require("./api/v1/databases/init.multi.mongodb");
+const app = require("./app");
+const logger = require("./utils/logger");
+const { socketHandlers } = require("./utils/socket");
 
-require('dotenv').config();
+require("dotenv").config();
 
 const { PORT, CLIENT_URL } = process.env;
 
@@ -15,7 +15,7 @@ const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
     origin: CLIENT_URL,
-    methods: ['GET', 'POST'],
+    methods: ["GET", "POST"],
   },
 });
 socketHandlers(io);
@@ -29,7 +29,7 @@ httpServer.listen(PORT || 5000, () => {
   logger.info(`Starting server with port:: ${PORT}`);
 });
 
-process.on('SIGINT', () => {
+process.on("SIGINT", () => {
   logger.error(`SOCKET.IO:: ${io}`);
   logger.error(`DB.Conn1::${conn1.id}`);
   logger.error(`DB.Conn2::${conn2.id}`);

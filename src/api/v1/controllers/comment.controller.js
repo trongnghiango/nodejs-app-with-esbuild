@@ -1,7 +1,7 @@
-const logger = require('../../../utils/logger');
-const { errorHandler } = require('../core/ApiResponse');
-const CommentService = require('../services/comment.service');
-const schema = require('../validators/comment.validator');
+const logger = require("../../../utils/logger");
+const { errorHandler } = require("../core/ApiResponse");
+const CommentService = require("../services/comment.service");
+const schema = require("../validators/comment.validator");
 
 module.exports = {
   /**

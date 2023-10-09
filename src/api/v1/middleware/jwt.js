@@ -1,9 +1,9 @@
-const { sign, verify } = require('jsonwebtoken');
-const { promisify } = require('util');
+const { sign, verify } = require("jsonwebtoken");
+const { promisify } = require("util");
 
-const { readPrivateKey, readPublicKey } = require('../../../utils/file.utils');
-const logger = require('../../../utils/logger');
-const { BadTokenError, InternalError } = require('../core/http-error');
+const { readPrivateKey, readPublicKey } = require("../../../utils/file.utils");
+const logger = require("../../../utils/logger");
+const { BadTokenError, InternalError } = require("../core/http-error");
 
 module.exports = {
   /**
@@ -27,8 +27,8 @@ module.exports = {
     try {
       // @ts-ignore
       return await sign(payload, cert, {
-        expiresIn: '60m',
-        algorithm: 'RS256',
+        expiresIn: "60m",
+        algorithm: "RS256",
       });
     } catch (error) {
       // @ts-ignore
@@ -49,8 +49,8 @@ module.exports = {
     try {
       // @ts-ignore
       return await sign(payload, cert, {
-        expiresIn: '1d',
-        algorithm: 'RS256',
+        expiresIn: "1d",
+        algorithm: "RS256",
       });
     } catch (error) {
       // @ts-ignore
@@ -68,8 +68,8 @@ module.exports = {
    */
   async verifyTokenMiddleware(req, res, next) {
     try {
-      if (req.headers['x-token']) {
-        const token = req.headers['x-token'];
+      if (req.headers["x-token"]) {
+        const token = req.headers["x-token"];
         const cert = await readPublicKey();
         // @ts-ignore
         const payload = await verify(token, cert);
@@ -77,7 +77,7 @@ module.exports = {
         return next();
       }
       return next(
-        new BadTokenError('Người dùng chưa được định danh Hoặc Notfound TOKEN')
+        new BadTokenError("Người dùng chưa được định danh Hoặc Notfound TOKEN")
       );
     } catch (error) {
       // @ts-ignore
@@ -122,10 +122,10 @@ module.exports = {
   async encode(payload) {
     logger.info(`[encode]:: payload -- ${JSON.stringify(payload, null, 2)}`);
     const cert = await readPrivateKey();
-    if (!cert) throw new InternalError('Token generation failure');
+    if (!cert) throw new InternalError("Token generation failure");
     // eslint-disable-next-line node/no-unsupported-features/es-syntax
-    const token = sign({ ...payload }, cert, { algorithm: 'RS256' });
-    if (!token) throw new InternalError('Token generation failure');
+    const token = sign({ ...payload }, cert, { algorithm: "RS256" });
+    if (!token) throw new InternalError("Token generation failure");
 
     return token;
   },

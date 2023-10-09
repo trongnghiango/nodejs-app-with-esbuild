@@ -1,10 +1,10 @@
-const asyncHandler = require('express-async-handler');
-const logger = require('../../../utils/logger');
-const { successHandler } = require('../core/ApiResponse');
-const { BadRequestError } = require('../core/http-error');
-const ApiKeyService = require('../services/apikey.service');
-const RoleService = require('../services/role.service');
-const { findUserByUsername } = require('../services/user.service');
+const asyncHandler = require("express-async-handler");
+const logger = require("../../../utils/logger");
+const { successHandler } = require("../core/ApiResponse");
+const { BadRequestError } = require("../core/http-error");
+const ApiKeyService = require("../services/apikey.service");
+const RoleService = require("../services/role.service");
+const { findUserByUsername } = require("../services/user.service");
 
 module.exports = {
   getRoleByIdHandler: asyncHandler(async (req, res) => {
@@ -23,7 +23,7 @@ module.exports = {
     const role = await RoleService.createRole(req.dataFilter);
     if (!role) {
       // return next(new BadRequestError());
-      throw new BadRequestError('test badrequest');
+      throw new BadRequestError("test badrequest");
     }
 
     res.json(successHandler({ results: role }));
@@ -34,7 +34,7 @@ module.exports = {
     const role = await RoleService.putRole(req.dataFilter);
 
     if (!role) {
-      throw new BadRequestError('role...');
+      throw new BadRequestError("role...");
     }
 
     return res.json(successHandler({ results: role }));
@@ -47,9 +47,9 @@ module.exports = {
    * @param {*} res
    */
   assignRoles: async (req, res) => {
-    logger.info('test');
+    logger.info("test");
 
-    return res.json(successHandler({ results: 'OK' }));
+    return res.json(successHandler({ results: "OK" }));
   },
 
   /**
@@ -64,7 +64,7 @@ module.exports = {
     const del_role = await RoleService.deleteRole(req.params.role_id);
 
     if (!del_role) {
-      return next(new BadRequestError('Cannot delete this role.'));
+      return next(new BadRequestError("Cannot delete this role."));
     }
 
     return res.json(successHandler({ results: del_role }));
@@ -78,7 +78,7 @@ module.exports = {
     const user = await findUserByUsername(req.user.username);
     data.client = user;
     const newApiKey = await ApiKeyService.create(data);
-    if (!newApiKey) throw new BadRequestError('Cannot create api key');
+    if (!newApiKey) throw new BadRequestError("Cannot create api key");
 
     res.json(successHandler({ results: newApiKey }));
   }),

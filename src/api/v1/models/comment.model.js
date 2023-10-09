@@ -1,5 +1,5 @@
-const { Schema } = require('mongoose');
-const { conn2 } = require('../databases/init.multi.mongodb');
+const { Schema } = require("mongoose");
+const { conn2 } = require("../databases/init.multi.mongodb");
 
 const commentSchema = new Schema(
   {
@@ -18,4 +18,4 @@ const commentSchema = new Schema(
   }
 );
 
-module.exports._COMMENT = conn2.model('Comment', commentSchema, 'comments');
+module.exports._COMMENT = conn2.model("Comment", commentSchema, "comments");

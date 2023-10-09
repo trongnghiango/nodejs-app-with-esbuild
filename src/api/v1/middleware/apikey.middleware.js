@@ -1,8 +1,8 @@
-const asyncHandler = require('express-async-handler');
-const logger = require('../../../utils/logger');
-const { ForbiddenError } = require('../core/http-error');
-const Header = require('../helpers/constants');
-const ApiKeyService = require('../services/apikey.service');
+const asyncHandler = require("express-async-handler");
+const logger = require("../../../utils/logger");
+const { ForbiddenError } = require("../core/http-error");
+const Header = require("../helpers/constants");
+const ApiKeyService = require("../services/apikey.service");
 
 module.exports.checkApiKey = asyncHandler(async (req, res, next) => {
   const key = req.headers[Header.API_KEY];

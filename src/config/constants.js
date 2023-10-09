@@ -1,5 +1,5 @@
 module.exports.Env = {
-  PRODUCTION: 'production',
-  DEVELOPMENT: 'development',
-  TESTING: 'testing',
+  PRODUCTION: "production",
+  DEVELOPMENT: "development",
+  TESTING: "testing",
 };

@@ -1,5 +1,5 @@
-const { Schema } = require('mongoose');
-const { auth_conn } = require('../databases/init.multi.mongodb');
+const { Schema } = require("mongoose");
+const { auth_conn } = require("../databases/init.multi.mongodb");
 
 const roleSchema = new Schema(
   {
@@ -9,7 +9,7 @@ const roleSchema = new Schema(
     author: {
       type: Schema.Types.String,
       trim: true,
-      default: '',
+      default: "",
     },
     description: String,
     notes: String,
@@ -21,4 +21,4 @@ const roleSchema = new Schema(
 );
 roleSchema.index({ roleId: 1, code: 1, key: 1 }, { unique: true });
 
-module.exports._ROLE = auth_conn.model('Role', roleSchema, 'roles');
+module.exports._ROLE = auth_conn.model("Role", roleSchema, "roles");

@@ -1,8 +1,8 @@
-const { promisify } = require('util');
-const path = require('path');
-const { readFile } = require('fs');
-const { dirname } = require('path');
-const logger = require('./logger');
+const { promisify } = require("util");
+const path = require("path");
+const { readFile } = require("fs");
+const { dirname } = require("path");
+const logger = require("./logger");
 // const publicFile = require("../../keys/public.pem")
 // @ts-ignore
 const appDir = dirname(require.main.path);
@@ -15,8 +15,8 @@ module.exports = {
   async readPublicKey() {
     try {
       return await promisify(readFile)(
-        path.join(appDir, 'keys/public.pem'),
-        'utf8'
+        path.join(appDir, "keys/public.pem"),
+        "utf8"
       );
     } catch (error) {
       // @ts-ignore
@@ -34,8 +34,8 @@ module.exports = {
 
     try {
       return await promisify(readFile)(
-        path.join(appDir, 'keys/private.pem'),
-        'utf8'
+        path.join(appDir, "keys/private.pem"),
+        "utf8"
       );
     } catch (error) {
       // @ts-ignore

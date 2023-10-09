@@ -1,7 +1,7 @@
-const asyncHandler = require('express-async-handler');
-const logger = require('../../../utils/logger');
-const { AccessTokenError, BadTokenError } = require('../core/http-error');
-const { verifyToken, decode } = require('./jwt');
+const asyncHandler = require("express-async-handler");
+const logger = require("../../../utils/logger");
+const { AccessTokenError, BadTokenError } = require("../core/http-error");
+const { verifyToken, decode } = require("./jwt");
 
 module.exports = {
   checkToken: asyncHandler(
@@ -10,16 +10,16 @@ module.exports = {
       /** @type {any} */ res,
       /** @type {import('express').NextFunction} */ next
     ) => {
-      const token = req.headers['x-token'];
+      const token = req.headers["x-token"];
       //
       if (!token) {
         throw new AccessTokenError();
       }
       // decode token
       const verify = await verifyToken(token);
-      console.log('TOKEN [decode]:::', verify);
+      console.log("TOKEN [decode]:::", verify);
       if (!verify) {
-        throw new AccessTokenError('Verify fail');
+        throw new AccessTokenError("Verify fail");
       }
 
       next();
@@ -28,16 +28,16 @@ module.exports = {
 
   checkRole: asyncHandler(
     async (/** @type {{ [x: string]: any; }} */ req, res, next) => {
-      const token = req.headers['x-token'];
+      const token = req.headers["x-token"];
       if (!token) {
-        throw new AccessTokenError('No Token');
+        throw new AccessTokenError("No Token");
       }
 
       // verify token
       const { sub } = await decode(token);
       logger.debug(`::: ${JSON.stringify(sub)}`);
       if (!sub) {
-        throw new AccessTokenError('Token failed or expired');
+        throw new AccessTokenError("Token failed or expired");
       }
       // eslint-disable-next-line dot-notation
       // delete user['iat'];
@@ -52,7 +52,7 @@ module.exports = {
 
       if (!user.roles) {
         throw new BadTokenError(
-          'Tài khoản của bạn bị từ chối. Vui lòng liên hệ Admin'
+          "Tài khoản của bạn bị từ chối. Vui lòng liên hệ Admin"
         );
       }
       //
@@ -73,7 +73,7 @@ module.exports = {
           }
         }
       }
-      if (!authorized) throw new BadTokenError('Permission denied');
+      if (!authorized) throw new BadTokenError("Permission denied");
 
       // logger.info(
       //   JSON.stringify({

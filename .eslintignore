@@ -4,3 +4,6 @@ test
 dist
 
 ./addons/init-mongo.js
+.eslintrc.cjs
+
+esbuild.*

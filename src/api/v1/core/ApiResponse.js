@@ -10,7 +10,7 @@ module.exports = {
    *
    * @param   {object} data
    */
-  successHandler: ({ message = 'OK', results, statusCode = 10000 }) => ({
+  successHandler: ({ message = "OK", results, statusCode = 10000 }) => ({
     message,
     error: false,
     code: statusCode,
@@ -23,7 +23,7 @@ module.exports = {
    * @param {string} message
    * @param   {number | undefined} error
    */
-  errorHandler: (message = 'Error', statusCode = 500) => {
+  errorHandler: (message = "Error", statusCode = 500) => {
     /**
      * List of common HTTP request code
      * @note  You can add more http request code in here
@@ -48,7 +48,7 @@ module.exports = {
    * @param   {object | array} errors
    */
   validation: (errors) => ({
-    message: 'Validation errors',
+    message: "Validation errors",
     error: true,
     code: 422,
     errors,

@@ -1,24 +1,24 @@
-const { createLogger, transports, format } = require('winston');
-const fs = require('fs');
-const path = require('path');
-const DailyRotateFile = require('winston-daily-rotate-file');
-require('dotenv').config();
-const { winston } = require('../config/base.config');
+const { createLogger, transports, format } = require("winston");
+const fs = require("fs");
+const path = require("path");
+const DailyRotateFile = require("winston-daily-rotate-file");
+require("dotenv").config();
+const { winston } = require("../config/base.config");
 
 const { combine, printf } = format;
 
 const myFormat = printf(
-  ({ level, message, timestamp, label = 'SERVER' }) =>
+  ({ level, message, timestamp, label = "SERVER" }) =>
     `[${timestamp}] [${label}] [${level}]: ${message}`
 );
 
 const timezoned = () =>
-  new Date().toLocaleString('en-US', {
-    timeZone: 'Asia/Ho_Chi_Minh',
+  new Date().toLocaleString("en-US", {
+    timeZone: "Asia/Ho_Chi_Minh",
   });
 
-let dir = './logs';
-if (!dir) dir = path.resolve('logs');
+let dir = "./logs";
+if (!dir) dir = path.resolve("logs");
 
 // create directory if it is not present
 if (!fs.existsSync(dir)) {
@@ -33,16 +33,16 @@ const options = {
   file: {
     level: logLevel,
     filename: `${dir}/%DATE%.log`,
-    datePattern: 'YYYY-MM-DD',
+    datePattern: "YYYY-MM-DD",
     zippedArchive: true,
     timestamp: true,
     handleExceptions: true,
     humanReadableUnhandledException: true,
     prettyPrint: true,
     json: true,
-    maxSize: '20m',
+    maxSize: "20m",
     colorize: true,
-    maxFiles: '14d',
+    maxFiles: "14d",
     format: combine(
       format.errors({ stack: true }),
       format.prettyPrint(),

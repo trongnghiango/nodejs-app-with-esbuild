@@ -1,17 +1,17 @@
 // @ts-ignore
-const bcrypt = require('bcryptjs');
-const asyncHandler = require('express-async-handler');
-const crypto = require('crypto');
-const logger = require('../../../utils/logger');
-const { successHandler } = require('../core/ApiResponse');
-const { BadRequestError } = require('../core/http-error');
-const { createTokens } = require('../helpers/auth.helper');
+const bcrypt = require("bcryptjs");
+const asyncHandler = require("express-async-handler");
+const crypto = require("crypto");
+const logger = require("../../../utils/logger");
+const { successHandler } = require("../core/ApiResponse");
+const { BadRequestError } = require("../core/http-error");
+const { createTokens } = require("../helpers/auth.helper");
 
-const { signAccessToken, signRefreshToken } = require('../middleware/jwt');
-const RoleService = require('../services/role.service');
+const { signAccessToken, signRefreshToken } = require("../middleware/jwt");
+const RoleService = require("../services/role.service");
 
-const userService = require('../services/user.service');
-const KeystoreService = require('../services/keystore.service');
+const userService = require("../services/user.service");
+const KeystoreService = require("../services/keystore.service");
 // const { log } = require('../../../utils/logger');
 
 module.exports = {
@@ -28,21 +28,21 @@ module.exports = {
     // check user co ton tai khong?
     const checkUserExist = await userService.isExistedUser(userId);
     if (checkUserExist) {
-      throw new BadRequestError('Hello con bo cu');
+      throw new BadRequestError("Hello con bo cu");
     }
 
     // check email co ton tai khong?
     const existEmail = await userService.isExistedEmail(email);
     if (existEmail) {
-      throw new BadRequestError('existEmail');
+      throw new BadRequestError("existEmail");
     }
 
     // ma hoa password
     const passwordHash = await bcrypt.hash(password, 10);
 
     // auto assign role GUEST
-    const role = await RoleService.getByCode('GUEST');
-    if (!role) throw new BadRequestError('Error get get role for register');
+    const role = await RoleService.getByCode("GUEST");
+    if (!role) throw new BadRequestError("Error get get role for register");
 
     // call service create new user
     const newUser = {
@@ -59,7 +59,7 @@ module.exports = {
 
     const user = await userService.createNewUser(newUser);
     if (!user) {
-      throw new BadRequestError('create new user fail.');
+      throw new BadRequestError("create new user fail.");
     }
 
     const payload = {
@@ -67,7 +67,7 @@ module.exports = {
       name: displayName,
       username,
       email,
-      roles: ['GUEST', 'ADMIN_LV', 'MANAGER'],
+      roles: ["GUEST", "ADMIN_LV", "MANAGER"],
     };
 
     const tokens = {
@@ -100,20 +100,20 @@ module.exports = {
     const user = await userService.findUserByUsername(username);
     if (!user) {
       logger.error(`Not found user by username: "${username}"`);
-      throw new BadRequestError('username chua duoc dang ky...');
+      throw new BadRequestError("username chua duoc dang ky...");
     }
 
     // 2. Check xem co nhap Pass tu nguoi dung ko?
     if (!password) {
       logger.error(`User không nhập password.`);
-      throw new BadRequestError('Lỗi! Người dùng không nhập password.');
+      throw new BadRequestError("Lỗi! Người dùng không nhập password.");
     }
 
     // 3. Check match password
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
       logger.info(`[Logging]:: WrongPass!!`);
-      throw new BadRequestError('Authentication failure');
+      throw new BadRequestError("Authentication failure");
     }
 
     const roles = await RoleService.getRoles(user.roles);
@@ -128,7 +128,7 @@ module.exports = {
     //   await RoleService.getById(user.roles[1]),
     // ]);
 
-    if (!roles) throw new BadRequestError('vi sao kha bo do');
+    if (!roles) throw new BadRequestError("vi sao kha bo do");
     const strRoles = roles.map((role) => role.code);
     logger.info(strRoles);
 
@@ -137,8 +137,8 @@ module.exports = {
       username: user.username,
       roles: strRoles,
     };
-    const accessTokenKey = crypto.randomBytes(64).toString('hex');
-    const refreshTokenKey = crypto.randomBytes(64).toString('hex');
+    const accessTokenKey = crypto.randomBytes(64).toString("hex");
+    const refreshTokenKey = crypto.randomBytes(64).toString("hex");
     // wait for create keystore
     await KeystoreService.create(user, accessTokenKey, refreshTokenKey);
 
@@ -171,7 +171,7 @@ module.exports = {
     // console.log({ user });
     const payload = {
       userId: 4,
-      email: 'hsfhkl',
+      email: "hsfhkl",
     };
 
     const accessToken = await signAccessToken(payload);

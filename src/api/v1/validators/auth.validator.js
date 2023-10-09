@@ -1,21 +1,21 @@
-const Joi = require('joi');
-const logger = require('../../../utils/logger');
-const { BadRequestError } = require('../core/http-error');
+const Joi = require("joi");
+const logger = require("../../../utils/logger");
+const { BadRequestError } = require("../core/http-error");
 
 const registerSchema = Joi.object({
   userId: Joi.string().alphanum().min(3).max(16).required(),
   username: Joi.string().alphanum().min(3).max(30).required(),
   phone: Joi.string().min(9).max(15),
   email: Joi.string().email().required(),
-  password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
+  password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
   displayName: Joi.string().min(1).max(30),
-  repeat_password: Joi.ref('password'),
+  repeat_password: Joi.ref("password"),
 });
 
 const loginSchema = Joi.object({
   username: Joi.string().alphanum().min(3).max(20).required(),
   // eslint-disable-next-line prefer-regex-literals
-  password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
+  password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")).required(),
 });
 
 /**
@@ -52,7 +52,7 @@ module.exports.validateSignIn = (req, res, next) => {
   const { error, value } = loginSchema.validate(req.body);
   if (error) {
     logger.info(`Error [validation]:: ${error}`);
-    return next(new BadRequestError('value input login invalid!'));
+    return next(new BadRequestError("value input login invalid!"));
   }
 
   req.dataFilter = value;

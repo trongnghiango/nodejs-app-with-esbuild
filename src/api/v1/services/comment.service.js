@@ -1,5 +1,5 @@
-const logger = require('../../../utils/logger');
-const { _COMMENT } = require('../models/comment.model');
+const logger = require("../../../utils/logger");
+const { _COMMENT } = require("../models/comment.model");
 
 class CommentService {
   /**
@@ -8,19 +8,19 @@ class CommentService {
    * @returns
    */
   static async listComment({
-    parent_slug = '',
-    slug = '',
+    parent_slug = "",
+    slug = "",
     discuss = 0,
     replies,
     limit = 10,
     skip = 0,
   }) {
     try {
-      console.log('listComment');
+      console.log("listComment");
       return [];
     } catch (error) {
       // @ts-ignore
-      console.log('Error [listcomment]::', error.message);
+      console.log("Error [listcomment]::", error.message);
       return null;
     }
   }
@@ -31,18 +31,18 @@ class CommentService {
    * @returns
    */
   static async putComment({
-    isDEL = 'NO',
+    isDEL = "NO",
     discuss_id = 0,
-    text = '',
-    parent_slug = '',
+    text = "",
+    parent_slug = "",
     slug = 1000,
-    author = '',
+    author = "",
     posted = new Date(),
   }) {
     //
     try {
-      console.log('[CommentService] putComment');
-      if (isDEL === 'YES') {
+      console.log("[CommentService] putComment");
+      if (isDEL === "YES") {
         await _COMMENT.deleteMany();
       }
       // task 1: create full_slug = postId + slug

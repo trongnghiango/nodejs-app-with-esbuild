@@ -1,6 +1,6 @@
-const logger = require('../../../utils/logger');
-const { BadRequestError } = require('../core/http-error');
-const { APIKEY } = require('../models/apikey.model');
+const logger = require("../../../utils/logger");
+const { BadRequestError } = require("../core/http-error");
+const { APIKEY } = require("../models/apikey.model");
 
 class ApiKeyService {
   /**
@@ -9,18 +9,18 @@ class ApiKeyService {
    * @returns
    */
   static async list({
-    parentSlug = '',
-    slug = '',
+    parentSlug = "",
+    slug = "",
     limit = 10,
     skip = 0,
     page = 0,
   }) {
     try {
-      logger.info('[Service] list sevice');
+      logger.info("[Service] list sevice");
       return [];
     } catch (error) {
       // @ts-ignore
-      throw new BadRequestError('>>', error.message);
+      throw new BadRequestError(">>", error.message);
     }
   }
 
@@ -32,12 +32,12 @@ class ApiKeyService {
   static async create({
     key,
     client,
-    permissions = ['DEFAULT'],
-    comments = ['unknown'],
+    permissions = ["DEFAULT"],
+    comments = ["unknown"],
     version = 1,
   }) {
     try {
-      logger.info('[ApiKeyService] create::');
+      logger.info("[ApiKeyService] create::");
       const createdApiKey = await APIKEY.create({
         key,
         client,
@@ -60,7 +60,7 @@ class ApiKeyService {
    */
   static async findByKey(key) {
     try {
-      logger.info('[ApiKeyService] find::');
+      logger.info("[ApiKeyService] find::");
       const apiKey = await APIKEY.findOne({ key });
       return apiKey;
     } catch (error) {
@@ -75,15 +75,15 @@ class ApiKeyService {
    * @returns
    */
   static async update({
-    roleId = '',
-    code = '',
-    key = '',
-    description = '',
-    notes = '',
+    roleId = "",
+    code = "",
+    key = "",
+    description = "",
+    notes = "",
   }) {
     //
     try {
-      logger.info('[Service] updata::');
+      logger.info("[Service] updata::");
 
       // const encode =
 
@@ -101,13 +101,13 @@ class ApiKeyService {
       //   description,
       //   notes,
       // });
-      return 'updateData';
+      return "updateData";
     } catch (error) {
       // @ts-ignore
       logger.info(`ERROR [Service]:: updateData, ${error.message}`);
       // return null;
       // @ts-ignore
-      throw new BadRequestError('###', error.message);
+      throw new BadRequestError("###", error.message);
     }
   }
 
@@ -120,7 +120,7 @@ class ApiKeyService {
     try {
       // const deletedData = await MODEL.findOneAndDelete({ Id });
       logger.info(`call service del`);
-      return 'deletedData';
+      return "deletedData";
     } catch (error) {
       // @ts-ignore
       logger.error(`ERROR [deleteRole]:: ${error.message}`);
