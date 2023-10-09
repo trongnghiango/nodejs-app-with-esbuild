@@ -51,8 +51,7 @@ function newConnection(uri) {
   return conn;
 }
 
-const host = env === "development" ? "localhost" : db.host;
-
+// const host = env === "development" ? "localhost" : db.host;
 // Build the connection string
 // const dbURI = `mongodb://${db.user}:${encodeURIComponent(
 //   db.password

@@ -1,3 +1,4 @@
+/* eslint-disable node/no-unsupported-features/es-syntax */
 const { createLogger, transports, format } = require("winston");
 const fs = require("fs");
 const path = require("path");
@@ -30,41 +31,69 @@ if (!fs.existsSync(dir)) {
 const logLevel = winston.level;
 
 const options = {
-  file: {
-    level: logLevel,
-    filename: `${dir}/%DATE%.log`,
-    datePattern: "YYYY-MM-DD",
-    zippedArchive: true,
-    timestamp: true,
-    handleExceptions: true,
-    humanReadableUnhandledException: true,
-    prettyPrint: true,
-    json: true,
-    maxSize: "20m",
-    colorize: true,
-    maxFiles: "14d",
-    format: combine(
-      format.errors({ stack: true }),
-      format.prettyPrint(),
-      format.timestamp({ format: timezoned }),
-      myFormat
-    ),
-  },
+  level: logLevel,
+  filename: `${dir}/%DATE%.log`,
+  datePattern: "YYYY-MM-DD",
+  zippedArchive: true,
+  timestamp: true,
+  handleExceptions: true,
+  humanReadableUnhandledException: true,
+  prettyPrint: true,
+  json: true,
+  maxSize: "20m",
+  colorize: true,
+  maxFiles: "14d",
+  format: combine(
+    format.errors({ stack: true }),
+    format.prettyPrint(),
+    format.timestamp({ format: timezoned }),
+    myFormat
+  ),
 };
 
 module.exports = createLogger({
   transports: [
-    new transports.Console({
-      level: logLevel,
-      format: combine(
-        format.errors({ stack: true }),
-        format.prettyPrint(),
-        format.timestamp({ format: timezoned }),
-        myFormat
-      ),
+    // new transports.File(options),
+    // new DailyRotateFile(options),
+    new transports.Http({
+      level: "warn",
+      format: format.json(),
     }),
-    new DailyRotateFile(options.file),
+    new transports.Console({
+      ...options,
+      level: logLevel,
+      format: format.combine(format.colorize(), format.simple()),
+    }),
+    new transports.Console({
+      ...options,
+      level: "error",
+      format: format.json(),
+    }),
   ],
-  exceptionHandlers: [new DailyRotateFile(options.file)],
-  exitOnError: false, // do not exit on handled exceptions
+  exceptionHandlers: [
+    // new DailyRotateFile(options),
+    new transports.Console({
+      ...options,
+      level: "error",
+      format: format.combine(format.colorize(), format.simple()),
+    }),
+  ],
+  exitOnError: false,
 });
+
+// module.exports = createLogger({
+//   transports: [
+//     new transports.Console({
+//       level: logLevel,
+//       format: combine(
+//         format.errors({ stack: true }),
+//         format.prettyPrint(),
+//         format.timestamp({ format: timezoned }),
+//         myFormat
+//       ),
+//     }),
+//     new DailyRotateFile(options.file),
+//   ],
+//   exceptionHandlers: [new DailyRotateFile(options.file)],
+//   exitOnError: false, // do not exit on handled exceptions
+// });

@@ -17,7 +17,7 @@ module.exports = {
   winston: {
     db: MONGO_LOG || "",
     level:
-      NODE_ENV === "production" ? process.env.LOG_LEVEL : "debug" || `silly`,
+      NODE_ENV === "production" ? process.env.LOG_LEVEL : "debug" || "info",
   },
   query: {
     limit: 10,
