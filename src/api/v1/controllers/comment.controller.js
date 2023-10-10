@@ -1,4 +1,5 @@
 const logger = require("../../../utils/logger");
+const { InternalError } = require("../core/ApiError");
 const { errorHandler } = require("../core/ApiResponse");
 const CommentService = require("../services/comment.service");
 const schema = require("../validators/comment.validator");
@@ -18,7 +19,7 @@ module.exports = {
     // }
     // logger.info(`CHECK: ${JSON.stringify(error)}`)
     const cmt = await CommentService.putComment(req.body);
-
+    if (!cmt) throw new InternalError();
     res.json(cmt);
   },
 };

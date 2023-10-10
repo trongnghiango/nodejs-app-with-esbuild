@@ -95,7 +95,7 @@ class KeystoreService {
       return "putData";
     } catch (error) {
       // @ts-ignore
-      logger.info(`ERROR [putComment]::, ${error.message}`);
+      logger.error(`ERROR [putComment]::, ${error.message}`);
       // return null;
       // @ts-ignore
       throw new BadRequestError(`###, ${error.message}`);
