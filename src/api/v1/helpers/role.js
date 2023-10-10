@@ -1,9 +1,12 @@
 const logger = require("../../../utils/logger");
+const RoleService = require("../services/role.service");
 
-module.exports._requireRole =
+module.exports._requiredRole =
   (...roleCodes) =>
-  (req, res, next) => {
-    logger.info(`[currentRoleCodes]::${roleCodes}`);
-    req.currentRoleCodes = roleCodes;
+  async (req, res, next) => {
+    const role = await RoleService.getListIdByCodes(roleCodes);
+    logger.info(`[currentRoleCodes]::${roleCodes} ${role}`);
+
+    req.currentRoleCodes = role;
     next();
   };

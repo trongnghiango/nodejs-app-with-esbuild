@@ -9,22 +9,20 @@ const {
   signUp,
 } = require("../controllers/auth.controller");
 
-const { signAccessToken, signRefreshToken } = require("../middleware/jwt");
 const { putComment } = require("../controllers/comment.controller");
 const { validateCommentInput } = require("../validators/comment.validator");
 const {
   validateRegisterInput,
   validateSignIn,
+  checkLoggedIn,
 } = require("../validators/auth.validator");
 
-const {
-  addRoleHanddler,
-  deleteRoleHandler,
-} = require("../controllers/admin.controller");
-const { validateCreateRoleInput } = require("../validators/roles.validator");
-const asyncHandler = require("../helpers/asyncHandler");
 const Auth = require("../middleware/Auth");
-const { _requireRole } = require("../helpers/role");
+const { _requiredRole } = require("../helpers/role");
+const { validator, ValidationSource } = require("../helpers/validator");
+const { checkSchema } = require("../validators/check.schema");
+const logger = require("../../../utils/logger");
+const { loginSchema } = require("../validators/auth.schema");
 
 // main router v1;
 const router = express.Router();
@@ -45,7 +43,11 @@ router.get("/checkhealth", async (req, res) => {
  *  Router: auth
  */
 router.post("/auth/signup", validateRegisterInput, signUp);
-router.post("/auth/signinwithusername", validateSignIn, signIn);
+router.post(
+  "/auth/signinwithusername",
+  validator(loginSchema, ValidationSource.BODY),
+  signIn
+);
 router.post("/auth/signin", validateSignIn, signIn);
 
 router.get("/auth/refreshtoken", Auth.authentication, refreshToken);
@@ -53,13 +55,21 @@ router.get("/auth/refreshtoken", Auth.authentication, refreshToken);
 /**
  * Router: user
  */
-router.get("/me", (req, res) => {
-  res.json({
-    status: "success",
-    msg: "OK",
-    data: {},
-  });
-});
+router.get(
+  "/me",
+  Auth.authentication,
+  _requiredRole("ADMIN"),
+  Auth.checkRole,
+  validator(checkSchema),
+  (req, res) => {
+    logger.info(req.currentRoleCodes);
+    res.json({
+      status: "success",
+      msg: "OK",
+      data: {},
+    });
+  }
+);
 
 /**
  * Router: comment

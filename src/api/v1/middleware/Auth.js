@@ -1,6 +1,6 @@
-const asyncHandler = require("express-async-handler");
 const logger = require("../../../utils/logger");
 const { AccessTokenError, BadTokenError } = require("../core/ApiError");
+const asyncHandler = require("../helpers/asyncHandler");
 const { decode, verifyToken } = require("./jwt");
 
 module.exports = {
@@ -76,15 +76,15 @@ module.exports = {
         }
       }
     }
-    if (!authorized) throw new BadTokenError("Permission denied");
+    logger.info(
+      JSON.stringify({
+        user,
+        authorized,
+        currentRoleCodes: req.currentRoleCodes,
+      })
+    );
 
-    // logger.info(
-    //   JSON.stringify({
-    //     user,
-    //     authorized,
-    //     currentRoleCodes: req.currentRoleCodes,
-    //   })
-    // );
+    if (!authorized) throw new BadTokenError("Permission denied");
 
     next();
   }),

@@ -1,24 +1,26 @@
-@devUrl=http://localhost:9000
+@urlDev=http://localhost:9000/api/v1
+@urlPro=https://kon-service-q2bs.onrender.com/api/v1
+@url={{urlDev}}
 
-POST {{devUrl}}/api/v1/roles/create
+POST {{url}}/roles/create
 Content-Type: application/json
-x-token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJrc2RqZiIsImlhdCI6MTY3ODczNjQzNCwiZXhwIjoxNjc4NzQwMDM0fQ.MOkbbjPLAy01A8ONNmQmQi-YDfS88EE0ojIEFasi92ur0v4X2qtWdaSk2bXsL4zSAn0gfs4naQUFOAmowMjYX3WaQrWEA3LUN89_sC3DRvdv2gcDndyigIJHy1kfWrn9JmkWyFKOUrhyJkBxMOogzwvAe41NUwvTdBOO4bA4SLo
+x-token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcGkuZGV2Lmtvbi1zZXJ2aWNlLmNvbSIsImF1ZCI6Imtvbi1zZXJ2aWNlLmNvbSIsInN1YiI6IntcInVzZXJJZFwiOlwiNjUyNGYyNjBiYWU2NDhjMmNmNDQyNGI1XCIsXCJyb2xlc1wiOltcIktBTE5LTTFDSU5cIl19IiwicHJtIjoiOWQ3ZjJjODVlN2Y2OTI4NDY0ODNhMWY2NjQ4M2EzNTAwZmIwZTQ5MjZjNmIwYmFiMGQ5MTYxNTI2OWQ0NTAxNTNmZTNiMTc3MTgwMmM3YWIzMTk0Zjg2MDk5ZWUwNTgwNWI4ZjE5M2RhMWFiNGEzODY3OWEwMTRhZGUwOGQzNmIiLCJpYXQiOjE2OTY5NjA0MDYsImV4cCI6MTY5NzU2NTIwNn0.Njz5gSyBbs99Luw4MhPXD4Njh2BZhv2rdjzbBXm2qAix42jKdEmLbDPwYHOFvEiHu2tREiq98f_RMSwOBL0Ygvyf7VtIQGkBZEUnNhk1InBNReKD_njGFtK5df_ioTFf2y0ivw4RqiDSvUVdesrzipFLh8sDB0k02TKgrbsN8GQ
 
 {
-  "code":  "GUEST",
-  "key": "GUEST",
-  "description": "GUEST",
-  "notes": "GUEST"
+  "code":  "VENDOR_A",
+  "key": "VENDOR_A",
+  "description": "VENDOR_A",
+  "notes": "VENDOR_A"
 }
 
 ###
-GET {{devUrl}}/api/v1/roles/640f7ed23032450a09236493
+GET {{url}}/roles/640f7ed23032450a09236493
 Content-Type: application/json
 x-token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjZTAxZjAzYS1iODE2LTRlZDQtYWU4Ni1iNTg5NmVhZWFmMzIiLCJ1c2VybmFtZSI6ImtoYWJvZG8iLCJyb2xlcyI6WyJMRUFSTkVSIiwiQURNSU4iLCJHVUVTVCJdLCJpYXQiOjE2Nzg3NjQ1ODEsImV4cCI6MTY3ODc2ODE4MX0.jdoSWErlz1rwEeke87DOyiTHuYjEFmgb6q56nPY5btvbhQ6tjTi2aey5ZlzZCTgR937qQ8BLH6bEp1DTnp9bH4Kq_-_dfQe5EldiwpEk2A5Z5ocia2naSSIPNkzqTVBEA6GLSQ1eoQKL4LYZfD58pfgho2FqJjvAl2rHLoIpEhA
 
 ###
 
-POST {{devUrl}}/api/v1/admin/putrole
+POST {{url}}/admin/putrole
 Content-Type: application/json
 
 {
@@ -31,5 +33,5 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{devUrl}}/api/v1/admin/role/delete/lf1e965n
+DELETE {{url}}/admin/role/delete/lf1e965n
 Content-Type: application/json

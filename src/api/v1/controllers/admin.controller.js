@@ -19,14 +19,15 @@ module.exports = {
   }),
   //
   createRoleHandler: asyncHandler(async (req, res) => {
-    logger.info(`currentRoleCodes:: ${req.currentRoleCodes}`);
-    const role = await RoleService.createRole(req.dataFilter);
+    logger.info(
+      `currentRoleCodes:: ${req.currentRoleCodes} , datafilter:: ${req.dataFilter}`
+    );
+    const role = await RoleService.createRole(req.dataFilter || req.body);
     if (!role) {
-      // return next(new BadRequestError());
-      throw new BadRequestError("test badrequest");
+      throw new BadRequestError("[role] Bad Request");
     }
 
-    new SuccessResponse("success", { results: role }).send(res);
+    new SuccessResponse("Success", role).send(res);
   }),
   //
   addRoleHanddler: async (req, res, next) => {

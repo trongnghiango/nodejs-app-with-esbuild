@@ -8,7 +8,7 @@ module.exports.checkApiKey = asyncHandler(async (req, res, next) => {
   const key = req.headers[Header.API_KEY];
   logger.info(key);
   if (!key) {
-    throw new ForbiddenError(`[No api-key] Permission denied`);
+    throw new ForbiddenError(`[api-key] Permission denied`);
   }
 
   const apiKey = await ApiKeyService.findByKey(key.toString());

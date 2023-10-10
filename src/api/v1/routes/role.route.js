@@ -9,22 +9,29 @@ const {
   validateCreatedRole,
   validateRoleId,
 } = require("../validators/roles.validator");
-const { _requireRole } = require("../helpers/role");
+const { _requiredRole } = require("../helpers/role");
+const { validator, ValidationSource } = require("../helpers/validator");
+const { createRoleSchema } = require("../validators/roles.schema");
 
 const router = Router();
 
+router.use(
+  Auth.authentication,
+  _requiredRole("ADMIN", "GUEST"),
+  Auth.checkRole
+); // xac thuc nguoi dung la ai?
+
 router.post(
   "/create",
-  validateCreatedRole,
-  // _requireRole('GUEST'),
-  // asyncHandler(async (req, res, next) => Auth.checkRole(req, res, next)),
+  // validateCreatedRole, //old not using
+  validator(createRoleSchema, ValidationSource.BODY),
   createRoleHandler
 );
 
 router.get(
   "/:id",
   validateRoleId,
-  _requireRole("CUSTOMMER_CARE", "ADMIN"), // user phải có quyền 'GUEST' mới được phép truy xuất api này.
+  _requiredRole("CUSTOMMER_CARE", "ADMIN"), // user phải có quyền 'GUEST' mới được phép truy xuất api này.
   asyncHandler(async (req, res, next) => Auth.checkRole(req, res, next)), // check
   getRoleByIdHandler
 );

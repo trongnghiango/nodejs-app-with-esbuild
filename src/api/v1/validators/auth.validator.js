@@ -1,23 +1,7 @@
 const Joi = require("joi");
 const logger = require("../../../utils/logger");
 const { BadRequestError } = require("../core/ApiError");
-
-const registerSchema = Joi.object({
-  userId: Joi.string().alphanum().min(3).max(16).required(),
-  username: Joi.string().alphanum().min(3).max(30).required(),
-  phone: Joi.string().min(9).max(15),
-  email: Joi.string().email().required(),
-  // eslint-disable-next-line prefer-regex-literals
-  password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
-  displayName: Joi.string().min(1).max(30),
-  repeat_password: Joi.ref("password"),
-});
-
-const loginSchema = Joi.object({
-  username: Joi.string().alphanum().min(3).max(20).required(),
-  // eslint-disable-next-line prefer-regex-literals
-  password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")).required(),
-});
+const { registerSchema, loginSchema } = require("./auth.schema");
 
 /**
  * validateRegisterInput
@@ -57,6 +41,25 @@ module.exports.validateSignIn = (req, res, next) => {
   }
 
   req.dataFilter = value;
+
+  return next();
+};
+
+const schemaUserCode = Joi.object({
+  currentRoleCodes: Joi
+    .array
+    // Joi.string().alphanum().min(3).required(),
+    (),
+}).unknown();
+
+module.exports.checkLoggedIn = (req, res, next) => {
+  //
+  logger.info(`validating currentRoleCodes`);
+  const { error, value } = schemaUserCode.validate(req);
+  if (error) {
+    logger.info(`Error [validation]:: ${error}`);
+    return next(new BadRequestError("checkLoggedIn invalid!"));
+  }
 
   return next();
 };

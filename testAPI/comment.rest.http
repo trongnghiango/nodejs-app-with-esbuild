@@ -1,10 +1,12 @@
-@urlDev=http://localhost:9000
+@urlDev=http://localhost:9000/api/v1
+@urlPro=https://kon-service-q2bs.onrender.com/api/v1
+@url={{urlPro}}
 
 
-GET {{urlDev}}/api/v1/checkhealth
+GET {{url}}/checkhealth
 
 ### put
-POST {{urlDev}}/api/v1/comment
+POST {{url}}/comment
 Content-Type: application/json
 x-token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwOTg1Mktha2EiLCJuYW1lIjoiUGhvbmciLCJlbWFpbCI6ImhjYWlsZm9AY2lxdWFuLm9yZyIsInJvbGVzIjpbIkdVRVNUIl0sImlhdCI6MTY3ODM1MTg3MCwiZXhwIjoxNjc4MzUyMDUwfQ.kGx5S1lyOVyqDUoXjv-PpdDT9DS2rZQX-fOhNxnIVaThtZ2B3e-5ro2Ju8yuoQEC0Cjxo1ENWgBumA_jTkodeIvisulglXZinMA19H3zvthmN1qLDyVW4WB3FUTQCLAsA2vBF-VuFAcClCTWIaBfIpGA9QI-cuTJuhDy2elBAGo
 
@@ -20,5 +22,3 @@ x-token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwOTg1Mktha2EiLCJuYW
 }
 
 ###
-
-GET {{urlDev}}/api/v1/checkhealth

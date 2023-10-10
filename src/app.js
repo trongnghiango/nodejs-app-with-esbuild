@@ -79,7 +79,7 @@ app.use((req, res, next) => {
 // eslint-disable-next-line consistent-return
 app.use((err, req, res, next) => {
   if (err instanceof ApiError) {
-    logger.error(err);
+    logger.error(`[app]:${err}`);
     ApiError.handle(err, res);
     if (err.type === ErrorType.INTERNAL)
       logger.error(
