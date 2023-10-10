@@ -122,7 +122,7 @@ module.exports = {
     const roles = await RoleService.getRoles(user.roles);
 
     if (!roles) throw new BadRequestError("vi sao kha bo do");
-    const strRoles = roles.map((role) => role.code);
+    const strRoles = roles.map((role) => role.roleId);
     logger.info(strRoles);
 
     const sub = {
