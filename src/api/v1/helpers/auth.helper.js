@@ -32,7 +32,7 @@ const createTokens = async (
   /** @type {any} */ accessTokenKey,
   /** @type {any} */ refreshTokenKey
 ) => {
-  logger.debug("Start created");
+  logger.debug(`Start created: ${tokenInfo.accessTokenValidity}`);
   const accessToken = await JWT.encode({
     iss: tokenInfo.issuer,
     aud: tokenInfo.audience,
@@ -49,7 +49,7 @@ const createTokens = async (
   //   tokenInfo.accessTokenValidity
   // }
 
-  logger.info(`[Input to createTokens]${{ tokenInfo, user }}`);
+  logger.info(`[Input to createTokens] ${accessToken}`);
 
   if (!accessToken) throw new InternalError("[ERR] createTokens fail!");
 

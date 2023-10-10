@@ -4,7 +4,11 @@ const asyncHandler = require("express-async-handler");
 const crypto = require("crypto");
 const logger = require("../../../utils/logger");
 const { SuccessResponse } = require("../core/ApiResponse");
-const { BadRequestError } = require("../core/ApiError");
+const {
+  BadRequestError,
+  InternalError,
+  AuthFailureError,
+} = require("../core/ApiError");
 const { createTokens } = require("../helpers/auth.helper");
 
 const { signAccessToken, signRefreshToken } = require("../middleware/jwt");
@@ -12,6 +16,7 @@ const RoleService = require("../services/role.service");
 
 const userService = require("../services/user.service");
 const KeystoreService = require("../services/keystore.service");
+const { objectFilter } = require("../helpers/utils");
 // const { log } = require('../../../utils/logger');
 
 module.exports = {
@@ -115,41 +120,30 @@ module.exports = {
     }
 
     const roles = await RoleService.getRoles(user.roles);
-    // const roles = user.roles.map(
-    //   async (roleId) => {
-    //     return await RoleService.getById(roleId);
-    //   }
-    // );
-    // await asyncLoop([
-    //   await RoleService.getById(user.roles[0]),
-    //   // @ts-ignore
-    //   await RoleService.getById(user.roles[1]),
-    // ]);
 
     if (!roles) throw new BadRequestError("vi sao kha bo do");
     const strRoles = roles.map((role) => role.code);
     logger.info(strRoles);
 
     const sub = {
-      userId: user.userId,
-      username: user.username,
+      userId: user._id,
+      // username: user.username,
       roles: strRoles,
     };
+
+    // Tao va save Luu keystore vao db
     const accessTokenKey = crypto.randomBytes(64).toString("hex");
     const refreshTokenKey = crypto.randomBytes(64).toString("hex");
     // wait for create keystore
-    await KeystoreService.create(user, accessTokenKey, refreshTokenKey);
+    await KeystoreService.create(sub.userId, accessTokenKey, refreshTokenKey);
 
     const tokens = await createTokens(sub, accessTokenKey, refreshTokenKey);
+    if (!tokens) throw new InternalError();
     logger.info(`[Logging]:: createdTokens:: ${tokens}`);
 
-    //
-    // const tokens = {
-    //   accessToken: await signAccessToken(payload),
-    //   refreshToken: await signRefreshToken(payload),
-    // };
-
-    new SuccessResponse("Success", { user, tokens }).send(res);
+    // finally, return back client
+    const result = objectFilter(user, ["username", "email"]);
+    new SuccessResponse("Success", { user: result, tokens }).send(res);
   }),
 
   /**
@@ -157,19 +151,26 @@ module.exports = {
    * @param {*} req
    * @param {*} res
    */
-  async refreshToken(req, res) {
-    // const { user } = req;
-    // console.log({ user });
-    const payload = {
-      userId: 4,
-      email: "hsfhkl",
-    };
+  refreshToken: asyncHandler(async (req, res, next) => {
+    const { user } = req;
+    logger.info(`CurrentUser:: ${user}`);
 
-    const accessToken = await signAccessToken(payload);
-    const refreshToken = await signRefreshToken(payload);
+    if (!user) throw new AuthFailureError("LOI TRUY CAP");
 
-    new SuccessResponse("success", {
-      results: { accessToken, refreshToken },
-    }).send(res);
-  },
+    // Tao va save Luu keystore vao db
+    const accessTokenKey = crypto.randomBytes(64).toString("hex");
+    const refreshTokenKey = crypto.randomBytes(64).toString("hex");
+    // wait for create keystore
+    await KeystoreService.create(
+      user.userId || user._id,
+      accessTokenKey,
+      refreshTokenKey
+    );
+
+    const tokens = await createTokens(user, accessTokenKey, refreshTokenKey);
+    if (!tokens) throw new InternalError();
+    logger.info(`[Logging]:: createdTokens:: ${tokens}`);
+
+    new SuccessResponse("Success", tokens).send(res);
+  }),
 };

@@ -19,7 +19,6 @@ class CommentService {
       console.log("listComment");
       return [];
     } catch (error) {
-      // @ts-ignore
       console.log("Error [listcomment]::", error.message);
       return null;
     }
@@ -57,7 +56,6 @@ class CommentService {
       });
       return newComment;
     } catch (error) {
-      // @ts-ignore
       logger.error(`ERROR [putComment]::, ${error.message}`);
       return error;
     }

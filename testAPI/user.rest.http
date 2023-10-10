@@ -1,17 +1,13 @@
 
 @urlDev=http://localhost:9000
-
+@accessToken=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcGkuZGV2Lmtvbi1zZXJ2aWNlLmNvbSIsImF1ZCI6Imtvbi1zZXJ2aWNlLmNvbSIsInN1YiI6IntcInVzZXJJZFwiOlwiNjUyMzk2NThiYzFiMDYzNGJhMzEwNGYzXCIsXCJyb2xlc1wiOltcIkdVRVNUXCIsXCJBRE1JTlwiXX0iLCJwcm0iOiIxZmRjZmNhYWM5YmUzYTU4MGVjYmQwYWMzOGRjMzBkNmZhZGI2OGFhNjAwOWQ5NzcyYmI5ZWVhYTg3NjY4MzU0MzVkY2U5NDJmNjYwZDUwZTU0NzUxMTAzMmYwYjY1Mzg1YzI1NjM3MzJjYzlkMTJkNDhmM2NlMzk4NTgzYWQ0YiIsImlhdCI6MTY5NjkxODMzNCwiZXhwIjoxNjk2OTE4Mzk0fQ.DGjtxnHq7LO8ldXy_lrkhI0fYwvlNFxWgwHwod3seNnn8bMXMEY-iTFP_zFq8BYeEve4tArVoiyybF-rBnifrWXmpENPgq4OT0fdrFZ6rsixUpT7wqqbpaR54ioilUqFQLBZg8I2fj9l1JyZ7prM0kppUYXU2nVze8sPezYiD_w
 
 GET {{urlDev}}/api/v1/checkhealth/hh
 
 ###
-POST {{urlDev}}/api/v1/auth/signinwithusername
+GET {{urlDev}}/api/v1/auth/refreshtoken
 Content-Type: application/json
-
-{
-  "username": "admin",
-  "password": "Changeit"
-}
+x-token: {{accessToken}}
 
 ###
 POST {{urlDev}}/api/v1/auth/signinwithusername
@@ -27,11 +23,11 @@ POST {{urlDev}}/api/v1/auth/signup
 Content-Type: application/json
 
 {
-  "userId": "khakhung",
-  "username": "khakhung",
-  "phone": "0004380984",
-  "displayName": "Kha Bo Do",
-  "email": "khabd@xyz.com",
+  "userId": "nghiango",
+  "username": "nghiango",
+  "phone": "09848935095",
+  "displayName": "Nghia Ngo",
+  "email": "khabdcd@xyz.com",
   "password": "123abcxxx",
   "repeat_password": "123abcxxx"
 }

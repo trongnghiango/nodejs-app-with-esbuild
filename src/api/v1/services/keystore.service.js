@@ -25,13 +25,11 @@ class KeystoreService {
   }
 
   /**
-   * @param {import("mongoose").Document<unknown, {}, { createdAt: NativeDate; updatedAt: NativeDate; } & { roles: import("mongoose").Types.ObjectId[]; userId: string; username: string; email: string; password: string; name: string; displayName: string; joinDate: Date; phone?: string | undefined; avatar?: string | undefined; bio?: string | undefined; links?: string | undefined; location?: string | undefined; work?: string | undefined; skills?: string | undefined; }> & Omit<{ createdAt: NativeDate; updatedAt: NativeDate; } & { roles: import("mongoose").Types.ObjectId[]; userId: string; username: string; email: string; password: string; name: string; displayName: string; joinDate: Date; phone?: string | undefined; avatar?: string | undefined; bio?: string | undefined; links?: string | undefined; location?: string | undefined; work?: string | undefined; skills?: string | undefined; } & { _id: import("mongoose").Types.ObjectId; }, never>} client
-   * @param {string} primaryKey
-   * @param {string} secondaryKey
+   * .
    */
   static async create(client, primaryKey, secondaryKey, description = "") {
+    logger.info(`[Service] create:: ${client}`);
     try {
-      logger.info("[Service] create::");
       const createdKeystore = await KEYSTORE.create({
         client,
         primaryKey,

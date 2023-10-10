@@ -17,10 +17,9 @@ class ApiKeyService {
   }) {
     try {
       logger.info("[Service] list sevice");
-      return [];
+      return await APIKEY.find();
     } catch (error) {
-      // @ts-ignore
-      throw new BadRequestError(">>", error.message);
+      throw new BadRequestError(error.message);
     }
   }
 
@@ -47,11 +46,8 @@ class ApiKeyService {
       });
       return createdApiKey;
     } catch (error) {
-      // @ts-ignore
       logger.info(`ERROR [ApiKeyService]::, ${error.message}`);
-      // return null;
-      // @ts-ignore
-      throw new BadRequestError(`### ${error.message}`);
+      throw new BadRequestError(`#SV# ${error.message}`);
     }
   }
 
@@ -59,14 +55,8 @@ class ApiKeyService {
    * @param {string} key
    */
   static async findByKey(key) {
-    try {
-      logger.info("[ApiKeyService] find::");
-      const apiKey = await APIKEY.findOne({ key });
-      return apiKey;
-    } catch (error) {
-      // @ts-ignore
-      throw new BadRequestError(`[ERR] [ApiKeyService] find ${error.message}`);
-    }
+    const apiKey = await APIKEY.findOne({ key });
+    return apiKey;
   }
 
   /**

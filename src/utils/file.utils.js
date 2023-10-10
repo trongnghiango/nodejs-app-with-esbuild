@@ -4,7 +4,7 @@ const { readFile } = require("fs");
 const { dirname } = require("path");
 const logger = require("./logger");
 // const publicFile = require("../../keys/public.pem")
-// @ts-ignore
+
 const appDir = dirname(require.main.path);
 
 module.exports = {

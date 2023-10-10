@@ -69,19 +69,22 @@ class ApiError extends Error {
 
 class AuthFailureError extends ApiError {
   constructor(message = "Invalid Credentials") {
-    super(ErrorType.UNAUTHORIZED, message);
+    super(message);
+    this.type = ErrorType.UNAUTHORIZED;
   }
 }
 
 class InternalError extends ApiError {
   constructor(message = "Internal error") {
-    super(ErrorType.INTERNAL, message);
+    super(message);
+    this.type = ErrorType.INTERNAL;
   }
 }
 
 class BadRequestError extends ApiError {
   constructor(message = "Bad Request") {
-    super(ErrorType.BAD_REQUEST, message);
+    super(message);
+    this.type = ErrorType.BAD_REQUEST;
   }
 }
 

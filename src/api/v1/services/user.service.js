@@ -1,6 +1,6 @@
 const { randomUUID } = require("node:crypto");
 const logger = require("../../../utils/logger");
-const { BadRequestError } = require("../core/ApiError");
+const { BadRequestError, InternalError } = require("../core/ApiError");
 const { _User } = require("../models/user.model");
 
 /**
@@ -47,11 +47,8 @@ async function createNewUser(data) {
 
     return await _User.create(newUser);
   } catch (error) {
-    // @ts-ignore
     logger.error(error.message);
-    // return null;
-    // @ts-ignore
-    throw new Error(`Error[create new user]:: ${error.message}`);
+    throw new InternalError(`Error::create new user:: ${error.message}`);
   }
 }
 

@@ -22,6 +22,9 @@ const {
   deleteRoleHandler,
 } = require("../controllers/admin.controller");
 const { validateCreateRoleInput } = require("../validators/roles.validator");
+const asyncHandler = require("../helpers/asyncHandler");
+const Auth = require("../middleware/Auth");
+const { _requireRole } = require("../helpers/role");
 
 // main router v1;
 const router = express.Router();
@@ -45,7 +48,7 @@ router.post("/auth/signup", validateRegisterInput, signUp);
 router.post("/auth/signinwithusername", validateSignIn, signIn);
 router.post("/auth/signin", validateSignIn, signIn);
 
-router.get("/auth/refreshtoken", refreshToken);
+router.get("/auth/refreshtoken", Auth.authentication, refreshToken);
 
 /**
  * Router: user

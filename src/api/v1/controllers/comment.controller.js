@@ -10,7 +10,7 @@ module.exports = {
    * @param {*} res
    */
   putComment: async (req, res) => {
-    logger.info(`REEE, ${JSON.stringify(req.body)}`);
+    logger.info(`Put Comment ..., ${JSON.stringify(req.body)}`);
     // validation req input
     // const { value, error } = schema.validate(req.body)
     // if (error) {

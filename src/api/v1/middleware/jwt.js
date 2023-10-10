@@ -93,19 +93,13 @@ module.exports = {
    * @returns
    */
   async verifyToken(token) {
+    const cert = await readPublicKey();
     try {
-      if (token) {
-        const cert = await readPublicKey();
-        // @ts-ignore
-        const payload = verify(token, cert);
-        return payload;
-      }
-
-      return null;
-    } catch (error) {
       // @ts-ignore
-      logger.error(`[VERIFY_TOKEN]:: ${error.message}`);
-      return null;
+      // eslint-disable-next-line no-undef
+      return await promisify(verify)(token, cert);
+    } catch (error) {
+      throw new BadTokenError(error.message);
     }
   },
 
@@ -142,7 +136,6 @@ module.exports = {
         ignoreExpiration: true,
       });
     } catch (error) {
-      // @ts-ignore
       throw new BadTokenError(error.message);
     }
   },

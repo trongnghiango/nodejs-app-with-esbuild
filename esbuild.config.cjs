@@ -20,7 +20,7 @@ const options = {
   // format: 'js',
   define: { 'process.env.NODE_ENV': '"production"' },
   external: [
-    "./node_modules/*",
+    // "./node_modules/*",
     "./keys/*",
     "./logs/*",
   ],

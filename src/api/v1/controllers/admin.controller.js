@@ -70,15 +70,27 @@ module.exports = {
     return new SuccessResponse("success", { results: del_role }).send(res);
   },
 
+  /**
+   * .
+   */
   createApiKeyHandler: asyncHandler(async (req, res, next) => {
     const data = req.body;
     // const {}
-    logger.info(`currentuser:: ${Array.isArray(data.permissions)}`);
+    logger.info(
+      `currentuser:: ${Array.isArray(data.permissions)}, ${req.user}`
+    );
     const user = await findUserByUsername(req.user.username);
     data.client = user;
     const newApiKey = await ApiKeyService.create(data);
     if (!newApiKey) throw new BadRequestError("Cannot create api key");
 
     new SuccessResponse("Success", { results: newApiKey }).send(res);
+  }),
+
+  getApiKeyHandler: asyncHandler(async (req, res, next) => {
+    const apiKeyList = await ApiKeyService.list({});
+    if (!apiKeyList) throw new BadRequestError("Cannot create api key");
+
+    new SuccessResponse("Success", apiKeyList).send(res);
   }),
 };

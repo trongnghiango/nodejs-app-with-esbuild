@@ -15,6 +15,7 @@ module.exports = {
   plugins: ["prettier"],
   rules: {
     // "no-implicit-globals": ["error", "always"],
+    "import/no-extraneous-dependencies": ["off", {"devDependencies": false, "optionalDependencies": false, "peerDependencies": false}],
     "prettier/prettier": "error",
     "no-unused-vars": "warn",
     "no-undef": "error",
