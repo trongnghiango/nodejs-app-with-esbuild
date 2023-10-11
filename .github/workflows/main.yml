@@ -5,9 +5,17 @@ on:
     branches: [ "main" ]
 
 jobs:
+  run_tests:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run script file
+        run: |
+          chmod +x ./scripts/test.sh
+          ./scripts/test.sh
+        shell: bash
 
   build-push:
-
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,7 +28,9 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Use tag
-        run: echo ${{steps.checkout.outputs}}
+        run: 
+          echo ${{steps.checkout.outputs}}
+          echo 'TESTTTTTTTTTT'
 
       - name: Build and push
         uses: docker/build-push-action@v3
