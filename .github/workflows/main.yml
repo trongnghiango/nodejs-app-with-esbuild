@@ -19,7 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        id: checkout
         uses: actions/checkout@v3
 
       - name: Login to DockerHub
@@ -27,13 +26,13 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Use tag
+        id: tag
         run: |
+          echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
           echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
           echo "Tag name from github.ref_name: ${{  github.ref_name }}"
-          echo "${{toJSON(steps.checkout.outputs)}}"
-          echo 'TESTTTTTTTTTT'
-          echo "${{toJSON(github.event)}}"
 
       - name: Build and push
         uses: docker/build-push-action@v3
@@ -42,4 +41,5 @@ jobs:
           push: true
           tags: 
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_IMAGE_NAME }}:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_IMAGE_NAME }}:${{ steps.tag.outputs.sha_short }}
 
