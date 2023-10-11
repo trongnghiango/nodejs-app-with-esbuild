@@ -1183,66 +1183,6 @@ es-to-primitive@^1.2.1:
     is-date-object "^1.0.1"
     is-symbol "^1.0.2"
 
-esbuild-dev-server-darwin-arm64@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/esbuild-dev-server-darwin-arm64/-/esbuild-dev-server-darwin-arm64-0.3.0.tgz#a6167301e0d11b09979e2c7a1d3faefc8af53b12"
-  integrity sha512-HvKg1JfBhooY/pR60LaXkV2b1Pf2sWjjVn8lLCzxOMPh/DT28y3m/CmktT8Xdi7AUsvdh+7IGTzQwR/jZ1bYNw==
-
-esbuild-dev-server-darwin-x64@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/esbuild-dev-server-darwin-x64/-/esbuild-dev-server-darwin-x64-0.3.0.tgz#5d8acfe2b86b6babd3269e57f9a9b7a2e78f5579"
-  integrity sha512-QKph7OPuZZyyEK7Ehvvdqik2jm8iipBGTOjNsA3RgA6r6tQbqChA0ICkKQlLG6U2IUMj/eqc6ZGk/fdDJgckPw==
-
-esbuild-dev-server-linux-arm64@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/esbuild-dev-server-linux-arm64/-/esbuild-dev-server-linux-arm64-0.3.0.tgz#92cb33294e2de749682e61ee5ed1e922b5da812e"
-  integrity sha512-4sZG6oDyLaS/Jo2Kdsh/Z7OPsmvxXgFu1umaJOyCkJ27WAY+l7LBbPiDRIV1ANIEce/puQ9nU3qTCWRYoSQiWA==
-
-esbuild-dev-server-linux-arm@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/esbuild-dev-server-linux-arm/-/esbuild-dev-server-linux-arm-0.3.0.tgz#ad27c863d569ff8f3015e69ca426b85f554482d0"
-  integrity sha512-OdtPE5SkukZ1DYvA2l/ZjPY79Qj4Wjk93EO5aYWQRcZoeQgt//Nrll3hV144ObP32s4it/dGVkE3yiyaxeJ8gg==
-
-esbuild-dev-server-linux-x32@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/esbuild-dev-server-linux-x32/-/esbuild-dev-server-linux-x32-0.3.0.tgz#c2fcea2b28d8fbc7570a5a1f8876994dd8442492"
-  integrity sha512-zvIKHcEpNs8G2F1HPkB13e9B0aE1ccY5KU4jCbBTKrZCvp1k4cgjuQI6E9wQUdmS5KFq5dvOteidqF9agddZFg==
-
-esbuild-dev-server-linux-x64@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.npmjs.org/esbuild-dev-server-linux-x64/-/esbuild-dev-server-linux-x64-0.3.0.tgz"
-  integrity sha512-aweybli47+13S8Y1KdAHkkHCbEr4EDKzGCuAHlU1BAeeCaarBjPnldvKPUuHRKzUTYTnAXXnbni9OFJCh0C9OA==
-
-esbuild-dev-server-win32-arm64@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/esbuild-dev-server-win32-arm64/-/esbuild-dev-server-win32-arm64-0.3.0.tgz#0f0cccda2469537af39cd96dcec7448a36382523"
-  integrity sha512-BVcg9b1lXIJg7uftFJWfX2r93RYZndK6AqsMurjoc+l7QU4B0Cc+X9Z2xxMYyDlWH95YF+CckE8Hu5mXlbV7Rw==
-
-esbuild-dev-server-win32-x32@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/esbuild-dev-server-win32-x32/-/esbuild-dev-server-win32-x32-0.3.0.tgz#17e9bb4c58716edde0bbb79e779ad1aad82732be"
-  integrity sha512-RTyBIGayeH1M6HpXMrwXfTllayflp9jingV5SGg1ca6fSlt6Q3HGTBwcfIFgPdS5MsUWaqDF3X3D1NO2lVRJfA==
-
-esbuild-dev-server-win32-x64@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/esbuild-dev-server-win32-x64/-/esbuild-dev-server-win32-x64-0.3.0.tgz#a7a530c65db0f361cc5ba3aa54b7037084af5605"
-  integrity sha512-t3SU0rdXbkfBtmrNxeq1IShTyaCDzZg5HIUnVphJT2DUjVsF4ndJk9vJ6JvN/bPCt+XH6SvuAWvdMoUemLu7Bw==
-
-esbuild-dev-server@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.npmjs.org/esbuild-dev-server/-/esbuild-dev-server-0.3.0.tgz"
-  integrity sha512-2oYnryt+Yoqx6iADcuJ5/tC3/xptZf+x5sCus86VkUrjq0gny9nx7oL/eUkopxNIjygIm2SYGysQOdyAx3I7qQ==
-  optionalDependencies:
-    esbuild-dev-server-darwin-arm64 "0.3.0"
-    esbuild-dev-server-darwin-x64 "0.3.0"
-    esbuild-dev-server-linux-arm "0.3.0"
-    esbuild-dev-server-linux-arm64 "0.3.0"
-    esbuild-dev-server-linux-x32 "0.3.0"
-    esbuild-dev-server-linux-x64 "0.3.0"
-    esbuild-dev-server-win32-arm64 "0.3.0"
-    esbuild-dev-server-win32-x32 "0.3.0"
-    esbuild-dev-server-win32-x64 "0.3.0"
-
 esbuild-plugin-alias-path@^2.0.2:
   version "2.0.2"
   resolved "https://registry.npmjs.org/esbuild-plugin-alias-path/-/esbuild-plugin-alias-path-2.0.2.tgz"

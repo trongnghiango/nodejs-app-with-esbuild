@@ -33,7 +33,7 @@ const app = express();
 logger.info(`Env:: ${db.authdburi}`);
 
 // Middle init
-app.set("trust proxy", 1);
+// app.set("trust proxy", 1);
 app.use(
   cookieSession({
     name: "session",
@@ -65,8 +65,14 @@ app.use(
 // Create the rate limit rule
 const apiRequestLimiter = rateLimit({
   windowMs: 0.5 * 60 * 1000, // 0.5 minute
-  max: 10, // limit each IP to 12 requests per windowMs
+  max: 2, // limit each IP to 12 requests per windowMs
+  statusCode: 429,
+  headers: true,
+  keyGenerator(req) {
+    return req.clientIp;
+  },
   handler: (req, res, next) => {
+    logger.debug(`IP::: ${req.ip} <> ${req.ips}`);
     throw new TooManyRequests(
       "You sent too many requests. Please wait a while then try again"
     );
@@ -74,6 +80,7 @@ const apiRequestLimiter = rateLimit({
 });
 
 // Use the limit rule as an application middleware
+app.enable("trust proxy");
 app.use(apiRequestLimiter);
 
 // end middle global
