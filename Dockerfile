@@ -1,37 +1,29 @@
-FROM node:18-alpine AS BUILD_IMAGE
-
+FROM node:18-alpine AS build
 WORKDIR /usr/src/app
-
-COPY package.json yarn.lock ./
-
+# Installing dependencies first can save time on rebuilds
+# We do need the full (dev) dependencies here
+COPY package.json yarn.lock .env ./
 RUN yarn install
-
-COPY --chown=node:node . .
-
+# Then copy in the actual sources we need and build
+COPY jsconfig.json esbuild.config.cjs ./
+COPY src/ ./src/
+COPY keys/ ./keys/
 RUN yarn build
 
+FROM node:18-alpine AS deps
+WORKDIR /usr/src/app
+# This _only_ builds a runtime node_modules tree.
+# We won't need the package.json to actually run the application.
+# If you needed developer-oriented tools to do this install they'd
+# be isolated to this stage.
+COPY package.json yarn.lock ./
+RUN yarn install --production
 
 FROM node:18-alpine
-
-# create user in the docker image
-USER node
-
-# Creating a new directory for app files and setting path in the container
-RUN mkdir -p /home/node/app && chown -R node:node /home/node/app
-
-# setting working directory in the container
-WORKDIR /home/node/app
-
-COPY --from=BUILD_IMAGE --chown=node:node /usr/src/app/dist ./dist
-# COPY --from=BUILD_IMAGE --chown=node:node /usr/src/app/node_modules ./node_modules
-COPY --from=BUILD_IMAGE --chown=node:node /usr/src/app/package.json ./package.json
-COPY --from=BUILD_IMAGE --chown=node:node /usr/src/app/.env ./.env
-COPY --from=BUILD_IMAGE --chown=node:node /usr/src/app/logs ./logs
-COPY --from=BUILD_IMAGE --chown=node:node /usr/src/app/keys ./keys
-
-
+WORKDIR /usr/src/app
+# COPY --from=deps /usr/src/app/node_modules ./node_modules/
+COPY --from=build /usr/src/app/dist ./dist/
+COPY --from=build /usr/src/app/keys ./keys/
+COPY --from=build /usr/src/app/.env ./
 EXPOSE 9000
-
-CMD [ "node", "./dist/server.js"]
-
-
+CMD ["node", "dist/server.js"]

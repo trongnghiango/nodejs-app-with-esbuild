@@ -1,5 +1,5 @@
 @urlDev=http://localhost:9000/api/v1
-@urlPro=https://kon-service-q2bs.onrender.com/api/v1
+@urlPro=https://ka-gen-api.onrender.com/api/v1
 @url={{urlPro}}
 
 POST {{url}}/roles/create
