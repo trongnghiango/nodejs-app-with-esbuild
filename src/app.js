@@ -32,15 +32,15 @@ logger.info(`Env:: ${db.authdburi}`);
 
 // Middle init
 app.set("trust proxy", 1);
-// app.use(
-//   cookieSession({
-//     name: "session",
-//     keys: [cookieKey],
-//     maxAge: 24 * 60 * 60 * 1000, // session will expire after 24 hours
-//     secure: env !== "development",
-//     sameSite: env === "development" ? false : "none",
-//   })
-// );
+app.use(
+  cookieSession({
+    name: "session",
+    keys: [cookieKey],
+    maxAge: 24 * 60 * 60 * 1000, // session will expire after 24 hours
+    secure: env !== "development",
+    sameSite: env === "development" ? false : "none",
+  })
+);
 app.use(bodyParser.json());
 
 // morgan setup
@@ -79,12 +79,12 @@ app.use((req, res, next) => {
 // eslint-disable-next-line consistent-return
 app.use((err, req, res, next) => {
   if (err instanceof ApiError) {
-    logger.error(`[app]:${err}`);
-    ApiError.handle(err, res);
     if (err.type === ErrorType.INTERNAL)
       logger.error(
         `500 - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`
       );
+    logger.error(`[app]:${err}`);
+    ApiError.handle(err, res);
   } else {
     logger.error(
       `500 - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`
