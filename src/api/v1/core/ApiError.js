@@ -15,6 +15,7 @@ const ResponseStatus = {
   UNAUTHORIZED: 401,
   FORBIDDEN: 403,
   NOT_FOUND: 404,
+  TOO_MANY_REQUESTS: 429,
   INTERNAL_ERROR: 500,
 };
 const ErrorType = {
@@ -28,6 +29,7 @@ const ErrorType = {
   NO_DATA: "NoDataError",
   BAD_REQUEST: "BadRequestError",
   FORBIDDEN: "ForbiddenError",
+  TOO_MANY_REQUESTS: "TooManyRequests",
 };
 
 class ApiError extends Error {
@@ -54,6 +56,7 @@ class ApiError extends Error {
       case ErrorType.NO_DATA:
         return new NotFoundResponse(`${err.message}`).send(res);
       case ErrorType.BAD_REQUEST:
+      case ErrorType.TOO_MANY_REQUESTS:
         return new BadRequestResponse(err.message).send(res);
       case ErrorType.FORBIDDEN:
         return new ForbiddenResponse(`${err.message}`).send(res);
@@ -136,6 +139,13 @@ class AccessTokenError extends ApiError {
   }
 }
 
+class TooManyRequests extends ApiError {
+  constructor(message = "Too Many Requests") {
+    super(message);
+    this.type = ErrorType.TOO_MANY_REQUESTS;
+  }
+}
+
 module.exports = {
   TokenExpiredError,
   NoDataError,
@@ -149,4 +159,5 @@ module.exports = {
   NoEntryError,
   ApiError,
   ErrorType,
+  TooManyRequests,
 };

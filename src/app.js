@@ -16,6 +16,7 @@ const {
   NotFoundError,
   InternalError,
   ErrorType,
+  TooManyRequests,
 } = require("./api/v1/core/ApiError");
 
 require("dotenv").config();
@@ -65,6 +66,11 @@ app.use(
 const apiRequestLimiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
   max: 2, // limit each IP to 2 requests per windowMs
+  handler: (req, res, next) => {
+    throw new TooManyRequests(
+      "You sent too many requests. Please wait a while then try again"
+    );
+  },
 });
 
 // Use the limit rule as an application middleware
