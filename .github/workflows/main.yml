@@ -31,8 +31,9 @@ jobs:
         run: |
           echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
           echo "Tag name from github.ref_name: ${{  github.ref_name }}"
-          echo ${{steps.checkout.outputs}}
+          echo "${{toJSON(steps.checkout.outputs)}}"
           echo 'TESTTTTTTTTTT'
+          echo "${{toJSON(github.event)}}"
 
       - name: Build and push
         uses: docker/build-push-action@v3
