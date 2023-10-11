@@ -5,26 +5,17 @@ const cookieSession = require("cookie-session");
 const { default: helmet } = require("helmet");
 const morgan = require("morgan");
 const compression = require("compression");
-const rateLimit = require("express-rate-limit");
-// const { ExpressErrorHandler } = require('@acruzjr/express-http-errors');
-const { InternalErrorResponse } = require("./api/v1/core/ApiResponse");
+
 // const passport = require('passport');
 const apiV1 = require("./api/v1/routes");
 const logger = require("./utils/logger");
-const {
-  ApiError,
-  NotFoundError,
-  InternalError,
-  ErrorType,
-  TooManyRequests,
-} = require("./api/v1/core/ApiError");
+const { ApiError, NotFoundError } = require("./api/v1/core/ApiError");
 
 require("dotenv").config();
-// require("./api/v1/databases/init.mongodb");
 require("./api/v1/databases/init.multi.mongodb");
-// require('../demo/dbs/init.mongo');
 
 const { cookieKey, env, db, clientUrl } = require("./config");
+const { apiRequestLimiter, errorsHandler } = require("./middlewares");
 // const { COOKIE_KEY, NODE_ENV, CLIENT_URL } = process.env;
 
 // MY APP INITIAL IN HERE
@@ -32,7 +23,10 @@ const app = express();
 
 logger.info(`Env:: ${db.authdburi}`);
 
-// Middle init
+/**
+ * Middle init
+ */
+
 // app.set("trust proxy", 1);
 app.use(
   cookieSession({
@@ -62,28 +56,13 @@ app.use(
   })
 );
 
-// Create the rate limit rule
-const apiRequestLimiter = rateLimit({
-  windowMs: 0.5 * 60 * 1000, // 0.5 minute
-  max: 2, // limit each IP to 12 requests per windowMs
-  statusCode: 429,
-  headers: true,
-  keyGenerator(req) {
-    return req.clientIp;
-  },
-  handler: (req, res, next) => {
-    logger.debug(`IP::: ${req.ip} <> ${req.ips}`);
-    throw new TooManyRequests(
-      "You sent too many requests. Please wait a while then try again"
-    );
-  },
-});
-
 // Use the limit rule as an application middleware
 app.enable("trust proxy");
 app.use(apiRequestLimiter);
 
-// end middle global
+/**
+ * end middle global
+ */
 
 /**
  * API Version 1
@@ -100,25 +79,7 @@ app.use((req, res, next) => {
   next(new NotFoundError("Not Found router"));
 });
 
-// eslint-disable-next-line consistent-return
-app.use((err, req, res, next) => {
-  if (err instanceof ApiError) {
-    if (err.type === ErrorType.INTERNAL)
-      logger.error(
-        `500 - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`
-      );
-    logger.error(`[app]:${err}`);
-    ApiError.handle(err, res);
-  } else {
-    logger.error(
-      `500 - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`
-    );
-
-    if (env === "development") {
-      return res.status(500).send(err);
-    }
-    ApiError.handle(new InternalError(), res);
-  }
-});
+// error Handler
+app.use(errorsHandler);
 
 module.exports = app;
