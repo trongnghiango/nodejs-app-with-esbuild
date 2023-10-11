@@ -70,7 +70,7 @@ app.use(apiRequestLimiter);
 app.use("/api/v1", apiV1);
 
 app.get("/", (req, res) => {
-  res.send("DEV.to is running");
+  res.send("DEV.to is running !!!");
 });
 
 // catch 404 and forward to error handler
