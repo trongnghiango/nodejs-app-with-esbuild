@@ -3,7 +3,7 @@ name: Docker image build and push
 on:
   push:
     branches: [ "master" ]
-  pull-request:
+  #pull-request:
 
 jobs:
 
@@ -25,4 +25,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: <username>/<repository>:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_IMAGE_NAME }}:latest
