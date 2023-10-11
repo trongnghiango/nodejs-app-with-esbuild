@@ -32,11 +32,7 @@ const router = express.Router();
  * @path("/checkhealth")
  */
 router.get("/checkhealth", async (req, res) => {
-  // Database.getInstance()
-  const results = {
-    status: "Ok",
-  };
-  new SuccessResponse("success", { results }).send(res);
+  new SuccessResponse("success", { msg: "OK con dê!!" }).send(res);
 });
 
 /**

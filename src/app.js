@@ -5,6 +5,7 @@ const cookieSession = require("cookie-session");
 const { default: helmet } = require("helmet");
 const morgan = require("morgan");
 const compression = require("compression");
+const rateLimit = require("express-rate-limit");
 // const { ExpressErrorHandler } = require('@acruzjr/express-http-errors');
 const { InternalErrorResponse } = require("./api/v1/core/ApiResponse");
 // const passport = require('passport');
@@ -59,6 +60,16 @@ app.use(
     credentials: true, // allow session cookie from browser to pass through
   })
 );
+
+// Create the rate limit rule
+const apiRequestLimiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 2, // limit each IP to 2 requests per windowMs
+});
+
+// Use the limit rule as an application middleware
+app.use(apiRequestLimiter);
+
 // end middle global
 
 /**
