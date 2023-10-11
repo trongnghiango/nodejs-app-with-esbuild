@@ -64,8 +64,8 @@ app.use(
 
 // Create the rate limit rule
 const apiRequestLimiter = rateLimit({
-  windowMs: 1 * 60 * 1000, // 1 minute
-  max: 2, // limit each IP to 2 requests per windowMs
+  windowMs: 0.5 * 60 * 1000, // 0.5 minute
+  max: 10, // limit each IP to 12 requests per windowMs
   handler: (req, res, next) => {
     throw new TooManyRequests(
       "You sent too many requests. Please wait a while then try again"
