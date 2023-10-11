@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose");
 const { genRoleIdWithPre } = require("../../../utils/gen.util");
 const logger = require("../../../utils/logger");
 const { ApiError, BadRequestError } = require("../core/ApiError");
@@ -7,44 +8,59 @@ const { _ROLE } = require("../models/role.model");
 class RoleService {
   /**
    *
-   * @param {*} param0
+   * @param {{key?: string, roleId?: string, code?: string, author?: string;}} filter
    * @returns
    */
-  static async listRole({
-    parentSlug = "",
-    slug = "",
-    discuss = 0,
-    replies,
-    limit = 10,
-    skip = 0,
-  }) {
+  static async listRole(filter = {}) {
     try {
-      console.log("listComment");
-      return [];
+      return await _ROLE.find(filter);
     } catch (error) {
-      // @ts-ignore
-      console.log("Error [listcomment]::", error.message);
-      return null;
+      logger.error(`[RoleService::listRole] ${error.message}`);
+      throw new BadRequestError(`[srv] ${error.message}`);
     }
   }
 
-  static async getRoles(filter) {
-    console.log("[getRoles]::", filter);
+  /**
+   * desc: input 1 object with key is "code" and value is string
+   * ex: { code: "ADMIN" }
+   * @param {object} filter
+   * @returns {Array}
+   */
+  static async getRolesByCodeFilter(filter) {
+    console.log("[getRoles][input_param]::", filter);
     try {
-      // eslint-disable-next-line array-callback-return
-      // const filter = ids.map((_id) => ({ _id }));
-      const roles = await _ROLE
+      return await _ROLE
         .find({
           // eslint-disable-next-line node/no-unsupported-features/es-syntax
           ...filter,
-          code: { $regex: new RegExp(`^${filter.code}`, "i") },
+          code: { $regex: new RegExp(`^${filter.code}`, "i") }, // "case-insensitive."
         })
         .collation({ locale: "en" })
         .lean();
-      return roles;
     } catch (error) {
-      // @ts-ignore
-      throw new BadRequestError("[TTT]error.message");
+      logger.error(`[RoleService::getRolesByCodeFilter] ${error.message}`);
+      throw new BadRequestError(`[srv] ${error.message}`);
+    }
+  }
+
+  /**
+   * desc: get Roles db from Array id
+   * @param {Array<mongoose.Types.ObjectId>} ids
+   * @returns {Array<any>} roles
+   */
+  static async getRolesByIdsArray(ids) {
+    try {
+      // const filterIds = ids.map((id) => ({ _id: id.toString() }));
+      // console.log("[getRoles]::input", filterIds);
+      return await _ROLE
+        // .find({ $or: filterIds })
+        .find({ _id: { $in: ids } })
+        .select("roleId")
+        .lean()
+        .exec();
+    } catch (error) {
+      logger.error(`[RoleService::getRolesByIdsArray] ${error.message}`);
+      throw new BadRequestError(`[Srv] ${error.message}`);
     }
   }
 

@@ -119,11 +119,12 @@ module.exports = {
       throw new BadRequestError("Authentication failure");
     }
 
-    const roles = await RoleService.getRoles(user.roles);
-
-    if (!roles) throw new BadRequestError("vi sao kha bo do");
+    logger.warn(`[Array]:roleId:: ${JSON.stringify(user, null, 2)}`);
+    const roles = await RoleService.getRolesByIdsArray(user.roles);
+    logger.warn(`[Array]:roleId:out:: ${JSON.stringify(roles, null, 2)}`);
+    if (!roles) throw new BadRequestError("User roles not found.");
     const strRoles = roles.map((role) => role.roleId);
-    logger.info(strRoles);
+    logger.info(`[Array]:roleId:: ${strRoles}`);
 
     const sub = {
       userId: user._id,
@@ -139,7 +140,9 @@ module.exports = {
 
     const tokens = await createTokens(sub, accessTokenKey, refreshTokenKey);
     if (!tokens) throw new InternalError();
-    logger.info(`[Logging]:: createdTokens:: ${tokens}`);
+    logger.debug(
+      `[Logging]:: createdTokens:: ${JSON.stringify(tokens, null, 2)}`
+    );
 
     // finally, return back client
     const result = objectFilter(user, ["username", "email"]);
@@ -152,10 +155,24 @@ module.exports = {
    * @param {*} res
    */
   refreshToken: asyncHandler(async (req, res, next) => {
-    const { user } = req;
-    logger.info(`CurrentUser:: ${user}`);
+    const { user: current } = req;
+    logger.info(`CurrentUser:: ${JSON.stringify(current)}`);
+
+    const user = await userService.getUserById(current.userId);
 
     if (!user) throw new AuthFailureError("LOI TRUY CAP");
+
+    const roles = await RoleService.getRolesByIdsArray(user.roles);
+    logger.warn(`[Array]:roleId:out:: ${JSON.stringify(roles, null, 2)}`);
+    if (!roles) throw new BadRequestError("User roles not found.");
+    const strRoles = roles.map((role) => role.roleId);
+    logger.info(`[Array]:roleId:: ${strRoles}`);
+
+    const sub = {
+      userId: user._id,
+      // username: user.username,
+      roles: strRoles,
+    };
 
     // Tao va save Luu keystore vao db
     const accessTokenKey = crypto.randomBytes(64).toString("hex");
@@ -167,9 +184,8 @@ module.exports = {
       refreshTokenKey
     );
 
-    const tokens = await createTokens(user, accessTokenKey, refreshTokenKey);
+    const tokens = await createTokens(sub, accessTokenKey, refreshTokenKey);
     if (!tokens) throw new InternalError();
-    logger.info(`[Logging]:: createdTokens:: ${tokens}`);
 
     new SuccessResponse("Success", tokens).send(res);
   }),

@@ -114,7 +114,7 @@ module.exports = {
       }} payload
    */
   async encode(payload) {
-    logger.info(`[encode]:: payload -- ${JSON.stringify(payload, null, 2)}`);
+    logger.debug(`[encode]:: payload -- ${JSON.stringify(payload, null, 2)}`);
     const cert = await readPrivateKey();
     if (!cert) throw new InternalError("Token generation failure");
     // eslint-disable-next-line node/no-unsupported-features/es-syntax

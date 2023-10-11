@@ -49,14 +49,12 @@ const createTokens = async (
   //   tokenInfo.accessTokenValidity
   // }
 
-  logger.info(`[Input to createTokens] ${accessToken}`);
-
   if (!accessToken) throw new InternalError("[ERR] createTokens fail!");
 
   const refreshToken = await JWT.encode({
     iss: tokenInfo.issuer,
     aud: tokenInfo.audience,
-    sub: JSON.stringify(user),
+    sub: JSON.stringify({ userId: user._id || user.userId }),
     prm: refreshTokenKey,
     iat: Math.floor(Date.now() / 1000),
     exp: Math.floor(Date.now() / 1000) + tokenInfo.refreshTokenValidity,

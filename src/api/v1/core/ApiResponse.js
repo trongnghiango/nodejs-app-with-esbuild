@@ -21,7 +21,6 @@ class ApiResponse {
     this.statusCode = statusCode;
     this.status = status;
     this.message = message;
-    logger.info(`status:: ${message}`);
   }
 
   prepare(res, response) {

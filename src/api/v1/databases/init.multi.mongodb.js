@@ -16,7 +16,7 @@ mongoose.set("strictQuery", false);
 
 function newConnection(uri) {
   const conn = mongoose.createConnection(uri, options);
-  logger.info(`MongoDb:: ${uri}`, {
+  logger.debug(`MongoDb:: ${uri}`, {
     label: "DATABASE",
   });
   conn.on("connected", () => {

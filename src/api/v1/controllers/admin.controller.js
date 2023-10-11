@@ -19,7 +19,7 @@ module.exports = {
   }),
   getRolesHandler: asyncHandler(async (req, res) => {
     logger.debug(`[getRolesHandler]:[query]:: ${JSON.stringify(req.query)}`);
-    const roles = await RoleService.getRoles(req.query);
+    const roles = await RoleService.getRolesByCodeFilter(req.query);
     if (!roles) throw new BadRequestError();
     new SuccessResponse("success", roles).send(res);
   }),

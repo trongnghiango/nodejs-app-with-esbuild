@@ -51,9 +51,7 @@ module.exports = {
     const user = JSON.parse(sub);
 
     if (!user.roles) {
-      throw new BadTokenError(
-        "Tài khoản của bạn bị từ chối. Vui lòng liên hệ Admin"
-      );
+      throw new BadTokenError("Token bị từ chối. Vui lòng re-check!");
     }
     //
     req.user = user;

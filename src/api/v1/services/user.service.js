@@ -59,12 +59,28 @@ async function createNewUser(data) {
  */
 async function findUserByUsername(username) {
   try {
-    return await _User.findOne({ username }).lean();
-    // .select('displayName username roles')
-    // .exec();
+    return await _User
+      .findOne({ username })
+      .select("displayName username password roles") // not contain password -> error
+      .lean()
+      .exec();
   } catch (error) {
     // @ts-ignore
     throw new BadRequestError(error.message);
+  }
+}
+
+/**
+ * isExistedEmail
+ * @param {string} email
+ * @returns
+ */
+async function getUserById(_id) {
+  try {
+    return await _User.findOne({ _id }).select("roles").lean();
+  } catch (error) {
+    logger.error(`[UserService::getUserById]${error.message}`);
+    throw new InternalError(error.message);
   }
 }
 
@@ -73,4 +89,5 @@ module.exports = {
   isExistedEmail,
   createNewUser,
   findUserByUsername,
+  getUserById,
 };
