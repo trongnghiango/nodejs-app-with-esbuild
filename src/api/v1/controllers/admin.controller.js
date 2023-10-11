@@ -15,7 +15,13 @@ module.exports = {
     if (!role)
       throw new BadRequestError(`Khong tim thay role voi id: ${req.params.id}`);
 
-    new SuccessResponse("success", { results: role }).send(res);
+    new SuccessResponse("success", role).send(res);
+  }),
+  getRolesHandler: asyncHandler(async (req, res) => {
+    logger.debug(`[getRolesHandler]:[query]:: ${JSON.stringify(req.query)}`);
+    const roles = await RoleService.getRoles(req.query);
+    if (!roles) throw new BadRequestError();
+    new SuccessResponse("success", roles).send(res);
   }),
   //
   createRoleHandler: asyncHandler(async (req, res) => {
@@ -30,15 +36,15 @@ module.exports = {
     new SuccessResponse("Success", role).send(res);
   }),
   //
-  addRoleHanddler: async (req, res, next) => {
+  addRoleHandler: async (req, res, next) => {
     logger.info(JSON.stringify(req.dataFilter));
-    const role = await RoleService.putRole(req.dataFilter);
+    const role = await RoleService.putRole(req.dataFilter || req.body);
 
     if (!role) {
       throw new BadRequestError("role...");
     }
 
-    new SuccessResponse("success", { results: role }).send(res);
+    new SuccessResponse("success", role).send(res);
   },
 
   /**
@@ -68,7 +74,7 @@ module.exports = {
       return next(new BadRequestError("Cannot delete this role."));
     }
 
-    return new SuccessResponse("success", { results: del_role }).send(res);
+    return new SuccessResponse("success", del_role).send(res);
   },
 
   /**
@@ -85,7 +91,7 @@ module.exports = {
     const newApiKey = await ApiKeyService.create(data);
     if (!newApiKey) throw new BadRequestError("Cannot create api key");
 
-    new SuccessResponse("Success", { results: newApiKey }).send(res);
+    new SuccessResponse("Success", newApiKey).send(res);
   }),
 
   getApiKeyHandler: asyncHandler(async (req, res, next) => {

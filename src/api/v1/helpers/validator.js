@@ -9,6 +9,8 @@ const ValidationSource = {
 };
 
 const validator = (schema, source) => (req, res, next) => {
+  logger.debug(`[Validation Format] ${JSON.stringify(req[source], null, 2)}`);
+
   try {
     const { error } = schema.validate(source ? req[source] : req);
 

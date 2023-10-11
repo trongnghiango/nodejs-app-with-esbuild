@@ -7,7 +7,7 @@ const createRoleSchema = Joi.object({
   notes: Joi.string().allow(null).allow("").optional(),
 });
 
-const roleIdSchema = Joi.string().min(3).required();
+const roleIdSchema = Joi.object({ id: Joi.string().min(3).required() });
 
 module.exports = {
   createRoleSchema,

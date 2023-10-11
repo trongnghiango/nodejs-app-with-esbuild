@@ -28,14 +28,19 @@ class RoleService {
     }
   }
 
-  /**
-   * @param {import('mongoose').Types.ObjectId []} ids
-   */
-  static async getRoles(ids) {
+  static async getRoles(filter) {
+    console.log("[getRoles]::", filter);
     try {
       // eslint-disable-next-line array-callback-return
-      const filter = ids.map((_id) => ({ _id }));
-      const roles = await _ROLE.find({ $or: filter });
+      // const filter = ids.map((_id) => ({ _id }));
+      const roles = await _ROLE
+        .find({
+          // eslint-disable-next-line node/no-unsupported-features/es-syntax
+          ...filter,
+          code: { $regex: new RegExp(`^${filter.code}`, "i") },
+        })
+        .collation({ locale: "en" })
+        .lean();
       return roles;
     } catch (error) {
       // @ts-ignore
