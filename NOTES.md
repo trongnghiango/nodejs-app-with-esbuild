@@ -8,8 +8,12 @@ ta sử dụng hàm asyncHandler = require('express-async-handler');
 ## docker cli
 ``` sh
 docker exec -it container_ID_or_name /bin/bash
+<<<<<<< HEAD
 ```
 
 ## Test chuc nang submodule
 ## them dong nua
 ## test ngay 16/10/2023
+=======
+```
+>>>>>>> 65e6eee (modified file Notes.md)
