@@ -8,7 +8,7 @@ GET {{url}}/checkhealth
 ### put
 POST {{url}}/comment
 Content-Type: application/json
-x-token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwOTg1Mktha2EiLCJuYW1lIjoiUGhvbmciLCJlbWFpbCI6ImhjYWlsZm9AY2lxdWFuLm9yZyIsInJvbGVzIjpbIkdVRVNUIl0sImlhdCI6MTY3ODM1MTg3MCwiZXhwIjoxNjc4MzUyMDUwfQ.kGx5S1lyOVyqDUoXjv-PpdDT9DS2rZQX-fOhNxnIVaThtZ2B3e-5ro2Ju8yuoQEC0Cjxo1ENWgBumA_jTkodeIvisulglXZinMA19H3zvthmN1qLDyVW4WB3FUTQCLAsA2vBF-VuFAcClCTWIaBfIpGA9QI-cuTJuhDy2elBAGo
+x-token: 
 
 {
   "slug": "34033750",

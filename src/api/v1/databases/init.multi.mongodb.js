@@ -49,6 +49,8 @@ function newConnection(uri) {
 const auth_conn = newConnection(db.authdburi);
 const conn1 = newConnection(db.dburi);
 const conn2 = newConnection(db.dburi);
+
+const agent_conn = newConnection(db.agentDbUri)
 logger.info(`${db.dburi}`, {
   label: "DATABASE",
 });
@@ -57,4 +59,5 @@ module.exports = {
   auth_conn,
   conn2,
   conn1,
+  agent_conn,
 };
