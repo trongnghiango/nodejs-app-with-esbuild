@@ -1,0 +1,8 @@
+@urlDev=http://localhost:9000/api/v1
+@urlPro=https://kon-service-q2bs.onrender.com/api/v1
+@url={{urlDev}}
+
+### GetAll
+GET {{url}}/agent/list
+Content-Type: Application/json
+x-api-key: CCMUD90YvklWvyUNt9n3QtsNoSHzK7U0

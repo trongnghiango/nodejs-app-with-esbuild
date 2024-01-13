@@ -73,6 +73,11 @@ router.get(
 router.post("/comment", validateCommentInput, putComment);
 
 /**
+ * Router: agent
+ */
+router.use("/agent", require("./agent.route"))
+
+/**
  * Router: for Admin
  */
 // router.post('/admin/putrole', validateCreateRoleInput, addRoleHanddler);
