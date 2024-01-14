@@ -34,8 +34,8 @@ module.exports = {
     // 2.
     const newAgent = await AgentService.create(req.body);
     logger.info(newAgent);
-    if (!newAgent) return new BadRequestError("LOI TAO AGENT");
-    return new SuccessResponse("success", { data: newAgent }).send(res);
+    if (!newAgent) throw new BadRequestError("LOI TAO AGENT");
+    new SuccessResponse("success", { data: newAgent }).send(res);
   }),
   getAgents: asyncHandler(async (req, res) => {
     const agents = await AgentService.list();

@@ -28,6 +28,7 @@ const apiRequestLimiter = rateLimit({
 // function catch and handle ERROR.
 // eslint-disable-next-line consistent-return
 const errorsHandler = (err, req, res, next) => {
+  logger.warn(err);
   if (err instanceof ApiError) {
     if (err.type === ErrorType.INTERNAL)
       logger.error(

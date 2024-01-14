@@ -27,8 +27,8 @@ if (!fs.existsSync(dir)) {
   fs.mkdirSync(dir);
 }
 
-// const logLevel = process.env.NODE_ENV === "development" ? "debug" : "debug";
-const logLevel = winston.level;
+const logLevel = "silly"; // process.env.NODE_ENV === "development" ? "debug" : "debug";
+// const logLevel = winston.level;
 
 const options = {
   level: logLevel,
@@ -36,7 +36,7 @@ const options = {
   datePattern: "YYYY-MM-DD",
   zippedArchive: true,
   timestamp: true,
-  handleExceptions: true,
+  handleExceptions: false,
   humanReadableUnhandledException: true,
   prettyPrint: true,
   json: true,
@@ -52,9 +52,32 @@ const options = {
 };
 
 module.exports = createLogger({
+  // transports: [
+  //   new transports.File({
+  //     name: "file.info",
+  //     filename: "./logs/info.log",
+  //     level: "info",
+  //   }),
+  //   new transports.File({
+  //     name: "file.error",
+  //     filename: "./logs/error.log",
+  //     level: "error",
+  //   }),
+  // ],
   transports: [
     // new transports.File(options),
-    // new DailyRotateFile(options),
+    new DailyRotateFile({
+      ...options,
+      name: "file.info",
+      filename: `${dir}/%DATE%.log`,
+      level: "info",
+    }),
+    new DailyRotateFile({
+      ...options,
+      name: "file.info",
+      filename: `${dir}/%DATE%_error.log`,
+      level: "error",
+    }),
     new transports.Http({
       level: "warn",
       format: format.json(),
@@ -71,12 +94,18 @@ module.exports = createLogger({
     }),
   ],
   exceptionHandlers: [
-    // new DailyRotateFile(options),
-    new transports.Console({
+    new DailyRotateFile({
       ...options,
       level: "error",
-      format: format.combine(format.colorize(), format.simple()),
+      filename: `${dir}/%DATE%_error.log`,
+      // handleExceptions: true,
     }),
+    // new transports.Console({
+    //   ...options,
+    //   level: "error",
+    //   format: format.combine(format.colorize(), format.simple()),
+    //   handleExceptions: true,
+    // }),
   ],
   exitOnError: false,
 });

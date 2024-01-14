@@ -8,7 +8,8 @@
     "serve": "node ./dist/server.js",
     "start": "yarn build && yarn serve",
     "build": "node esbuild.config.cjs",
-    "lint": "eslint src --fix"
+    "lint": "eslint src --fix",
+    "generate": "node ./tools/generate.js"
   },
   "keywords": [],
   "author": "",
@@ -54,6 +55,7 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "generate-template-files": "^3.2.1",
     "nodemon": "^2.0.16",
     "prettier": "^2.8.4"
   }
