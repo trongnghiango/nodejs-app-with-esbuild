@@ -11,7 +11,7 @@ const {
   createRoleSchema,
   roleIdSchema,
 } = require("../validators/roles.schema");
-const { getAgents } = require("../controllers/agent.controller");
+const { getAgents, createAgent } = require("../controllers/agent.controller");
 
 const router = Router();
 
@@ -21,7 +21,6 @@ const router = Router();
 //   Auth.checkRole
 // ); // xac thuc nguoi dung la ai?
 
-
 router.get("/list", getAgents);
-
+router.post("/create", createAgent);
 module.exports = router;
