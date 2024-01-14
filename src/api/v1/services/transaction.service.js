@@ -1,19 +1,16 @@
-const { randomUUID } = require("node:crypto");
 const logger = require("../../../utils/logger");
 const { BadRequestError } = require("../core/ApiError");
-const { _AGENT } = require("../models/agent.model");
 
-class AgentService {
+class Service {
   /**
-   *
+   *  func list
    * @param {*} param
    * @returns
    */
-  static async list() {
+  static async list(filter) {
     try {
       logger.info("[Service] list sevice");
-      const agents = await _AGENT.find();
-      return agents;
+      return [];
     } catch (error) {
       // @ts-ignore
       throw new BadRequestError(">>", error.message);
@@ -25,22 +22,27 @@ class AgentService {
    * @param {*} param
    * @returns
    */
-  static async create(data) {
-    if (!data) return null;
+  static async create({
+    author = "",
+    code = "",
+    key = "",
+    description = "",
+    notes = "",
+  }) {
     try {
-      const agentId = randomUUID();
-      const newAgent = {};
-      Object.assign(newAgent, data, { agentId });
-      return await _AGENT.create(newAgent);
+      logger.info("[Service] create::");
+      return "createdTemp Object";
     } catch (error) {
-      logger.error(`ERROR [Service:createAgent]::, ${error.message}`);
+      // @ts-ignore
+      logger.error(`ERROR [putComment]::, ${error.message}`);
       // return null;
-      throw new BadRequestError(error.message);
+      // @ts-ignore
+      throw new BadRequestError("###", error.message);
     }
   }
 
   /**
-   * putComment
+   * puttransaction
    * @param {*} param0
    * @returns
    */
@@ -86,7 +88,7 @@ class AgentService {
    * @param {*} roleId
    * @returns
    */
-  static async deleteRole(roleId) {
+  static async delete(roleId) {
     try {
       // const deletedData = await MODEL.findOneAndDelete({ Id });
       logger.info(`call service del`);
@@ -99,4 +101,4 @@ class AgentService {
   }
 }
 
-module.exports = AgentService;
+module.exports = Service;

@@ -69,7 +69,6 @@ app.use(apiRequestLimiter);
  */
 app.use("/api/v1", apiV1);
 
-
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   logger.error(new NotFoundError() instanceof ApiError);

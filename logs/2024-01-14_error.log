@@ -1,0 +1,5 @@
+[1/14/2024, 4:10:36 PM] [SERVER] [error]: ERROR [Service:createAgent]::, E11000 duplicate key error collection: agentdb.agents index: code_1 dup key: { code: "088583499" }
+[1/14/2024, 4:10:36 PM] [SERVER] [error]: [app]:Error: E11000 duplicate key error collection: agentdb.agents index: code_1 dup key: { code: "088583499" }
+[1/14/2024, 4:17:21 PM] [SERVER] [error]: ERROR [Service:createAgent]::, E11000 duplicate key error collection: agentdb.agents index: code_1 dup key: { code: "088583499" }
+[1/14/2024, 4:17:21 PM] [SERVER] [error]: [app]:Error: E11000 duplicate key error collection: agentdb.agents index: code_1 dup key: { code: "088583499" }
+[1/14/2024, 4:47:56 PM] [SERVER] [error]: SOCKET.IO:: [object Object]
