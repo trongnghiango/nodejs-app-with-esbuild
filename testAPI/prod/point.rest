@@ -1,0 +1,21 @@
+@urlDev=http://localhost:9000/api/v1
+@urlPro=https://kon-service-q2bs.onrender.com/api/v1
+@url={{urlDev}}
+
+### List 
+GET {{url}}/point/list
+Content-Type: Application/json
+x-api-key: CCMUD90YvklWvyUNt9n3QtsNoSHzK7U0
+
+
+
+### Create Point
+POST {{url}}/point/create
+Content-Type: Application/json
+x-api-key: CCMUD90YvklWvyUNt9n3QtsNoSHzK7U0
+
+{
+  "code": "048583490",
+  "title": "point title 3",
+  "description": "point desc 3"
+}

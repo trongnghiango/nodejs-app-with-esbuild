@@ -1,5 +1,7 @@
+const { randomUUID } = require("node:crypto");
 const logger = require("../../../utils/logger");
 const { BadRequestError } = require("../core/ApiError");
+const { _POINT } = require("../models/point.model");
 
 class Service {
   /**
@@ -10,7 +12,7 @@ class Service {
   static async list(filter) {
     try {
       logger.info("[Service] list sevice");
-      return [];
+      return await _POINT.find(filter);
     } catch (error) {
       // @ts-ignore
       throw new BadRequestError(">>", error.message);
@@ -22,22 +24,17 @@ class Service {
    * @param {*} param
    * @returns
    */
-  static async create({
-    author = "",
-    code = "",
-    key = "",
-    description = "",
-    notes = "",
-  }) {
+  static async create({ code = "", title = "", description = "" }) {
+    const data = { code, title, description };
     try {
-      logger.info("[Service] create::");
-      return "createdTemp Object";
+      const pointId = randomUUID();
+      const newPoint = {};
+      Object.assign(newPoint, data, { pointId });
+      return await _POINT.create(newPoint);
     } catch (error) {
-      // @ts-ignore
-      logger.error(`ERROR [putComment]::, ${error.message}`);
+      logger.error(`ERROR [Service:createAgent]::, ${error.message}`);
       // return null;
-      // @ts-ignore
-      throw new BadRequestError("###", error.message);
+      throw new BadRequestError(error.message);
     }
   }
 

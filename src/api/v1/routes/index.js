@@ -75,7 +75,17 @@ router.post("/comment", validateCommentInput, putComment);
 /**
  * Router: agent
  */
-router.use("/agent", require("./agent.route"))
+router.use("/agent", require("./agent.route"));
+
+/**
+ * Router: point
+ */
+router.use("/point", require("./point.route"));
+
+/**
+ * Router: transaction
+ */
+router.use("/transaction", require("./transaction.route"));
 
 /**
  * Router: for Admin

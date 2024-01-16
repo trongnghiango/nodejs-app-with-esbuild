@@ -1,0 +1,21 @@
+@urlDev=http://localhost:9000/api/v1
+@urlPro=https://kon-service-q2bs.onrender.com/api/v1
+@url={{urlDev}}
+
+### List 
+GET {{url}}/point/list
+Content-Type: Application/json
+x-api-key: CCMUD90YvklWvyUNt9n3QtsNoSHzK7U0
+
+
+
+### Create Point
+POST {{url}}/transaction/create
+Content-Type: Application/json
+x-api-key: CCMUD90YvklWvyUNt9n3QtsNoSHzK7U0
+
+{
+  "code": "048583476",
+  "title": "transaction title 1",
+  "description": "transaction desc 1"
+}
