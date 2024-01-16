@@ -63,6 +63,8 @@ module.exports = {
     dburi: process.env.DB_URI || "",
     authdburi: process.env.AUTH_DB_URI || "",
     agentDbUri: process.env.AUTH_DB_URI || "",
+    transactionDbUri: process.env.TRANSACTION_DB_URI || "",
+    pointDbUri: process.env.POINT_DB_URI || "",
   },
   cookieKey: process.env.COOKIE_KEY || "",
 };

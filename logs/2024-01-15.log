@@ -1,0 +1,284 @@
+[1/15/2024, 8:45:19 AM] [DATABASE] [info]: mongodb+srv://conbocu:Nghia385685@cluster0.wvjhzee.mongodb.net/teethdb
+[1/15/2024, 8:45:19 AM] [SERVER] [info]: Env:: mongodb+srv://nghiango:Nghia385685@cluster0.qplgqaa.mongodb.net/agentdb?retryWrites=true&w=majority
+[1/15/2024, 8:45:19 AM] [SERVER] [info]: Starting server with port:: 9000
+[1/15/2024, 8:45:19 AM] [SERVER] [info]: undefined
+[1/15/2024, 8:45:19 AM] [DATABASE] [info]: Mongoose 'default' connection error: MongooseError: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+[1/15/2024, 8:45:19 AM] [SERVER] [info]: undefined
+[1/15/2024, 8:45:19 AM] [DATABASE] [info]: Mongoose 'default' connection error: MongooseError: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+[1/15/2024, 8:45:20 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 8:45:20 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 8:45:20 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 8:45:20 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:01:39 AM] [DATABASE] [info]: mongodb+srv://conbocu:Nghia385685@cluster0.wvjhzee.mongodb.net/teethdb
+[1/15/2024, 9:01:39 AM] [SERVER] [info]: Env:: mongodb+srv://nghiango:Nghia385685@cluster0.qplgqaa.mongodb.net/agentdb?retryWrites=true&w=majority
+[1/15/2024, 9:01:39 AM] [SERVER] [info]: Starting server with port:: 9000
+[1/15/2024, 9:01:39 AM] [SERVER] [info]: 
+[1/15/2024, 9:01:39 AM] [DATABASE] [info]: Mongoose 'default' connection error: MongoParseError: Invalid scheme, expected connection string to start with "mongodb://" or "mongodb+srv://"
+[1/15/2024, 9:01:39 AM] [SERVER] [info]: 
+[1/15/2024, 9:01:39 AM] [DATABASE] [info]: Mongoose 'default' connection error: MongoParseError: Invalid scheme, expected connection string to start with "mongodb://" or "mongodb+srv://"
+[1/15/2024, 9:01:40 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:01:40 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:01:40 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:01:40 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:07:57 AM] [SERVER] [error]: SOCKET.IO:: [object Object]
+[1/15/2024, 9:08:13 AM] [DATABASE] [info]: mongodb+srv://conbocu:Nghia385685@cluster0.wvjhzee.mongodb.net/teethdb
+[1/15/2024, 9:08:13 AM] [SERVER] [info]: Env:: mongodb+srv://nghiango:Nghia385685@cluster0.qplgqaa.mongodb.net/agentdb?retryWrites=true&w=majority
+[1/15/2024, 9:08:13 AM] [SERVER] [info]: Starting server with port:: 9000
+[1/15/2024, 9:08:15 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:08:15 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:08:15 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:08:15 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:08:15 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:08:15 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:26:17 AM] [SERVER] [error]: SOCKET.IO:: [object Object]
+[1/15/2024, 9:26:22 AM] [DATABASE] [info]: mongodb+srv://conbocu:Nghia385685@cluster0.wvjhzee.mongodb.net/teethdb
+[1/15/2024, 9:26:22 AM] [SERVER] [info]: Env:: mongodb+srv://nghiango:Nghia385685@cluster0.qplgqaa.mongodb.net/agentdb?retryWrites=true&w=majority
+[1/15/2024, 9:26:22 AM] [SERVER] [info]: Starting server with port:: 9000
+[1/15/2024, 9:26:23 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:26:23 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:26:23 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:26:23 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:26:23 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:26:24 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:27:10 AM] [DATABASE] [info]: mongodb+srv://conbocu:Nghia385685@cluster0.wvjhzee.mongodb.net/teethdb
+[1/15/2024, 9:27:11 AM] [SERVER] [info]: Env:: mongodb+srv://nghiango:Nghia385685@cluster0.qplgqaa.mongodb.net/agentdb?retryWrites=true&w=majority
+[1/15/2024, 9:27:11 AM] [SERVER] [info]: Starting server with port:: 9000
+[1/15/2024, 9:27:11 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:27:11 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:27:11 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:27:11 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:27:11 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:27:11 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:27:55 AM] [DATABASE] [info]: mongodb+srv://conbocu:Nghia385685@cluster0.wvjhzee.mongodb.net/teethdb
+[1/15/2024, 9:27:55 AM] [SERVER] [info]: Env:: mongodb+srv://nghiango:Nghia385685@cluster0.qplgqaa.mongodb.net/agentdb?retryWrites=true&w=majority
+[1/15/2024, 9:27:55 AM] [SERVER] [info]: Starting server with port:: 9000
+[1/15/2024, 9:27:56 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:27:56 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:27:57 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:27:57 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:27:57 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:27:57 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:28:07 AM] [DATABASE] [info]: mongodb+srv://conbocu:Nghia385685@cluster0.wvjhzee.mongodb.net/teethdb
+[1/15/2024, 9:28:07 AM] [SERVER] [info]: Env:: mongodb+srv://nghiango:Nghia385685@cluster0.qplgqaa.mongodb.net/agentdb?retryWrites=true&w=majority
+[1/15/2024, 9:28:07 AM] [SERVER] [info]: Starting server with port:: 9000
+[1/15/2024, 9:28:08 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:28:08 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:28:08 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:28:08 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:28:08 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:28:08 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:41:11 AM] [DATABASE] [info]: mongodb+srv://conbocu:Nghia385685@cluster0.wvjhzee.mongodb.net/teethdb
+[1/15/2024, 9:41:11 AM] [SERVER] [info]: Env:: mongodb+srv://nghiango:Nghia385685@cluster0.qplgqaa.mongodb.net/agentdb?retryWrites=true&w=majority
+[1/15/2024, 9:41:12 AM] [SERVER] [info]: Starting server with port:: 9000
+[1/15/2024, 9:41:13 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:41:13 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:41:13 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:41:13 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:41:13 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:41:13 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:42:00 AM] [DATABASE] [info]: mongodb+srv://conbocu:Nghia385685@cluster0.wvjhzee.mongodb.net/teethdb
+[1/15/2024, 9:42:00 AM] [SERVER] [info]: Env:: mongodb+srv://nghiango:Nghia385685@cluster0.qplgqaa.mongodb.net/agentdb?retryWrites=true&w=majority
+[1/15/2024, 9:42:00 AM] [SERVER] [info]: Starting server with port:: 9000
+[1/15/2024, 9:42:01 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:42:01 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:42:01 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:42:01 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:42:01 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:42:01 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:42:57 AM] [DATABASE] [info]: mongodb+srv://conbocu:Nghia385685@cluster0.wvjhzee.mongodb.net/teethdb
+[1/15/2024, 9:42:57 AM] [SERVER] [info]: Env:: mongodb+srv://nghiango:Nghia385685@cluster0.qplgqaa.mongodb.net/agentdb?retryWrites=true&w=majority
+[1/15/2024, 9:42:57 AM] [SERVER] [info]: Starting server with port:: 9000
+[1/15/2024, 9:42:58 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:42:58 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:42:58 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:42:58 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:42:58 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:42:59 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:43:29 AM] [DATABASE] [info]: mongodb+srv://conbocu:Nghia385685@cluster0.wvjhzee.mongodb.net/teethdb
+[1/15/2024, 9:43:30 AM] [SERVER] [info]: Env:: mongodb+srv://nghiango:Nghia385685@cluster0.qplgqaa.mongodb.net/agentdb?retryWrites=true&w=majority
+[1/15/2024, 9:43:30 AM] [SERVER] [info]: Starting server with port:: 9000
+[1/15/2024, 9:43:30 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:43:30 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:43:30 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:43:30 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:43:30 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:43:31 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:44:42 AM] [DATABASE] [info]: mongodb+srv://conbocu:Nghia385685@cluster0.wvjhzee.mongodb.net/teethdb
+[1/15/2024, 9:44:42 AM] [SERVER] [info]: Env:: mongodb+srv://nghiango:Nghia385685@cluster0.qplgqaa.mongodb.net/agentdb?retryWrites=true&w=majority
+[1/15/2024, 9:44:42 AM] [SERVER] [info]: Starting server with port:: 9000
+[1/15/2024, 9:44:43 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:44:43 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:44:43 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:44:43 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:44:43 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 9:44:44 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:13:35 AM] [DATABASE] [info]: mongodb+srv://conbocu:Nghia385685@cluster0.wvjhzee.mongodb.net/teethdb
+[1/15/2024, 10:13:35 AM] [SERVER] [info]: Env:: mongodb+srv://nghiango:Nghia385685@cluster0.qplgqaa.mongodb.net/agentdb?retryWrites=true&w=majority
+[1/15/2024, 10:13:35 AM] [SERVER] [info]: Starting server with port:: 9000
+[1/15/2024, 10:13:37 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:13:37 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:13:37 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:13:37 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:13:37 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:13:37 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:15:46 AM] [DATABASE] [info]: mongodb+srv://conbocu:Nghia385685@cluster0.wvjhzee.mongodb.net/teethdb
+[1/15/2024, 10:15:47 AM] [SERVER] [info]: Env:: mongodb+srv://nghiango:Nghia385685@cluster0.qplgqaa.mongodb.net/agentdb?retryWrites=true&w=majority
+[1/15/2024, 10:15:47 AM] [SERVER] [info]: Starting server with port:: 9000
+[1/15/2024, 10:15:48 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:15:48 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:15:48 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:15:48 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:15:48 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:15:49 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:16:51 AM] [DATABASE] [info]: mongodb+srv://conbocu:Nghia385685@cluster0.wvjhzee.mongodb.net/teethdb
+[1/15/2024, 10:16:51 AM] [SERVER] [info]: Env:: mongodb+srv://nghiango:Nghia385685@cluster0.qplgqaa.mongodb.net/agentdb?retryWrites=true&w=majority
+[1/15/2024, 10:16:51 AM] [SERVER] [info]: Starting server with port:: 9000
+[1/15/2024, 10:16:52 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:16:52 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:16:53 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:16:53 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:16:53 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:16:53 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:17:55 AM] [DATABASE] [info]: mongodb+srv://conbocu:Nghia385685@cluster0.wvjhzee.mongodb.net/teethdb
+[1/15/2024, 10:17:55 AM] [SERVER] [info]: Env:: mongodb+srv://nghiango:Nghia385685@cluster0.qplgqaa.mongodb.net/agentdb?retryWrites=true&w=majority
+[1/15/2024, 10:17:55 AM] [SERVER] [info]: Starting server with port:: 9000
+[1/15/2024, 10:17:56 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:17:56 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:17:56 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:17:56 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:17:56 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:17:56 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:19:45 AM] [SERVER] [warn]: undefined
+[1/15/2024, 10:19:45 AM] [SERVER] [error]: 500 - Expected double-quoted property name in JSON at position 86 (line 5 column 1) - /api/v1/point/create - POST - ::ffff:127.0.0.1
+[1/15/2024, 10:19:45 AM] [SERVER] [info]: ---------------------------- Error ----------------------------
+[1/15/2024, 10:20:44 AM] [DATABASE] [info]: mongodb+srv://conbocu:Nghia385685@cluster0.wvjhzee.mongodb.net/teethdb
+[1/15/2024, 10:20:44 AM] [SERVER] [info]: Env:: mongodb+srv://nghiango:Nghia385685@cluster0.qplgqaa.mongodb.net/agentdb?retryWrites=true&w=majority
+[1/15/2024, 10:20:44 AM] [SERVER] [info]: Starting server with port:: 9000
+[1/15/2024, 10:20:46 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:20:46 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:20:46 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:20:46 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:20:46 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:20:46 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:21:01 AM] [SERVER] [warn]: undefined
+[1/15/2024, 10:21:01 AM] [SERVER] [error]: 500 - Expected double-quoted property name in JSON at position 86 (line 5 column 1) - /api/v1/point/create - POST - ::ffff:127.0.0.1
+[1/15/2024, 10:21:01 AM] [SERVER] [info]: ---------------------------- Error ----------------------------
+[1/15/2024, 10:23:21 AM] [SERVER] [info]: [Service] list sevice
+[1/15/2024, 10:25:05 AM] [DATABASE] [info]: mongodb+srv://conbocu:Nghia385685@cluster0.wvjhzee.mongodb.net/teethdb
+[1/15/2024, 10:25:05 AM] [SERVER] [info]: Env:: mongodb+srv://nghiango:Nghia385685@cluster0.qplgqaa.mongodb.net/agentdb?retryWrites=true&w=majority
+[1/15/2024, 10:25:05 AM] [SERVER] [info]: Starting server with port:: 9000
+[1/15/2024, 10:25:06 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:25:06 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:25:06 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:25:06 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:25:06 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:25:06 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 10:25:16 AM] [SERVER] [info]: [Service] list sevice
+[1/15/2024, 10:25:34 AM] [SERVER] [error]: ERROR [Service:createAgent]::, E11000 duplicate key error collection: pointdb.points index: code_1 dup key: { code: "088583499" }
+[1/15/2024, 10:25:34 AM] [SERVER] [warn]: undefined
+[1/15/2024, 10:25:34 AM] [SERVER] [error]: [app]:Error: E11000 duplicate key error collection: pointdb.points index: code_1 dup key: { code: "088583499" }
+[1/15/2024, 10:25:34 AM] [SERVER] [info]: ---------------------------- Error ----------------------------
+[1/15/2024, 11:44:50 AM] [DATABASE] [info]: Mongoose 'default' connection disconnected
+[1/15/2024, 11:44:50 AM] [DATABASE] [info]: Mongoose 'default' connection disconnected
+[1/15/2024, 11:44:51 AM] [DATABASE] [info]: Mongoose 'default' connection disconnected
+[1/15/2024, 11:44:51 AM] [DATABASE] [info]: Mongoose 'default' connection disconnected
+[1/15/2024, 11:45:00 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 11:45:00 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 11:45:01 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 11:45:01 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 11:46:03 AM] [DATABASE] [info]: Mongoose 'default' connection disconnected
+[1/15/2024, 11:46:03 AM] [DATABASE] [info]: Mongoose 'default' connection disconnected
+[1/15/2024, 11:46:03 AM] [DATABASE] [info]: Mongoose 'default' connection disconnected
+[1/15/2024, 11:46:03 AM] [DATABASE] [info]: Mongoose 'default' connection disconnected
+[1/15/2024, 11:46:12 AM] [DATABASE] [info]: Mongoose 'default' connection disconnected
+[1/15/2024, 11:46:12 AM] [DATABASE] [info]: Mongoose 'default' connection disconnected
+[1/15/2024, 11:46:13 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 11:46:13 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 11:46:13 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 11:46:13 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 11:46:18 AM] [SERVER] [error]: ERROR [Service:createAgent]::, E11000 duplicate key error collection: pointdb.points index: code_1 dup key: { code: "088583499" }
+[1/15/2024, 11:46:18 AM] [SERVER] [warn]: undefined
+[1/15/2024, 11:46:18 AM] [SERVER] [error]: [app]:Error: E11000 duplicate key error collection: pointdb.points index: code_1 dup key: { code: "088583499" }
+[1/15/2024, 11:46:18 AM] [SERVER] [info]: ---------------------------- Error ----------------------------
+[1/15/2024, 11:46:22 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 11:46:22 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 11:46:54 AM] [SERVER] [info]: [Service] list sevice
+[1/15/2024, 11:48:05 AM] [DATABASE] [info]: Mongoose 'default' connection disconnected
+[1/15/2024, 11:48:05 AM] [DATABASE] [info]: Mongoose 'default' connection disconnected
+[1/15/2024, 11:48:14 AM] [DATABASE] [info]: Mongoose 'default' connection disconnected
+[1/15/2024, 11:48:14 AM] [DATABASE] [info]: Mongoose 'default' connection disconnected
+[1/15/2024, 11:48:14 AM] [DATABASE] [info]: Mongoose 'default' connection disconnected
+[1/15/2024, 11:48:14 AM] [DATABASE] [info]: Mongoose 'default' connection disconnected
+[1/15/2024, 11:48:15 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 11:48:15 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 11:48:24 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 11:48:24 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 11:48:24 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 11:48:24 AM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 12:45:16 PM] [DATABASE] [info]: Mongoose 'default' connection disconnected
+[1/15/2024, 12:45:16 PM] [DATABASE] [info]: Mongoose 'default' connection disconnected
+[1/15/2024, 12:45:16 PM] [DATABASE] [info]: Mongoose 'default' connection disconnected
+[1/15/2024, 12:45:16 PM] [DATABASE] [info]: Mongoose 'default' connection disconnected
+[1/15/2024, 12:45:26 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 12:45:26 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 12:45:26 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 12:45:26 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 12:45:29 PM] [DATABASE] [info]: Mongoose 'default' connection disconnected
+[1/15/2024, 12:45:29 PM] [DATABASE] [info]: Mongoose 'default' connection disconnected
+[1/15/2024, 12:45:39 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 12:45:39 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 5:09:54 PM] [SERVER] [info]: [Service] list sevice
+[1/15/2024, 6:04:35 PM] [DATABASE] [info]: mongodb+srv://conbocu:Nghia385685@cluster0.wvjhzee.mongodb.net/teethdb
+[1/15/2024, 6:04:36 PM] [SERVER] [info]: Env:: mongodb+srv://nghiango:Nghia385685@cluster0.qplgqaa.mongodb.net/agentdb?retryWrites=true&w=majority
+[1/15/2024, 6:04:36 PM] [SERVER] [info]: Starting server with port:: 9000
+[1/15/2024, 6:04:37 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:04:37 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:04:37 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:04:37 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:04:37 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:04:38 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:04:50 PM] [DATABASE] [info]: mongodb+srv://conbocu:Nghia385685@cluster0.wvjhzee.mongodb.net/teethdb
+[1/15/2024, 6:04:51 PM] [SERVER] [info]: Env:: mongodb+srv://nghiango:Nghia385685@cluster0.qplgqaa.mongodb.net/agentdb?retryWrites=true&w=majority
+[1/15/2024, 6:04:51 PM] [SERVER] [info]: Starting server with port:: 9000
+[1/15/2024, 6:04:51 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:04:51 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:04:51 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:04:51 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:04:51 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:04:51 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:05:40 PM] [DATABASE] [info]: mongodb+srv://conbocu:Nghia385685@cluster0.wvjhzee.mongodb.net/teethdb
+[1/15/2024, 6:05:40 PM] [SERVER] [info]: Env:: mongodb+srv://nghiango:Nghia385685@cluster0.qplgqaa.mongodb.net/agentdb?retryWrites=true&w=majority
+[1/15/2024, 6:05:40 PM] [SERVER] [info]: Starting server with port:: 9000
+[1/15/2024, 6:05:41 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:05:41 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:05:41 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:05:41 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:05:41 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:05:41 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:06:17 PM] [DATABASE] [info]: mongodb+srv://conbocu:Nghia385685@cluster0.wvjhzee.mongodb.net/teethdb
+[1/15/2024, 6:06:18 PM] [SERVER] [info]: Env:: mongodb+srv://nghiango:Nghia385685@cluster0.qplgqaa.mongodb.net/agentdb?retryWrites=true&w=majority
+[1/15/2024, 6:06:18 PM] [SERVER] [info]: Starting server with port:: 9000
+[1/15/2024, 6:06:19 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:06:19 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:06:19 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:06:19 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:06:19 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:06:19 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:06:55 PM] [DATABASE] [info]: mongodb+srv://conbocu:Nghia385685@cluster0.wvjhzee.mongodb.net/teethdb
+[1/15/2024, 6:06:56 PM] [SERVER] [info]: Env:: mongodb+srv://nghiango:Nghia385685@cluster0.qplgqaa.mongodb.net/agentdb?retryWrites=true&w=majority
+[1/15/2024, 6:06:56 PM] [SERVER] [info]: Starting server with port:: 9000
+[1/15/2024, 6:06:56 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:06:56 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:06:56 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:06:56 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:06:56 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:06:56 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:07:08 PM] [DATABASE] [info]: mongodb+srv://conbocu:Nghia385685@cluster0.wvjhzee.mongodb.net/teethdb
+[1/15/2024, 6:07:09 PM] [SERVER] [info]: Env:: mongodb+srv://nghiango:Nghia385685@cluster0.qplgqaa.mongodb.net/agentdb?retryWrites=true&w=majority
+[1/15/2024, 6:07:09 PM] [SERVER] [info]: Starting server with port:: 9000
+[1/15/2024, 6:07:09 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:07:09 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:07:09 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:07:09 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:07:09 PM] [DATABASE] [info]: MongoDb:: is connected!
+[1/15/2024, 6:07:09 PM] [DATABASE] [info]: MongoDb:: is connected!

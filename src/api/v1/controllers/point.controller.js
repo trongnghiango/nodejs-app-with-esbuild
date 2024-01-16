@@ -2,13 +2,13 @@ const asyncHandler = require("../helpers/asyncHandler");
 const logger = require("../../../utils/logger");
 const { SuccessResponse } = require("../core/ApiResponse");
 const { BadRequestError } = require("../core/ApiError");
-const TransactionService = require("../services/point.service");
+const PointService = require("../services/point.service");
 
 module.exports = {
-  getpointByIdHandler: asyncHandler(async (req, res) => {
+  getPointByIdHandler: asyncHandler(async (req, res) => {
     // 1. check validation in validator midleware
     // 2. call service get by id
-    const point = await pointService.getById(req.params.id);
+    const point = await PointService.getById(req.params.id);
 
     if (!point)
       throw new BadRequestError(
@@ -17,37 +17,22 @@ module.exports = {
 
     new SuccessResponse("success", point).send(res);
   }),
-  getTransactionsHandler: asyncHandler(async (req, res) => {
-    logger.debug(
-      `[getTransactionsHandler]:[query]:: ${JSON.stringify(req.query)}`
-    );
-    const roles = await TransactionService.list(req.query);
+  getPointsHandler: asyncHandler(async (req, res) => {
+    logger.debug(`[getPointsHandler]:[query]:: ${JSON.stringify(req.query)}`);
+    const roles = await PointService.list(req.query);
     if (!roles) throw new BadRequestError();
     new SuccessResponse("success", roles).send(res);
   }),
   //
-  createTransactionHandler: asyncHandler(async (req, res) => {
-    logger.info(
-      `currentTransactionCodes:: ${req.currentTransactionCodes} , datafilter:: ${req.dataFilter}`
-    );
-    const role = await TransactionService.create(req.dataFilter || req.body);
-    if (!role) {
+  createPointHandler: asyncHandler(async (req, res) => {
+    // 1. Validate
+    const point = await PointService.create(req.dataFilter || req.body);
+    if (!point) {
       throw new BadRequestError("[role] Bad Request");
     }
 
-    new SuccessResponse("Success", role).send(res);
+    new SuccessResponse("Success", point).send(res);
   }),
-  //
-  addTransactionHandler: async (req, res, next) => {
-    logger.info(JSON.stringify(req.dataFilter));
-    const role = await TransactionService.update(req.dataFilter || req.body);
-
-    if (!role) {
-      throw new BadRequestError("role...");
-    }
-
-    new SuccessResponse("success", role).send(res);
-  },
 
   /**
    * deletepointHandler
@@ -57,8 +42,8 @@ module.exports = {
    * @param {*} next
    * @returns
    */
-  deletepointHandler: async (req, res, next) => {
-    const srv = await pointService.deleteTransaction(req.params.id);
+  deletePointHandler: async (req, res, next) => {
+    const srv = await PointService.delete(req.params.id);
 
     if (!srv) {
       return next(new BadRequestError("Cannot delete this ..."));
