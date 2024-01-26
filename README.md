@@ -45,3 +45,17 @@ app.use((err, req, res, next) => {
 
 ### LOGFILE or CONSOLE
 - src -> utils -> logger -> 
+
+
+### Customer -> Order -> List (Items) ->
+- Anh Nguyễn Văn A có {10 kg giấy, 30 lon coca} 
+- Tiếng Việt
+
+### item -> item-type -> item-category ->
+
+```json
+{
+  "": "",
+}
+
+```

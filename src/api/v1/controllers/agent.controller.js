@@ -17,12 +17,6 @@ module.exports = {
    */
   putComment: async (req, res) => {
     logger.info(`Put Comment ..., ${JSON.stringify(req.body)}`);
-    // validation req input
-    // const { value, error } = schema.validate(req.body)
-    // if (error) {
-    //   res.json(errorHandler(error));
-    // }
-    // logger.info(`CHECK: ${JSON.stringify(error)}`)
     const cmt = await CommentService.putComment(req.body);
     if (!cmt) throw new InternalErrorResponse();
     res.json(cmt);
