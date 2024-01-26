@@ -54,7 +54,7 @@ generateTemplateFiles([
     option: "Create Model",
     defaultCase: "(camelCase)",
     entry: {
-      folderPath: "./tools/templates/",
+      folderPath: "./tools/templates/models",
     },
     stringReplacers: ["__model__"],
     output: {

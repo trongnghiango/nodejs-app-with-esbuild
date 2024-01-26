@@ -1,4 +1,3 @@
-// @ts-ignore
 const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 const crypto = require("crypto");
@@ -33,7 +32,7 @@ module.exports = {
     // check user co ton tai khong?
     const checkUserExist = await userService.isExistedUser(userId);
     if (checkUserExist) {
-      throw new BadRequestError("Hello con bo cu");
+      throw new BadRequestError("checkUserExist");
     }
 
     // check email co ton tai khong?
