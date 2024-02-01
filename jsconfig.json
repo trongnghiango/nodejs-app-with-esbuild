@@ -1,12 +1,17 @@
 {
   "compilerOptions": {
     "strict": true,
-    "baseUrl": ".",
+    "baseUrl": "src",
     "paths": {
-      "*": ["node_modules/*"],
-      "utils/*": ["src/utils/*"],
-      "keys/*": ["keys/*"],
-      "logs/*": ["logs/*"]
+      "*": [
+        "node_modules/*"
+      ],
+      "@/*": [
+        "./*"
+      ],
+      "@api/*": [
+        "./api/v1/*"
+      ],
     }
   },
   "exclude": [

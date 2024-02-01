@@ -11,6 +11,10 @@
     "lint": "eslint src --fix",
     "generate": "node ./tools/generate.js"
   },
+  "_moduleAliases": {
+    "@": "src",
+    "@api": "src/api/v1"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -37,6 +41,7 @@
     "joi": "^17.8.3",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
+    "module-alias": "^2.2.3",
     "mongoose": "^7.0.0",
     "morgan": "^1.10.0",
     "pino": "^8.0.0",

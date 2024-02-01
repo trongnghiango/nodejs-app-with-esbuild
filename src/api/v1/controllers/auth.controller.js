@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 const crypto = require("crypto");
-const logger = require("../../../utils/logger");
+const log = require("@/utils/logger");
 const { SuccessResponse } = require("../core/ApiResponse");
 const {
   BadRequestError,
@@ -16,7 +16,6 @@ const RoleService = require("../services/role.service");
 const userService = require("../services/user.service");
 const KeystoreService = require("../services/keystore.service");
 const { objectFilter } = require("../helpers/utils");
-// const { log } = require('../../../utils/logger');
 
 module.exports = {
   /**
@@ -59,7 +58,7 @@ module.exports = {
       password: passwordHash,
       roles: [role._id],
     };
-    logger.info(`Kon Testing::`);
+    log.info(`Kon Testing::`);
 
     const user = await userService.createNewUser(newUser);
     if (!user) {
@@ -101,29 +100,29 @@ module.exports = {
     // 1. Tim xem co user trong database ko?
     const user = await userService.findUserByUsername(username);
     if (!user) {
-      logger.error(`Not found user by username: "${username}"`);
+      log.error(`Not found user by username: "${username}"`);
       throw new BadRequestError("username chua duoc dang ky...");
     }
 
     // 2. Check xem co nhap Pass tu nguoi dung ko?
     if (!password) {
-      logger.error(`User không nhập password.`);
+      log.error(`User không nhập password.`);
       throw new BadRequestError("Lỗi! Người dùng không nhập password.");
     }
 
     // 3. Check match password
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
-      logger.info(`[Logging]:: WrongPass!!`);
+      log.info(`[Logging]:: WrongPass!!`);
       throw new BadRequestError("Authentication failure");
     }
 
-    logger.warn(`[Array]:roleId:: ${JSON.stringify(user, null, 2)}`);
+    log.warn(`[Array]:roleId:: ${JSON.stringify(user, null, 2)}`);
     const roles = await RoleService.getRolesByIdsArray(user.roles);
-    logger.warn(`[Array]:roleId:out:: ${JSON.stringify(roles, null, 2)}`);
+    log.warn(`[Array]:roleId:out:: ${JSON.stringify(roles, null, 2)}`);
     if (!roles) throw new BadRequestError("User roles not found.");
     const strRoles = roles.map((role) => role.roleId);
-    logger.info(`[Array]:roleId:: ${strRoles}`);
+    log.info(`[Array]:roleId:: ${strRoles}`);
 
     const sub = {
       userId: user._id,
@@ -139,9 +138,7 @@ module.exports = {
 
     const tokens = await createTokens(sub, accessTokenKey, refreshTokenKey);
     if (!tokens) throw new InternalError();
-    logger.debug(
-      `[Logging]:: createdTokens:: ${JSON.stringify(tokens, null, 2)}`
-    );
+    log.debug(`[Logging]:: createdTokens:: ${JSON.stringify(tokens, null, 2)}`);
 
     // finally, return back client
     const result = objectFilter(user, ["username", "email"]);
@@ -155,17 +152,17 @@ module.exports = {
    */
   refreshToken: asyncHandler(async (req, res, next) => {
     const { user: current } = req;
-    logger.info(`CurrentUser:: ${JSON.stringify(current)}`);
+    log.info(`CurrentUser:: ${JSON.stringify(current)}`);
 
     const user = await userService.getUserById(current.userId);
 
     if (!user) throw new AuthFailureError("LOI TRUY CAP");
 
     const roles = await RoleService.getRolesByIdsArray(user.roles);
-    logger.warn(`[Array]:roleId:out:: ${JSON.stringify(roles, null, 2)}`);
+    log.warn(`[Array]:roleId:out:: ${JSON.stringify(roles, null, 2)}`);
     if (!roles) throw new BadRequestError("User roles not found.");
     const strRoles = roles.map((role) => role.roleId);
-    logger.info(`[Array]:roleId:: ${strRoles}`);
+    log.info(`[Array]:roleId:: ${strRoles}`);
 
     const sub = {
       userId: user._id,

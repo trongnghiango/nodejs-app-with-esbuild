@@ -1,8 +1,0 @@
-[1/16/2024, 4:25:40 PM] [SERVER] [error]: ERROR [Service:createTransaction]::, Transaction validation failed: transactionId: Path `transactionId` is required.
-[1/16/2024, 4:25:40 PM] [SERVER] [error]: [app]:Error: Transaction validation failed: transactionId: Path `transactionId` is required.
-[1/16/2024, 4:25:52 PM] [SERVER] [error]: ERROR [Service:createTransaction]::, Transaction validation failed: transactionId: Path `transactionId` is required.
-[1/16/2024, 4:25:52 PM] [SERVER] [error]: [app]:Error: Transaction validation failed: transactionId: Path `transactionId` is required.
-[1/16/2024, 4:25:59 PM] [SERVER] [error]: ERROR [Service:createTransaction]::, Transaction validation failed: transactionId: Path `transactionId` is required.
-[1/16/2024, 4:25:59 PM] [SERVER] [error]: [app]:Error: Transaction validation failed: transactionId: Path `transactionId` is required.
-[1/16/2024, 4:27:44 PM] [SERVER] [error]: ERROR [Service:createTransaction]::, E11000 duplicate key error collection: transactiondb.transactions index: code_1 dup key: { code: "048583476" }
-[1/16/2024, 4:27:44 PM] [SERVER] [error]: [app]:Error: E11000 duplicate key error collection: transactiondb.transactions index: code_1 dup key: { code: "048583476" }

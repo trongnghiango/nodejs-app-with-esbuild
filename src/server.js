@@ -1,3 +1,5 @@
+require("module-alias/register");
+
 const { createServer } = require("http");
 const { Server } = require("socket.io");
 const { conn1, conn2 } = require("./api/v1/databases/init.multi.mongodb");
