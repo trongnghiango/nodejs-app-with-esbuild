@@ -1,3 +1,6 @@
+/**
+ * admin controller
+ */
 const asyncHandler = require("../helpers/asyncHandler");
 const logger = require("../../../utils/logger");
 const { SuccessResponse } = require("../core/ApiResponse");
@@ -21,7 +24,7 @@ module.exports = {
     logger.debug(`[getRolesHandler]:[query]:: ${JSON.stringify(req.query)}`);
     const roles = await RoleService.getRolesByCodeFilter(req.query);
     if (!roles) throw new BadRequestError();
-    new SuccessResponse("success", roles).send(res);
+    return new SuccessResponse("success", roles).send(res);
   }),
   //
   createRoleHandler: asyncHandler(async (req, res) => {
@@ -94,10 +97,13 @@ module.exports = {
     new SuccessResponse("Success", newApiKey).send(res);
   }),
 
+  /**
+   * getApiKeyHandler
+   */
   getApiKeyHandler: asyncHandler(async (req, res, next) => {
     const apiKeyList = await ApiKeyService.list({});
     if (!apiKeyList) throw new BadRequestError("Cannot create api key");
 
-    new SuccessResponse("Success", apiKeyList).send(res);
+    return new SuccessResponse("Success", apiKeyList).send(res);
   }),
 };

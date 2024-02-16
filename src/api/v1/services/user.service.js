@@ -25,7 +25,6 @@ async function isExistedEmail(email) {
   try {
     return await _User.findOne({ email });
   } catch (error) {
-    // @ts-ignore
     logger.error(error.message);
     return null;
   }
@@ -61,11 +60,10 @@ async function findUserByUsername(username) {
   try {
     return await _User
       .findOne({ username })
-      .select("displayName username password roles") // not contain password -> error
+      .select("userId enabled displayName username password roles email") // not contain password -> error
       .lean()
       .exec();
   } catch (error) {
-    // @ts-ignore
     throw new BadRequestError(error.message);
   }
 }

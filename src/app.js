@@ -21,8 +21,6 @@ const { apiRequestLimiter, errorsHandler } = require("./middlewares");
 // MY APP INITIAL IN HERE
 const app = express();
 
-logger.info(`Env:: ${db.authdburi}`);
-
 /**
  * Middle init
  */

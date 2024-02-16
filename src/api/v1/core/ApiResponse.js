@@ -1,4 +1,4 @@
-const logger = require("../../../utils/logger");
+// const logger = require("../../../utils/logger");
 
 const StatusCode = {
   SUCCESS: "10000",
@@ -83,6 +83,7 @@ class InternalErrorResponse extends ApiResponse {
 class SuccessMsgResponse extends ApiResponse {
   constructor(message) {
     super(StatusCode.SUCCESS, ResponseStatus.SUCCESS, message);
+    this.success = true;
   }
 }
 
@@ -95,7 +96,8 @@ class FailureMsgResponse extends ApiResponse {
 class SuccessResponse extends ApiResponse {
   constructor(message, data) {
     super(StatusCode.SUCCESS, ResponseStatus.SUCCESS, message);
-    this.data = data;
+    this.success = true;
+    this.result = data;
   }
 
   send(res) {
@@ -104,8 +106,6 @@ class SuccessResponse extends ApiResponse {
 }
 
 class AccessTokenErrorResponse extends ApiResponse {
-  // instruction = "refresh_token";
-
   constructor(message = "Access token invalid") {
     super(
       StatusCode.INVALID_ACCESS_TOKEN,

@@ -1,5 +1,4 @@
 const bcrypt = require("bcryptjs");
-const asyncHandler = require("express-async-handler");
 const crypto = require("crypto");
 const log = require("@/utils/logger");
 const { SuccessResponse } = require("../core/ApiResponse");
@@ -24,7 +23,7 @@ module.exports = {
    * @param {*} res
    * @param {*} next
    */
-  signUp: asyncHandler(async (req, res) => {
+  signUp: async (req, res) => {
     // checked in middleware validattor
     const { userId, username, phone, displayName, email, password } = req.body;
 
@@ -45,7 +44,7 @@ module.exports = {
 
     // auto assign role GUEST
     const role = await RoleService.getByCode("GUEST");
-    if (!role) throw new BadRequestError("Error get get role for register");
+    if (!role) throw new BadRequestError("Error get role for register");
 
     // call service create new user
     const newUser = {
@@ -85,7 +84,7 @@ module.exports = {
         tokens,
       },
     }).send(res);
-  }),
+  },
 
   /**
    * signIn
@@ -94,14 +93,14 @@ module.exports = {
    * @param {*} next
    * @returns
    */
-  signIn: asyncHandler(async (req, res) => {
+  signIn: async (req, res) => {
     const { username, password } = req.body;
 
     // 1. Tim xem co user trong database ko?
     const user = await userService.findUserByUsername(username);
     if (!user) {
       log.error(`Not found user by username: "${username}"`);
-      throw new BadRequestError("username chua duoc dang ky...");
+      throw new BadRequestError(`Not found user by username: "${username}"`);
     }
 
     // 2. Check xem co nhap Pass tu nguoi dung ko?
@@ -141,16 +140,21 @@ module.exports = {
     log.debug(`[Logging]:: createdTokens:: ${JSON.stringify(tokens, null, 2)}`);
 
     // finally, return back client
-    const result = objectFilter(user, ["username", "email"]);
-    new SuccessResponse("Success", { user: result, tokens }).send(res);
-  }),
+    const result = objectFilter(user, [
+      "userId",
+      "username",
+      "email",
+      "enabled",
+    ]);
+    return new SuccessResponse("Success", { user: result, tokens }).send(res);
+  },
 
   /**
    * refreshToken
    * @param {*} req
    * @param {*} res
    */
-  refreshToken: asyncHandler(async (req, res, next) => {
+  refreshToken: async (req, res, _next) => {
     const { user: current } = req;
     log.info(`CurrentUser:: ${JSON.stringify(current)}`);
 
@@ -183,6 +187,6 @@ module.exports = {
     const tokens = await createTokens(sub, accessTokenKey, refreshTokenKey);
     if (!tokens) throw new InternalError();
 
-    new SuccessResponse("Success", tokens).send(res);
-  }),
+    return new SuccessResponse("Success", tokens).send(res);
+  },
 };

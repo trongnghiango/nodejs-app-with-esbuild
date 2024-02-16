@@ -1,13 +1,22 @@
 require("module-alias/register");
 
+// eslint-disable-next-line import/no-unresolved, node/no-missing-require
+require("dotenv").config();
+
 const { createServer } = require("http");
 const { Server } = require("socket.io");
-const { conn1, conn2 } = require("./api/v1/databases/init.multi.mongodb");
+const {
+  auth_conn,
+  conn2,
+  conn1,
+  agent_conn,
+  point_conn,
+  transaction_conn,
+} = require("./api/v1/databases/init.multi.mongodb");
 const app = require("./app");
 const logger = require("./utils/logger");
 const { socketHandlers } = require("./utils/socket");
 
-require("dotenv").config();
 
 const { PORT, CLIENT_URL } = process.env;
 
@@ -38,6 +47,10 @@ process.on("SIGINT", () => {
   io.disconnectSockets(true);
   conn1.close(true);
   conn2.close(true);
-  io.close((error) => logger.error(`SOCKET.IO::${error}`));
+  auth_conn.close(true);
+  agent_conn.close(true);
+  point_conn.close(true);
+  transaction_conn.close(true);
+  io.close((error) => logger.error(`SOCKET.IO::${error.message}`));
   process.exit(0);
 });

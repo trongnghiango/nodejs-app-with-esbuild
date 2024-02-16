@@ -7,7 +7,7 @@ module.exports = {
   extends: [
     "airbnb-base",
     "prettier",
-    // "plugin:node/recommended",
+    "plugin:node/recommended",
     // "eslint:recommended,"
   ],
   // globals: {
@@ -20,6 +20,8 @@ module.exports = {
   plugins: ["prettier"],
   rules: {
     // "no-implicit-globals": ["error", "always"],
+    "prettier/prettier": "error",
+    'import/no-unresolved': [2, { commonjs: true, amd: true }],
     "import/no-extraneous-dependencies": ["off", { "devDependencies": false, "optionalDependencies": false, "peerDependencies": false }],
     "prettier/prettier": "error",
     "no-unused-vars": "warn",

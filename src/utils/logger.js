@@ -1,4 +1,4 @@
-/* eslint-disable node/no-unsupported-features/es-syntax */
+// eslint-disable-next-line node/no-unsupported-features/es-syntax
 const { createLogger, transports, format } = require("winston");
 const fs = require("fs");
 const path = require("path");
@@ -6,7 +6,7 @@ const DailyRotateFile = require("winston-daily-rotate-file");
 require("dotenv").config();
 const { winston } = require("../config/base.config");
 
-const { combine, printf } = format;
+const { combine, printf, align } = format;
 
 const myFormat = printf(
   ({ level, message, timestamp, label = "SERVER" }) =>
@@ -47,6 +47,7 @@ const options = {
     format.errors({ stack: true }),
     format.prettyPrint(),
     format.timestamp({ format: timezoned }),
+    align(),
     myFormat
   ),
 };

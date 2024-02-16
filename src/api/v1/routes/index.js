@@ -14,7 +14,6 @@ const { validateCommentInput } = require("../validators/comment.validator");
 const {
   validateRegisterInput,
   validateSignIn,
-  checkLoggedIn,
 } = require("../validators/auth.validator");
 
 const Auth = require("../middleware/Auth");
@@ -23,6 +22,7 @@ const { validator, ValidationSource } = require("../helpers/validator");
 const { checkSchema } = require("../validators/check.schema");
 const logger = require("../../../utils/logger");
 const { loginSchema } = require("../validators/auth.schema");
+const asyncHandler = require("../helpers/asyncHandler");
 
 // main router v1;
 const router = express.Router();
@@ -38,15 +38,13 @@ router.get("/checkhealth", async (req, res) => {
 /**
  *  Router: auth
  */
-router.post("/auth/signup", validateRegisterInput, signUp);
-router.post(
-  "/auth/signinwithusername",
-  validator(loginSchema, ValidationSource.BODY),
-  signIn
-);
-router.post("/auth/signin", validateSignIn, signIn);
+router.use("/auth", require("./auth.route"));
 
-router.get("/auth/refreshtoken", Auth.authentication, refreshToken);
+router.get(
+  "/auth/refreshtoken",
+  Auth.authentication,
+  asyncHandler(refreshToken)
+);
 
 /**
  * Router: user

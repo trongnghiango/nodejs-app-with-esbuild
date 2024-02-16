@@ -33,15 +33,8 @@ const ErrorType = {
 };
 
 class ApiError extends Error {
-  // eslint-disable-next-line no-useless-constructor
-  // constructor(type, message) {
-  //   super(type, message);
-  // }
-
+  // success = false
   static handle(err, res) {
-    logger.info(
-      `---------------------------- ${err.name} ----------------------------`
-    );
     switch (err.type) {
       case ErrorType.BAD_TOKEN:
       case ErrorType.TOKEN_EXPIRED:

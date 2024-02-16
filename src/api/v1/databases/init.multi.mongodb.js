@@ -1,8 +1,12 @@
+/**
+ * mongoose
+ */
 const mongoose = require("mongoose");
 const logger = require("../../../utils/logger");
 require("dotenv").config();
 
-const { db, env } = require("../../../config");
+const { db } = require("../../../config");
+const { getDbStr } = require("@/utils/str.util");
 
 // config
 const options = {
@@ -16,14 +20,8 @@ mongoose.set("strictQuery", false);
 
 function newConnection(uri) {
   const conn = mongoose.createConnection(uri, options);
-  logger.debug(`MongoDb:: ${uri}`, {
-    label: "DATABASE",
-  });
   conn.on("connected", () => {
-    // mongoose.set('debug', function (col, method, query, doc) {
-    //   logger.debug(`Mongo Debug:: ${this.conn.name}:: ${col}, ${method}, ${JSON.stringify(query)}, ${JSON.stringify(doc)}`, { label: 'DATABASE' });
-    // })
-    logger.info(`MongoDb:: is connected!`, {
+    logger.info(`MongoDb[${getDbStr(uri)}]:: is connected!`, {
       label: "DATABASE",
     });
   });
@@ -53,9 +51,6 @@ const conn2 = newConnection(db.dburi);
 const agent_conn = newConnection(db.agentDbUri);
 const transaction_conn = newConnection(db.transactionDbUri);
 const point_conn = newConnection(db.pointDbUri);
-logger.info(`${db.dburi}`, {
-  label: "DATABASE",
-});
 
 module.exports = {
   auth_conn,
